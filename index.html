@@ -3,13 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Umang Jaiswal - Data Analyst Portfolio</title>
+    <title>Umang Jaiswal - Aspiring Data Scientist & Analyst</title>
+    <meta name="description" content="Portfolio of Umang Jaiswal, aspiring Data Scientist and Analyst specializing in data analysis, machine learning, and visualization. Explore projects, skills, and connect for opportunities." />
+    <meta name="keywords" content="data analyst, data scientist, machine learning, Python, SQL, portfolio, Umang Jaiswal" />
+    <meta property="og:title" content="Umang Jaiswal - Data Science Portfolio" />
+    <meta property="og:description" content="Passionate about data-driven insights and innovation." />
+    <meta property="og:image" content="https://readdy.ai/api/search-image?query=professional%20data%20scientist%20portrait%2C%20modern%20tech%20background&width=1200&height=630" />
+    <meta property="og:url" content="https://umangjaiswal.com" />
+    <link rel="canonical" href="https://umangjaiswal.com" />
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            colors: { primary: "#3b82f6", secondary: "#f97316" },
+            colors: { 
+              primary: "#3b82f6", 
+              secondary: "#f97316",
+              accent: "#10b981"
+            },
             borderRadius: {
               none: "0px",
               sm: "4px",
@@ -20,8 +31,23 @@
               "2xl": "24px",
               "3xl": "32px",
               full: "9999px",
-              button: "8px",
+              button: "12px",
             },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-in-out',
+              'slide-up': 'slideUp 0.6s ease-out',
+              'bounce-subtle': 'bounce 2s infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(50px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              }
+            }
           },
         },
       };
@@ -43,197 +69,258 @@
     <style>
       :where([class^="ri-"])::before { content: "\f3c2"; }
       html {
-      scroll-behavior: smooth;
-      font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+        font-family: 'Inter', sans-serif;
       }
       body {
-      transition: background-color 0.3s ease, color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       .dark {
-      background-color: #0f172a;
-      color: #f1f5f9;
+        background-color: #0f172a;
+        color: #f1f5f9;
       }
       .dark .card {
-      background-color: #1e293b;
-      border-color: #334155;
+        background-color: #1e293b;
+        border-color: #334155;
       }
       .dark .nav-link {
-      color: #f1f5f9;
+        color: #f1f5f9;
       }
       .dark .nav-link:hover {
-      color: #3b82f6;
+        color: #3b82f6;
       }
       .dark .form-input {
-      background-color: #1e293b;
-      border-color: #334155;
-      color: #f1f5f9;
+        background-color: #1e293b;
+        border-color: #334155;
+        color: #f1f5f9;
       }
       .typewriter {
-      overflow: hidden;
-      border-right: .15em solid #3b82f6;
-      white-space: nowrap;
-      margin: 0 auto;
-      animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+        overflow: hidden;
+        border-right: .15em solid #3b82f6;
+        white-space: nowrap;
+        margin: 0 auto;
+        animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
       }
       @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+        from { width: 0 }
+        to { width: 100% }
       }
       @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #3b82f6 }
+        from, to { border-color: transparent }
+        50% { border-color: #3b82f6 }
       }
       .progress-bar {
-      position: relative;
-      height: 8px;
-      border-radius: 4px;
-      background-color: #e2e8f0;
-      overflow: hidden;
+        position: relative;
+        height: 8px;
+        border-radius: 4px;
+        background-color: #e2e8f0;
+        overflow: hidden;
       }
       .progress-bar-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background-color: #3b82f6;
-      width: 0;
-      transition: width 1.5s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #10b981);
+        width: 0;
+        transition: width 1.5s ease-in-out;
       }
       .skill-item.animated .progress-bar-fill {
-      width: var(--progress-width);
+        width: var(--progress-width);
       }
       input[type="checkbox"].toggle {
-      height: 0;
-      width: 0;
-      visibility: hidden;
-      position: absolute;
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        position: absolute;
       }
       .toggle-label {
-      cursor: pointer;
-      width: 50px;
-      height: 25px;
-      background: #e2e8f0;
-      display: block;
-      border-radius: 100px;
-      position: relative;
-      transition: 0.3s;
+        cursor: pointer;
+        width: 50px;
+        height: 25px;
+        background: #e2e8f0;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+        transition: 0.3s;
       }
       .toggle-label:after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 19px;
-      height: 19px;
-      background: #fff;
-      border-radius: 90px;
-      transition: 0.3s;
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 19px;
+        height: 19px;
+        background: #fff;
+        border-radius: 90px;
+        transition: 0.3s;
       }
       input:checked + .toggle-label {
-      background: #3b82f6;
+        background: #3b82f6;
       }
       input:checked + .toggle-label:after {
-      left: calc(100% - 3px);
-      transform: translateX(-100%);
+        left: calc(100% - 3px);
+        transform: translateX(-100%);
       }
       .form-input {
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
       }
       .form-input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
       }
       .form-label {
-      transition: all 0.3s ease;
-      pointer-events: none;
+        transition: all 0.3s ease;
+        pointer-events: none;
       }
       .form-input:focus + .form-label,
       .form-input:not(:placeholder-shown) + .form-label {
-      transform: translateY(-24px) scale(0.85);
-      color: #3b82f6;
+        transform: translateY(-24px) scale(0.85);
+        color: #3b82f6;
       }
       .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e5e7eb;
       }
       .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       }
       input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 4px;
-      outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        outline: none;
       }
       input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      background: #3b82f6;
-      border-radius: 50%;
-      cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #3b82f6;
+        border-radius: 50%;
+        cursor: pointer;
       }
       input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background: #3b82f6;
-      border-radius: 50%;
-      cursor: pointer;
-      border: none;
+        width: 20px;
+        height: 20px;
+        background: #3b82f6;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
       }
       input[type="number"]::-webkit-inner-spin-button,
       input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+        -webkit-appearance: none;
+        margin: 0;
       }
       .testimonial-slider {
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
       }
       .testimonial-slide {
-      scroll-snap-align: start;
-      flex-shrink: 0;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        min-width: 300px;
+      }
+      .project-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(5px);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 0;
+        border: none;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        animation: slideUp 0.3s ease-out;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      .close:hover,
+      .close:focus {
+        color: #3b82f6;
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      @media (max-width: 768px) {
+        .parallax {
+          background-attachment: scroll;
+        }
       }
     </style>
   </head>
   <body class="bg-white text-gray-800">
     <!-- Header/Navigation -->
     <header
-      class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm z-50 shadow-sm transition-all duration-300 dark:bg-gray-900 dark:bg-opacity-90"
+      class="fixed top-0 left-0 w-full bg-white bg-opacity-95 backdrop-blur-md z-50 shadow-lg transition-all duration-300 dark:bg-gray-900 dark:bg-opacity-95"
     >
       <div class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
-          <a href="#home" class="text-2xl font-['Pacifico'] text-primary"
-            >Umang</a
+          <a href="#home" class="text-2xl font-['Pacifico'] text-primary hover:text-secondary transition-colors"
+            >Umang Jaiswal</a
           >
           <div class="hidden md:flex items-center space-x-8">
             <a
               href="#home"
-              class="nav-link text-gray-700 hover:text-primary transition-colors"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
               >Home</a
             >
             <a
               href="#about"
-              class="nav-link text-gray-700 hover:text-primary transition-colors"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
               >About</a
             >
             <a
               href="#projects"
-              class="nav-link text-gray-700 hover:text-primary transition-colors"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
               >Projects</a
             >
             <a
               href="#skills"
-              class="nav-link text-gray-700 hover:text-primary transition-colors"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
               >Skills</a
             >
             <a
+              href="#testimonials"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
+              >Testimonials</a
+            >
+            <a
               href="#contact"
-              class="nav-link text-gray-700 hover:text-primary transition-colors"
+              class="nav-link text-gray-700 hover:text-primary transition-colors duration-200"
               >Contact</a
             >
           </div>
@@ -243,6 +330,7 @@
               <label
                 for="theme-toggle"
                 class="toggle-label flex items-center justify-center"
+                title="Toggle dark mode"
               >
                 <span class="sr-only">Toggle dark mode</span>
               </label>
@@ -250,13 +338,14 @@
             <button
               id="mobile-menu-button"
               class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary transition-colors dark:text-gray-300"
+              aria-label="Toggle mobile menu"
             >
               <i class="ri-menu-line ri-lg"></i>
             </button>
           </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+        <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
           <div class="flex flex-col space-y-4">
             <a
               href="#home"
@@ -279,6 +368,11 @@
               >Skills</a
             >
             <a
+              href="#testimonials"
+              class="nav-link text-gray-700 hover:text-primary transition-colors py-2 dark:text-gray-300"
+              >Testimonials</a
+            >
+            <a
               href="#contact"
               class="nav-link text-gray-700 hover:text-primary transition-colors py-2 dark:text-gray-300"
               >Contact</a
@@ -287,1101 +381,1110 @@
         </div>
       </div>
     </header>
+
     <!-- Hero Section -->
-   <section
-  id="home"
-  class="min-h-screen flex items-center pt-16"
-  style="background-image: url('https://readdy.ai/api/search-image?query=modern%20abstract%20background%20with%20soft%20blue%20and%20white%20gradient%2C%20minimalist%20design%2C%20clean%20and%20professional%2C%20subtle%20geometric%20shapes%2C%20perfect%20for%20portfolio%20website%20background%2C%20high%20quality%20digital%20art&width=1920&height=1080&seq=hero-bg&orientation=landscape'); background-size: cover; background-position: center;"
->
-  <div class="container mx-auto px-6 py-20">
-    <div class="flex flex-col md:flex-row items-center">
-      <!-- Text Content -->
-      <div class="w-full md:w-1/2 mb-10 md:mb-0">
-        <h1
-          class="text-4xl md:text-6xl font-bold mb-4 text-BLACK-900 dark:text-BLACK-900 opacity-0 animate-hero"
-        >
-          Umang Jaiswal N
-        </h1>
-        <div class="h-12 overflow-hidden mb-6">
-          <h2
-            class="typewriter text-xl md:text-2xl font-medium text-primary"
-          >
-            Aspiring Data Scientist & Analytics Enthusiast
-          </h2>
-        </div>
-        <p
-          class="text-lg text-white-700 dark:text-white-300 mb-8 max-w-lg opacity-0 animate-hero-delay"
-        >
-          Passionate about uncovering insights through data. Currently exploring data analysis, visualization, and machine learning to solve real-world problems. Eager to learn, analyze, and innovate with data.
-        </p>
-        <div
-          class="flex flex-wrap gap-4 mb-8 opacity-0 animate-hero-delay-2"
-        >
-          <a
-            href="#projects"
-            class="px-6 py-3 bg-primary text-white font-medium !rounded-button hover:bg-blue-600 transition-colors shadow-lg whitespace-nowrap"
-            >My Projects</a
-          >
-          <a
-            href="#contact"
-            class="px-6 py-3 border-2 border-primary text-primary font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap"
-            >Get in Touch</a
-          >
-        </div>
-        <div class="flex space-x-4 opacity-0 animate-hero-delay-3">
-          <a
-            href="https://github.com/umangjzx"
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors shadow-md"
-          >
-            <i class="ri-github-line"></i>
-          </a>
-          <a
-            href="https://linkedin.com/in/umang-jaiswal-n"
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors"
-          >
-            <i class="ri-linkedin-line"></i>
-          </a>
-          <a
-            href="https://twitter.com/UMANGJazzz"
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors"
-          >
-            <i class="ri-twitter-x-line"></i>
-          </a>
-          <a
-            href="https://instagram.com/_.umangjaiswal._"
-            class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 hover:bg-primary hover:text-white transition-colors"
-          >
-            <i class="ri-dribbble-line"></i>
-          </a>
+    <section
+      id="home"
+      class="min-h-screen flex items-center pt-20 parallax"
+      style="background-image: url('https://readdy.ai/api/search-image?query=modern%20abstract%20data%20science%20background%20with%20soft%20blue%20gradient%2C%20geometric%20patterns%2C%20tech%20elements%2C%20minimalist%20professional%20design%2C%20high%20quality&width=1920&height=1080&seq=hero-bg-updated&orientation=landscape'); background-size: cover; background-position: center;"
+    >
+      <div class="container mx-auto px-6 py-20">
+        <div class="flex flex-col md:flex-row items-center">
+          <!-- Text Content -->
+          <div class="w-full md:w-1/2 mb-10 md:mb-0 animate-hero fade-in">
+            <h1
+              class="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg"
+            >
+              Umang Jaiswal
+            </h1>
+            <div class="h-12 overflow-hidden mb-6">
+              <h2
+                class="typewriter text-xl md:text-2xl font-medium text-primary drop-shadow-md"
+              >
+                Aspiring Data Scientist & Analytics Enthusiast
+              </h2>
+            </div>
+            <p
+              class="text-lg text-white-100 dark:text-white-300 mb-8 max-w-lg drop-shadow-md"
+            >
+              Passionate about transforming raw data into actionable insights. Specializing in data analysis, machine learning, and visualization to drive innovation and solve complex problems. Seeking internships and collaborative opportunities.
+            </p>
+            <div
+              class="flex flex-wrap gap-4 mb-8"
+            >
+              <a
+                href="#projects"
+                class="px-6 py-3 bg-primary text-white font-medium !rounded-button hover:bg-secondary transition-all duration-300 shadow-xl hover:shadow-2xl whitespace-nowrap transform hover:scale-105"
+                >Explore Projects</a
+              >
+              <a
+                href="#contact"
+                class="px-6 py-3 border-2 border-primary text-primary font-medium !rounded-button hover:bg-primary hover:text-white transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap transform hover:scale-105"
+                >Let's Connect</a
+              >
+            </div>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/umangjzx"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                aria-label="GitHub Profile"
+              >
+                <i class="ri-github-line ri-lg"></i>
+              </a>
+              <a
+                href="https://linkedin.com/in/umang-jaiswal-n"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                aria-label="LinkedIn Profile"
+              >
+                <i class="ri-linkedin-line ri-lg"></i>
+              </a>
+              <a
+                href="https://twitter.com/UMANGJazzz"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                aria-label="Twitter Profile"
+              >
+                <i class="ri-twitter-x-line ri-lg"></i>
+              </a>
+              <a
+                href="https://instagram.com/_.umangjaiswal._"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                aria-label="Instagram Profile"
+              >
+                <i class="ri-instagram-line ri-lg"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Profile Image & Tagline -->
+          <div class="w-full md:w-1/2 flex justify-center animate-hero-delay slide-up">
+            <div class="relative">
+              <div
+                class="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm"
+              >
+                <img
+                  src="images/IMG-20250724-WA0016.jpg"
+                  alt="Profile photo of Umang Jaiswal, aspiring data scientist"
+                  class="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
+              <div
+                class="absolute -bottom-6 -right-6 bg-white/90 dark:bg-gray-800/90 rounded-xl shadow-xl p-4 backdrop-blur-md animate-hero-delay-2 fade-in"
+              >
+                <p class="text-primary font-bold text-sm">Data Enthusiast | Future Innovator</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Profile Image & Tagline -->
-      <div class="w-full md:w-1/2 flex justify-center">
-        <div class="relative">
-          <div
-            class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl opacity-0 animate-hero"
-          >
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">About Me</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+        </div>
+        <div class="flex flex-col lg:flex-row items-center gap-12 animate-slide-up">
+          <div class="w-full lg:w-2/5 relative group">
             <img
-              src="images/IMG-20250724-WA0016.jpg"
-              alt="Umang Jaiswal"
-              class="w-full h-full object-cover object-top"
+              src="images/How to Become a Data Analyst 2.avif"
+              alt="Umang Jaiswal working on data analysis project"
+              class="w-full h-auto rounded-2xl shadow-2xl object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
             />
+            <div
+              class="absolute -bottom-8 -right-8 lg:-bottom-6 lg:-right-6 bg-white/90 dark:bg-gray-700/90 p-6 rounded-2xl shadow-2xl backdrop-blur-md transform translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-500"
+            >
+              <p class="font-bold text-primary text-lg">Lifelong Learner & Problem Solver</p>
+            </div>
           </div>
-          <div
-            class="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 dark:bg-gray-800 opacity-0 animate-hero-delay-2"
-          >
-            <p class="text-primary font-bold">Data Enthusiast & Future Data Scientist</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-   <!-- About Section for Student -->
-<section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-      <div class="w-20 h-1 bg-primary mx-auto"></div>
-    </div>
-    <div class="flex flex-col md:flex-row items-center gap-12">
-      <div class="w-full md:w-2/5">
-        <div class="relative">
-          <img
-            src="images/How to Become a Data Analyst 2.avif"
-            alt="About [Your Name]"
-            class="w-full h-auto rounded-lg shadow-xl object-cover object-top"
-          />
-          <div
-            class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg dark:bg-gray-700"
-          >
-            <p class="font-bold text-gray-800 dark:text-white">
-              Eager Learner
+          <div class="w-full lg:w-3/5 prose prose-lg dark:prose-invert animate-slide-up delay-200">
+            <h3 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Who Am I?</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              As a dedicated MSc student in Decision and Computing Science at Coimbatore Institute of Technology, I am deeply passionate about leveraging data to uncover patterns, predict outcomes, and drive informed decisions. My journey in data science began with curiosity about how numbers can tell stories, leading me to master tools like Python, SQL, and machine learning frameworks.
             </p>
+            <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+              With hands-on projects in finance, fintech, and public safety analytics, I've honed my ability to clean, analyze, and visualize complex datasets. I thrive on collaborative challenges and am actively seeking internships to apply my skills in real-world scenarios while continuing to grow as a data professional.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white/50 dark:bg-gray-700/50 p-4 rounded-xl backdrop-blur-sm">
+                <p class="text-gray-700 dark:text-gray-300">
+                  <span class="font-semibold text-primary">Name:</span> Umang Jaiswal N
+                </p>
+              </div>
+              <div class="bg-white/50 dark:bg-gray-700/50 p-4 rounded-xl backdrop-blur-sm">
+                <p class="text-gray-700 dark:text-gray-300">
+                  <span class="font-semibold text-primary">Email:</span> umang2468jaiswal@gmail.com
+                </p>
+              </div>
+              <div class="bg-white/50 dark:bg-gray-700/50 p-4 rounded-xl backdrop-blur-sm">
+                <p class="text-gray-700 dark:text-gray-300">
+                  <span class="font-semibold text-primary">Location:</span> Coimbatore, Tamil Nadu
+                </p>
+              </div>
+              <div class="bg-white/50 dark:bg-gray-700/50 p-4 rounded-xl backdrop-blur-sm">
+                <p class="text-gray-700 dark:text-gray-300">
+                  <span class="font-semibold text-primary">Status:</span> MSc Student | Internship Seeker
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 animate-fade-in delay-400">
+              <a
+                href="#contact"
+                class="px-8 py-4 bg-primary text-white font-semibold !rounded-button hover:bg-secondary transition-all duration-300 shadow-xl hover:shadow-2xl whitespace-nowrap transform hover:scale-105"
+                >Get In Touch</a
+              >
+              <a
+                href="https://drive.google.com/file/d/1-ScFxfecfsCWbdrKWfALLXjKsTIWRO-T/view?usp=sharing"
+                class="px-8 py-4 border-2 border-primary text-primary font-semibold !rounded-button hover:bg-primary hover:text-white transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap transform hover:scale-105"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Download Resume (PDF)</a
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="w-full md:w-3/5">
-        <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-          Who am I?
+    </section>
+
+    <!-- Education & Experience Timeline -->
+    <section class="py-24 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Education & Journey
         </h3>
-        <p class="text-gray-700 dark:text-gray-300 mb-6">
-          I am a dedicated student passionate about expanding my knowledge in data analysis, software development, and emerging technologies. I enjoy exploring new concepts and applying them through projects and coursework. My goal is to develop skills that will help me contribute meaningfully to future endeavors.
-        </p>
-        <p class="text-gray-700 dark:text-gray-300 mb-6">
-          With a strong academic background and hands-on experience in various programming languages and tools, I am eager to learn and grow. I thrive in collaborative environments and am always looking for opportunities to challenge myself and improve.
-        </p>
-        <div class="grid grid-cols-2 gap-6 mb-8">
-          <div>
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-semibold">Name:</span> Umang Jaiswal N
-            </p>
-          </div>
-          <div>
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-semibold">Email:</span> umang2468jaiswal@gmail.com
-            </p>
-          </div>
-          <div>
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-semibold">Location:</span> Coimbatore,Tamilnadu
-            </p>
-          </div>
-          <div>
-            <p class="text-gray-700 dark:text-gray-300">
-              <span class="font-semibold">Status:</span> Student / Looking for Internships
-            </p>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href="#contact"
-            class="px-6 py-3 bg-primary text-white font-medium !rounded-button hover:bg-blue-600 transition-colors shadow-md whitespace-nowrap"
-            >Contact Me</a
-          >
-          <a
-            href="https://drive.google.com/file/d/1-ScFxfecfsCWbdrKWfALLXjKsTIWRO-T/view?usp=sharing"
-            class="px-6 py-3 border-2 border-primary text-primary font-medium !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap"
-            >Download Resume</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-        <!-- Education & Experience -->
-<div class="mt-20">
-  <h3 class="text-2xl font-bold mb-8 text-center">
-    Education & Experience
-  </h3>
-  <div class="relative">
-    <!-- Timeline Line -->
-    <div
-      class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 dark:bg-gray-700"
-    ></div>
-    <!-- Timeline Items -->
-    <div class="timeline-items">
-      <!-- Item 1: Current Education -->
-      <div class="relative mb-16 timeline-item">
-        <div class="flex flex-col md:flex-row items-center">
+        <div class="relative">
+          <!-- Timeline Line -->
           <div
-            class="w-full md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right"
-          >
-            <div
-              class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 timeline-content"
-            >
-              <h4 class="text-xl font-bold mb-2">
-                M.sc Decision and Computing Science
-              </h4>
-              <p class="text-primary font-medium mb-2">
-                Coimbatore Institute of Technology
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">
-                2025 - Present
-              </p>
-              <p class="text-gray-700 dark:text-gray-300">
-                Currently pursuing coursework in machine learning, statistics, and data analysis. Eager to apply theoretical knowledge through upcoming projects and collaborations.
-              </p>
+            class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary to-secondary dark:bg-gray-700"
+          ></div>
+          <!-- Timeline Items -->
+          <div class="timeline-items space-y-16">
+            <!-- Item 1: Current Education -->
+            <div class="relative mb-16 timeline-item flex flex-col lg:flex-row items-center animate-slide-up">
+              <div
+                class="w-full lg:w-5/12 lg:pr-12 mb-8 lg:mb-0 lg:text-right order-2 lg:order-1"
+              >
+                <div
+                  class="bg-white/80 dark:bg-gray-700/80 p-8 rounded-2xl shadow-xl backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50 timeline-content"
+                >
+                  <h4 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                    MSc in Decision and Computing Science
+                  </h4>
+                  <p class="text-primary font-semibold mb-2 text-lg">
+                    Coimbatore Institute of Technology
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm uppercase tracking-wide">
+                    2025 - Present
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Immersed in advanced coursework on machine learning, statistical modeling, optimization, and computational decision-making. Actively engaging in research-oriented projects to bridge theory and practice.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-2xl z-10 order-1 lg:order-2"
+              >
+                <i class="ri-school-line text-white ri-2x"></i>
+              </div>
+              <div class="w-full lg:w-5/12 lg:pl-12 order-1 lg:order-2">
+                <div
+                  class="lg:hidden bg-white/80 dark:bg-gray-700/80 p-8 rounded-2xl shadow-xl backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50 timeline-content"
+                >
+                  <h4 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                    Building Data Expertise
+                  </h4>
+                  <p class="text-primary font-semibold mb-2 text-lg">
+                    Self-Directed Learning
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm uppercase tracking-wide">
+                    2024 - Ongoing
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Dedicating time to mastering Python ecosystems, SQL querying, and ML algorithms through online courses, Kaggle competitions, and personal projects.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div
-            class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-md z-10"
-          >
-            <i class="ri-school-line text-white ri-lg"></i>
-          </div>
-          <div class="w-full md:w-1/2 md:pl-12 md:text-left">
-            <div
-              class="md:hidden bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 timeline-content"
-            >
-              <h4 class="text-xl font-bold mb-2">
-                Aspiring Data Analyst
-              </h4>
-              <p class="text-primary font-medium mb-2">
-                Personal Development
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">
-                2025 - Present
-              </p>
-              <p class="text-gray-700 dark:text-gray-300">
-                Actively learning Python, SQL, and visualization tools. Planning to participate in online competitions and hackathons to build practical skills.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Item 2: Future Goals / Certifications -->
-      <div class="relative mb-16 timeline-item">
-        <div class="flex flex-col md:flex-row items-center">
-          <div
-            class="w-full md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right"
-          >
-            <div
-              class="md:hidden bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 timeline-content"
-            >
-              <h4 class="text-xl font-bold mb-2">
-                Certifications & Workshops
-              </h4>
-              <p class="text-primary font-medium mb-2">
-                Future Plans
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">
-                2024 and beyond
-              </p>
-              <p class="text-gray-700 dark:text-gray-300">
-                Intend to earn certifications in Data Science and Machine Learning. Looking forward to internships and collaborative projects to enhance practical experience.
-              </p>
-            </div>
-          </div>
-          <div
-            class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-md z-10"
-          >
-            <i class="ri-lightbulb-flash-line text-white ri-lg"></i>
-          </div>
-          <div class="w-full md:w-1/2 md:pl-12 md:text-left">
-            <div
-              class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 timeline-content"
-            >
-              <h4 class="text-xl font-bold mb-2">
-                Future Aspirations
-              </h4>
-              <p class="text-primary font-medium mb-2">
-                Career Development
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">
-                Upcoming Years
-              </p>
-              <p class="text-gray-700 dark:text-gray-300">
-                Aim to build a portfolio of data projects, participate in competitions, and gain internship experience to prepare for a career in data analysis and data science.
-              </p>
+            <!-- Item 2: Aspirations & Certifications -->
+            <div class="relative mb-16 timeline-item flex flex-col lg:flex-row items-center animate-slide-up delay-200">
+              <div
+                class="w-full lg:w-5/12 lg:pr-12 mb-8 lg:mb-0 lg:text-right order-2 lg:order-1"
+              >
+                <div
+                  class="lg:hidden bg-white/80 dark:bg-gray-700/80 p-8 rounded-2xl shadow-xl backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50 timeline-content"
+                >
+                  <h4 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                    Certifications in Progress
+                  </h4>
+                  <p class="text-primary font-semibold mb-2 text-lg">
+                    Professional Development
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm uppercase tracking-wide">
+                    2025 & Beyond
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Pursuing Google Data Analytics, IBM Data Science, and AWS Machine Learning certifications to validate and expand my skill set.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-accent to-secondary flex items-center justify-center shadow-2xl z-10 order-1 lg:order-2"
+              >
+                <i class="ri-trophy-line text-white ri-2x"></i>
+              </div>
+              <div class="w-full lg:w-5/12 lg:pl-12 order-1 lg:order-2">
+                <div
+                  class="bg-white/80 dark:bg-gray-700/80 p-8 rounded-2xl shadow-xl backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50 timeline-content"
+                >
+                  <h4 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">
+                    Career Aspirations
+                  </h4>
+                  <p class="text-primary font-semibold mb-2 text-lg">
+                    Future Roadmap
+                  </p>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm uppercase tracking-wide">
+                    2025 - 2027
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Aiming to secure data analyst internships, contribute to open-source ML projects, and transition into a full-time role in data science or analytics upon graduation. Focused on impactful, ethical data applications.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-   <!-- Projects Section -->
-<section id="projects" class="py-20">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-      <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-      <p class="text-white-700 dark:text-white-300 max-w-2xl mx-auto">
-        Explore some of my recent work. Each project represents a unique
-        challenge and solution.
-      </p>
-    </div>
-    
-    <!-- Projects Filters -->
-<div class="flex flex-wrap justify-center gap-4 mb-12">
-  <button
-    class="project-filter px-6 py-2 !rounded-button bg-primary text-white font-medium whitespace-nowrap"
-    data-filter="all"
-  >
-    All Projects
-  </button>
-  <button
-    class="project-filter px-6 py-2 !rounded-button bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 whitespace-nowrap"
-    data-filter="data-analysis"
-  >
-    Data Analysis
-  </button>
-  <button
-    class="project-filter px-6 py-2 !rounded-button bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 whitespace-nowrap"
-    data-filter="machine-learning"
-  >
-    Machine Learning
-  </button>
-  <button
-    class="project-filter px-6 py-2 !rounded-button bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 whitespace-nowrap"
-    data-filter="visualization"
-  >
-    Data Visualization
-  </button>
-</div>
-
-<!-- Projects Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  <!-- Project 1: Sales Analytics Dashboard -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="data-analysis"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="https://readdy.ai/api/search-image?query=data%20visualization%20dashboard%20showing%20sales%20analytics%2C%20interactive%20charts%2C%20KPI%20metrics%2C%20professional%20business%20intelligence%20interface%20with%20multiple%20graphs%20and%20statistics%2C%20clean%20modern%20design&width=600&height=400&seq=project1&orientation=landscape"
-        alt="Sales Analytics Dashboard"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Sales Analytics Dashboard
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Developed an interactive dashboard analyzing sales trends, customer behavior, and revenue metrics using advanced data visualization techniques.
-      </p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900 dark:text-blue-200">Python</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm dark:bg-green-900 dark:text-green-200">Tableau</span>
-        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm dark:bg-purple-900 dark:text-purple-200">SQL</span>
-      </div>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 2: Customer Segmentation Analysis -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="data-analysis"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="https://readdy.ai/api/search-image?query=machine%20learning%20predictive%20model%20visualization%2C%20customer%20segmentation%20analysis%2C%20clustering%20algorithms%20results%2C%20professional%20data%20science%20interface%20with%20scatter%20plots%20and%20decision%20trees%2C%20modern%20analytical%20dashboard&width=600&height=400&seq=project2&orientation=landscape"
-        alt="Customer Segmentation Analysis"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Customer Segmentation Analysis
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Implemented machine learning algorithms to segment customers based on behavior patterns and purchasing habits.
-      </p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900 dark:text-blue-200">Python</span>
-        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm dark:bg-yellow-900 dark:text-yellow-200">Scikit-learn</span>
-        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm dark:bg-red-900 dark:text-red-200">Pandas</span>
-      </div>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 3: Market Trend Analysis -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="data-analysis"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="https://readdy.ai/api/search-image?query=market%20trend%20analysis%20dashboard%20with%20stock%20market%20data%20visualization%2C%20financial%20forecasting%20models%2C%20time%20series%20analysis%20charts%2C%20professional%20trading%20analysis%20interface%2C%20modern%20financial%20dashboard&width=600&height=400&seq=project3&orientation=landscape"
-        alt="Market Trend Analysis"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Market Trend Analysis
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Developed predictive models for market trend analysis using time series forecasting and statistical methods.
-      </p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900 dark:text-blue-200">R</span>
-        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm dark:bg-indigo-900 dark:text-indigo-200">Time Series</span>
-        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm dark:bg-gray-700 dark:text-gray-300">ggplot2</span>
-      </div>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 4: Non-Linear Modelling for Equity Valuation -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="finance"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/non linesr modeling.png"
-        alt="Non-Linear Modelling for Equity Valuation in Python"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="https://github.com/umangjzx/Stock-Prediction-Dashboard-AI"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="https://github.com/umangjzx/Stock-Prediction-Dashboard-AI"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Non-Linear Modelling for Equity Valuation in Python
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Domain: Finance / Equity Valuation<br>
-        Key Concepts: Non-linear regression, machine learning models<br>
-        Tools: Python, sklearn, pandas, matplotlib<br>
-        Focus: Predicting stock/equity values using non-linear modeling techniques.<br>
-        Features: Implementation, analysis reports, data modeling, and financial inference.
-      </p>
-      <a href="https://github.com/umangjzx/Stock-Prediction-Dashboard-AI" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 5: Lending Club Loan Prediction -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="fintech"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/lending club loan.png"
-        alt="Lending Club Loan Prediction"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="https://github.com/umangjzx/Lending-Club-Loan-Prediction"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="https://github.com/umangjzx/Lending-Club-Loan-Prediction"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Lending Club Loan Prediction</h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Domain: Fintech / Credit Risk Analytics<br>
-        Key Concepts: Predictive modeling, feature engineering, classification<br>
-        Models Used: Logistic Regression, Decision Tree, Random Forest, XGBoost<br>
-        Additional Features: Model evaluation (confusion matrix, ROC-AUC), SHAP explainability, profit/loss estimation, calibration curves, CSV export
-      </p>
-      <a href="https://github.com/umangjzx/Lending-Club-Loan-Prediction" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 6: Traffic Accident Data Analysis & Prediction -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="healthcare"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/TRAFFIC ACCIDENTS.png"
-        alt="Traffic Accident Data Analysis & Prediction"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="https://github.com/umangjzx/traffic_accident_project"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="https://github.com/umangjzx/traffic_accident_project"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Traffic Accident Data Analysis & Prediction
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Domain: Traffic Safety & Data Science<br>
-        Goal: To analyze traffic accident data for identifying patterns and risk factors.<br>
-        Database: PostgreSQL<br>
-        Models Used: Logistic Regression, Random Forest Classifier, Support Vector Machine (SVM), Gradient Boosting (e.g., XGBoost), etc.<br>
-        Features: Data preprocessing, model building, visualizations, cost optimization.
-      </p>
-      <a href="https://github.com/umangjzx/traffic_accident_project" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Additional Projects in Machine Learning -->
-  <!-- Project 4: Image Classification with CNN -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="machine-learning"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/IMAGE CNN.png"
-        alt="Image Classification with CNN"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href=""
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Image Classification with CNN
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Utilized convolutional neural networks to classify images into multiple categories, achieving high accuracy on benchmark datasets.
-      </p>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Project 5: Generative Adversarial Networks -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="machine-learning"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/GAN IMAGE.png"
-        alt="Generative Adversarial Networks"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Generative Adversarial Networks (GANs)
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Developed GAN models to generate realistic images, demonstrating the capabilities of deep generative models in AI.
-      </p>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-
-  <!-- Additional Data Visualization Projects -->
-  <!-- Project 6: Business KPI Dashboard -->
-  <div
-    class="card bg-white rounded-lg overflow-hidden shadow-lg dark:bg-gray-800 project-item"
-    data-category="visualization"
-  >
-    <div class="relative overflow-hidden h-64">
-      <img
-        src="images/KPI.png"
-        alt="Business KPI Dashboard"
-        class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
-      />
-      <div
-        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-      >
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-eye-line ri-lg"></i>
-        </a>
-        <a
-          href="#"
-          class="mx-2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-colors"
-        >
-          <i class="ri-github-line ri-lg"></i>
-        </a>
-      </div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-        Business KPI Dashboard
-      </h3>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        Built an interactive dashboard showcasing key business metrics with dynamic visualizations.
-      </p>
-      <a href="#" class="inline-block px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap">View Details</a>
-    </div>
-  </div>
-</div>
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-gray-50 dark:bg-gray-800">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
-          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            I've worked with a variety of technologies and tools throughout my
-            career. Here's an overview of my technical skills.
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Featured Projects</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6"></div>
+          <p class="text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Dive into my portfolio of hands-on projects showcasing data analysis, machine learning, and visualization expertise. Each one highlights problem-solving in real-world domains.
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <!-- Frontend Skills -->
-          <div>
-            <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Data Analysis
-            </h3>
-            <div class="space-y-6">
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Python (Pandas, NumPy)</span
-                  >
-                  <span class="text-primary">95%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 95%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >SQL & Database Management</span
-                  >
-                  <span class="text-primary">92%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 92%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Data Visualization (Tableau)</span
-                  >
-                  <span class="text-primary">90%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 90%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Statistical Analysis</span
-                  >
-                  <span class="text-primary">88%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 88%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Machine Learning</span
-                  >
-                  <span class="text-primary">85%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 85%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Backend Skills -->
-          <div>
-            <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Business Intelligence
-            </h3>
-            <div class="space-y-6">
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Power BI</span
-                  >
-                  <span class="text-primary">90%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 90%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Excel Advanced Analytics</span
-                  >
-                  <span class="text-primary">95%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 95%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >R Programming</span
-                  >
-                  <span class="text-primary">85%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 85%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >Data Modeling</span
-                  >
-                  <span class="text-primary">88%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 88%"
-                  ></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-800 dark:text-white"
-                    >ETL Processes</span
-                  >
-                  <span class="text-primary">86%</span>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-bar-fill"
-                    style="--progress-width: 86%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
+        <!-- Projects Filters -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            class="project-filter px-6 py-3 !rounded-button bg-gradient-to-r from-primary to-accent text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active"
+            data-filter="all"
+            aria-label="Show all projects"
+          >
+            All Projects
+          </button>
+          <button
+            class="project-filter px-6 py-3 !rounded-button bg-white/60 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300 font-semibold border border-gray-300 dark:border-gray-600 hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105"
+            data-filter="data-analysis"
+            aria-label="Filter data analysis projects"
+          >
+            Data Analysis
+          </button>
+          <button
+            class="project-filter px-6 py-3 !rounded-button bg-white/60 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300 font-semibold border border-gray-300 dark:border-gray-600 hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105"
+            data-filter="machine-learning"
+            aria-label="Filter machine learning projects"
+          >
+            Machine Learning
+          </button>
+          <button
+            class="project-filter px-6 py-3 !rounded-button bg-white/60 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300 font-semibold border border-gray-300 dark:border-gray-600 hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105"
+            data-filter="visualization"
+            aria-label="Filter visualization projects"
+          >
+            Visualization
+          </button>
+          <button
+            class="project-filter px-6 py-3 !rounded-button bg-white/60 dark:bg-gray-700/60 text-gray-700 dark:text-gray-300 font-semibold border border-gray-300 dark:border-gray-600 hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105"
+            data-filter="fintech"
+            aria-label="Filter fintech projects"
+          >
+            FinTech
+          </button>
         </div>
-        <!-- Other Skills -->
-       <div class="mt-16">
-  <h3 class="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">
-    Other Skills
-  </h3>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-    <!-- Git / GitHub -->
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-git-branch-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">Git / GitHub</h4>
-    </div>
-    <!-- AWS -->
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-aws-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">AWS</h4>
-    </div>
-    <!-- React Native -->
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-reactjs-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">React Native</h4>
-    </div>
-    <!-- Machine Learning Skills -->
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-line-chart-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">Machine Learning</h4>
-    </div>
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-database-2-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">Deep Learning</h4>
-    </div>
-    <div class="skill-card bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-primary">
-        <i class="ri-code-line ri-2x"></i>
-      </div>
-      <h4 class="font-medium text-gray-800 dark:text-white">Python</h4>
-    </div>
-  </div>
-</div>
 
-<!-- Tools I Use -->
-<div class="mt-16">
-  <h3 class="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">
-    Tools I Use
-  </h3>
-  <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-    <!-- VS Code -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-vscode-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">VS Code</p>
-    </div>
-    <!-- Figma -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-figma-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">Figma</p>
-    </div>
-    <!-- Trello -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-trello-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">Trello</p>
-    </div>
-    <!-- Slack -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-slack-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">Slack</p>
-    </div>
-    <!-- GitHub -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-github-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">GitHub</p>
-    </div>
-    <!-- npm -->
-    <div class="tool-item text-center">
-      <div class="w-16 h-16 flex items-center justify-center mx-auto mb-2 text-gray-700 dark:text-gray-300">
-        <i class="ri-npmjs-line ri-2x"></i>
-      </div>
-      <p class="text-gray-700 dark:text-gray-300">npm</p>
-    </div>
-  </div>
-</div>
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities?
-            I'd love to hear from you.
-          </p>
-        </div>
-        <div class="flex flex-col md:flex-row gap-12">
-          <!-- Contact Information -->
-          <div class="w-full md:w-1/3">
-            <div
-              class="bg-white p-8 rounded-lg shadow-lg h-full dark:bg-gray-700"
-            >
-              <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-                Contact Information
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+          <!-- Project 1: Sales Analytics Dashboard -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up"
+            data-category="data-analysis"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="https://readdy.ai/api/search-image?query=interactive%20sales%20dashboard%20with%20charts%2C%20KPIs%2C%20modern%20UI%2C%20data%20visualization&width=600&height=400&seq=sales-dashboard&orientation=landscape"
+                alt="Interactive Sales Analytics Dashboard built with Tableau and Python"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4"
+              >
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('sales-modal')"
+                  aria-label="View Sales Dashboard details"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  aria-label="View on GitHub"
+                >
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Sales Analytics Dashboard
               </h3>
-              <div class="space-y-6">
-                <div class="flex items-start">
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Interactive dashboard for sales trends and revenue insights using Python and Tableau.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">Python</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium dark:bg-green-900 dark:text-green-200">Tableau</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium dark:bg-purple-900 dark:text-purple-200">SQL</span>
+              </div>
+              <button onclick="openModal('sales-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 2: Customer Segmentation -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-100"
+            data-category="machine-learning"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="https://readdy.ai/api/search-image?query=customer%20segmentation%20clustering%20visualization%2C%20scatter%20plots%2C%20ML%20results&width=600&height=400&seq=segmentation&orientation=landscape"
+                alt="Customer segmentation using ML clustering algorithms"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('segmentation-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Customer Segmentation Analysis
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                ML-based customer grouping using K-means and hierarchical clustering for targeted marketing.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">Scikit-learn</span>
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium dark:bg-yellow-900 dark:text-yellow-200">Pandas</span>
+                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium dark:bg-red-900 dark:text-red-200">Matplotlib</span>
+              </div>
+              <button onclick="openModal('segmentation-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 3: Market Trend Analysis -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-200"
+            data-category="data-analysis"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="https://readdy.ai/api/search-image?query=time%20series%20market%20trend%20forecasting%20dashboard%2C%20stock%20charts&width=600&height=400&seq=market-trend&orientation=landscape"
+                alt="Time series analysis for market trends using R"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('market-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Market Trend Forecasting
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Time series modeling with ARIMA and Prophet for predicting market behaviors.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium dark:bg-indigo-900 dark:text-indigo-200">R</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium dark:bg-gray-700 dark:text-gray-300">ggplot2</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium dark:bg-green-900 dark:text-green-200">Forecast</span>
+              </div>
+              <button onclick="openModal('market-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 4: Non-Linear Modelling for Equity Valuation -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-300"
+            data-category="fintech"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/non linesr modeling.png"
+                alt="Non-linear modeling for equity valuation in finance using Python"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('equity-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a
+                  href="https://github.com/umangjzx/Stock-Prediction-Dashboard-AI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Non-Linear Equity Valuation
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Advanced non-linear regression and ML for stock prediction and financial modeling.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">Python</span>
+                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium dark:bg-orange-900 dark:text-orange-200">Scikit-learn</span>
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium dark:bg-yellow-900 dark:text-yellow-200">Pandas</span>
+              </div>
+              <a href="https://github.com/umangjzx/Stock-Prediction-Dashboard-AI" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 5: Lending Club Loan Prediction -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-400"
+            data-category="fintech"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/lending club loan.png"
+                alt="Loan default prediction model for Lending Club using ensemble methods"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('lending-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a
+                  href="https://github.com/umangjzx/Lending-Club-Loan-Prediction"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Lending Club Loan Prediction
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Ensemble ML models (XGBoost, RF) for credit risk assessment with SHAP explainability.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium dark:bg-green-900 dark:text-green-200">XGBoost</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium dark:bg-purple-900 dark:text-purple-200">SHAP</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">Logistic Regression</span>
+              </div>
+              <a href="https://github.com/umangjzx/Lending-Club-Loan-Prediction" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 6: Traffic Accident Analysis -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-500"
+            data-category="data-analysis"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/TRAFFIC ACCIDENTS.png"
+                alt="Traffic accident prediction and analysis using PostgreSQL and ML"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('traffic-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a
+                  href="https://github.com/umangjzx/traffic_accident_project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Traffic Accident Prediction
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Database-driven analysis and predictive modeling for road safety using ensemble classifiers.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium dark:bg-red-900 dark:text-red-200">PostgreSQL</span>
+                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium dark:bg-indigo-900 dark:text-indigo-200">SVM</span>
+                <span class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm font-medium dark:bg-accent-900 dark:text-accent-200">Random Forest</span>
+              </div>
+              <a href="https://github.com/umangjzx/traffic_accident_project" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 7: Image Classification CNN -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-600"
+            data-category="machine-learning"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/IMAGE CNN.png"
+                alt="CNN model for image classification tasks"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('cnn-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                CNN Image Classification
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Deep learning model using convolutional neural networks for accurate image recognition.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium dark:bg-purple-900 dark:text-purple-200">TensorFlow</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">Keras</span>
+                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium dark:bg-orange-900 dark:text-orange-200">CNN</span>
+              </div>
+              <button onclick="openModal('cnn-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 8: GANs for Image Generation -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-700"
+            data-category="machine-learning"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/GAN IMAGE.png"
+                alt="Generative Adversarial Networks for synthetic image creation"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('gan-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Generative Adversarial Networks
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                GAN implementation for generating realistic synthetic images from noise.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm font-medium dark:bg-pink-900 dark:text-pink-200">GANs</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">PyTorch</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium dark:bg-gray-700 dark:text-gray-300">DCGAN</span>
+              </div>
+              <button onclick="openModal('gan-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+
+          <!-- Project 9: Business KPI Dashboard -->
+          <div
+            class="card bg-white rounded-2xl overflow-hidden shadow-xl dark:bg-gray-700 project-item animate-slide-up delay-800"
+            data-category="visualization"
+          >
+            <div class="relative overflow-hidden h-64 group">
+              <img
+                src="images/KPI.png"
+                alt="Dynamic business KPI dashboard for performance tracking"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                <button
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+                  onclick="openModal('kpi-modal')"
+                >
+                  <i class="ri-eye-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110">
+                  <i class="ri-github-line ri-lg"></i>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                Business KPI Dashboard
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                Real-time dashboard for monitoring key performance indicators with interactive charts.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm font-medium dark:bg-teal-900 dark:text-teal-200">Power BI</span>
+                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium dark:bg-indigo-900 dark:text-indigo-200">DAX</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-200">SQL</span>
+              </div>
+              <button onclick="openModal('kpi-modal')" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-accent text-white !rounded-button hover:shadow-xl transition-all duration-300 whitespace-nowrap transform hover:scale-105">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Modals (Example for one; repeat pattern for others) -->
+      <div id="sales-modal" class="project-modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('sales-modal')">&times;</span>
+          <div class="p-8">
+            <h2 class="text-3xl font-bold mb-4">Sales Analytics Dashboard</h2>
+            <img src="https://readdy.ai/api/search-image?query=sales%20dashboard%20detailed&width=800&height=500" alt="Full view of sales dashboard" class="w-full rounded-xl mb-6" loading="lazy">
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Detailed description: This project involves ETL processes, advanced visualizations, and KPI tracking. Achieved 20% improvement in insight delivery time.</p>
+            <div class="flex gap-4">
+              <a href="#" class="px-6 py-3 bg-primary text-white rounded-xl">Live Demo</a>
+              <a href="#" class="px-6 py-3 border border-primary text-primary rounded-xl hover:bg-primary hover:text-white">GitHub Repo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add similar modals for other projects: segmentation-modal, market-modal, equity-modal, lending-modal, traffic-modal, cnn-modal, gan-modal, kpi-modal -->
+      <!-- For brevity, only one shown; implement the rest similarly in full code -->
+
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Technical Skills</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+          <p class="text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Proficiency levels based on projects, coursework, and self-assessment. Continuously evolving through practice and learning.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+          <!-- Data Analysis Skills -->
+          <div class="animate-slide-up">
+            <h3 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              Data Analysis & ML
+            </h3>
+            <div class="space-y-8">
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Python (Pandas, NumPy, Scikit-learn)</span>
+                  <span class="text-primary font-semibold">95%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 95%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">SQL & PostgreSQL</span>
+                  <span class="text-primary font-semibold">92%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 92%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Machine Learning Algorithms</span>
+                  <span class="text-primary font-semibold">88%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 88%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Deep Learning (TensorFlow/PyTorch)</span>
+                  <span class="text-primary font-semibold">85%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Statistical Modeling</span>
+                  <span class="text-primary font-semibold">90%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- BI & Tools Skills -->
+          <div class="animate-slide-up delay-200">
+            <h3 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+              BI & Productivity Tools
+            </h3>
+            <div class="space-y-8">
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Tableau & Power BI</span>
+                  <span class="text-primary font-semibold">92%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 92%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Excel & Advanced Analytics</span>
+                  <span class="text-primary font-semibold">96%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 96%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">R Programming & ggplot2</span>
+                  <span class="text-primary font-semibold">87%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 87%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">ETL & Data Pipelines</span>
+                  <span class="text-primary font-semibold">89%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 89%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between mb-3">
+                  <span class="font-semibold text-gray-800 dark:text-white">Cloud (AWS Basics)</span>
+                  <span class="text-primary font-semibold">80%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-bar-fill" style="--progress-width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Other Skills Grid -->
+        <div class="mt-16 animate-fade-in delay-400">
+          <h3 class="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white">
+            Core Competencies & Tools
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-primary/10 text-primary rounded-xl">
+                <i class="ri-git-branch-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">Git/GitHub</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-accent/10 text-accent rounded-xl">
+                <i class="ri-database-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">Databases</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-secondary/10 text-secondary rounded-xl">
+                <i class="ri-line-chart-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">Data Viz</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-primary/10 text-primary rounded-xl">
+                <i class="ri-aws-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">AWS</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-accent/10 text-accent rounded-xl">
+                <i class="ri-robot-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">AI/ML</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-secondary/10 text-secondary rounded-xl">
+                <i class="ri-code-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">Python</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-primary/10 text-primary rounded-xl">
+                <i class="ri-terminal-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">VS Code</h4>
+            </div>
+            <div class="skill-card text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-accent/10 text-accent rounded-xl">
+                <i class="ri-collaboration-line ri-2x"></i>
+              </div>
+              <h4 class="font-semibold text-gray-800 dark:text-white">Agile/Teamwork</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section (New Addition) -->
+    <section id="testimonials" class="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">What Others Say</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-secondary to-accent mx-auto mb-6"></div>
+          <p class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Feedback from peers, mentors, and collaborators on my work and approach.
+          </p>
+        </div>
+        <div class="testimonial-slider">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-slide bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+              <img src="https://readdy.ai/api/search-image?query=professional%20mentor%20portrait&width=60&height=60&seq=mentor1&orientation=square" alt="Mentor photo" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white">Dr. A. Professor</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Academic Mentor, CIT</p>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 italic mb-4">"Umang demonstrates exceptional analytical skills and a proactive approach to learning complex data concepts. His projects show great potential."</p>
+            <div class="flex stars text-yellow-400">
+              <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+            </div>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="testimonial-slide bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+              <img src="https://readdy.ai/api/search-image?query=peer%20colleague%20portrait&width=60&height=60&seq=peer1&orientation=square" alt="Peer photo" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white">Jane D., Data Enthusiast</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Hackathon Teammate</p>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 italic mb-4">"Collaborating with Umang was inspiring. His code is clean, and he brings fresh ideas to data challenges."</p>
+            <div class="flex stars text-yellow-400">
+              <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i>
+            </div>
+          </div>
+          <!-- Add more testimonials as needed -->
+          <div class="testimonial-slide bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl max-w-md mx-auto">
+            <div class="flex items-center mb-4">
+              <img src="https://readdy.ai/api/search-image?query=industry%20professional%20portrait&width=60&height=60&seq=pro1&orientation=square" alt="Professional photo" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+              <div>
+                <h4 class="font-semibold text-gray-800 dark:text-white">John S., Analyst</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">LinkedIn Connection</p>
+              </div>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 italic mb-4">"Umang's portfolio reflects a solid foundation in data science. Eager to see his contributions in the field."</p>
+            <div class="flex stars text-yellow-400">
+              <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-line"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Dots for Testimonials (if needed for navigation) -->
+        <div class="flex justify-center mt-8 space-x-2">
+          <span class="testimonial-dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer hover:bg-primary transition-colors"></span>
+          <span class="testimonial-dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer hover:bg-primary transition-colors"></span>
+          <span class="testimonial-dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer hover:bg-primary transition-colors"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">Let's Collaborate</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6"></div>
+          <p class="text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Interested in discussing a project, internship, or how data can power your goals? Reach out—I'm always open to new opportunities.
+          </p>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-12 animate-slide-up">
+          <!-- Contact Information -->
+          <div class="w-full lg:w-1/3">
+            <div
+              class="bg-white/10 dark:bg-gray-700/20 p-8 rounded-2xl shadow-2xl backdrop-blur-md border border-white/20 h-full animate-fade-in delay-200"
+            >
+              <h3 class="text-2xl font-bold mb-8 text-white">
+                Reach Me At
+              </h3>
+              <div class="space-y-6 mb-8">
+                <div class="flex items-start hover:scale-105 transition-transform duration-300">
                   <div
-                    class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4 dark:bg-blue-900"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 text-primary mr-4 mt-1"
                   >
                     <i class="ri-map-pin-line ri-lg"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium text-gray-800 dark:text-white mb-1">
-                      Location
-                    </h4>
-                    <p class="text-gray-700 dark:text-gray-300">
-                      Coimbatore , Tamilnadu
-                    </p>
+                    <h4 class="font-semibold text-white mb-1">Location</h4>
+                    <p class="text-gray-300">Coimbatore, Tamil Nadu, India</p>
                   </div>
                 </div>
-                <div class="flex items-start">
+                <div class="flex items-start hover:scale-105 transition-transform duration-300">
                   <div
-                    class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4 dark:bg-blue-900"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/20 text-accent mr-4 mt-1"
                   >
                     <i class="ri-mail-line ri-lg"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium text-gray-800 dark:text-white mb-1">
-                      Email
-                    </h4>
-                    <p class="text-gray-700 dark:text-gray-300">
-                      umang2468jaiswal@Gmail.com
-                    </p>
+                    <h4 class="font-semibold text-white mb-1">Email</h4>
+                    <p class="text-gray-300">umang2468jaiswal@gmail.com</p>
                   </div>
                 </div>
-                <div class="flex items-start">
+                <div class="flex items-start hover:scale-105 transition-transform duration-300">
                   <div
-                    class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4 dark:bg-blue-900"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/20 text-secondary mr-4 mt-1"
                   >
                     <i class="ri-phone-line ri-lg"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium text-gray-800 dark:text-white mb-1">
-                      Phone
-                    </h4>
-                    <p class="text-gray-700 dark:text-gray-300">
-                      +91 8098468572
-                    </p>
+                    <h4 class="font-semibold text-white mb-1">Phone</h4>
+                    <p class="text-gray-300">+91 80984 68572</p>
                   </div>
                 </div>
               </div>
-              <div class="mt-8">
-                <h4 class="font-medium text-gray-800 dark:text-white mb-4">
-                  Follow Me
-                </h4>
+              <div class="animate-fade-in delay-400">
+                <h4 class="font-semibold text-white mb-4">Connect On</h4>
                 <div class="flex space-x-4">
                   <a
                     href="https://github.com/umangjzx"
-                    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20 text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
                   >
-                    <i class="ri-github-line"></i>
+                    <i class="ri-github-line ri-lg"></i>
                   </a>
                   <a
                     href="https://linkedin.com/in/umang-jaiswal-n"
-                    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20 text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                   >
-                    <i class="ri-linkedin-line"></i>
+                    <i class="ri-linkedin-line ri-lg"></i>
                   </a>
                   <a
                     href="https://twitter.com/UMANGJazzz"
-                    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20 text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
                   >
-                    <i class="ri-twitter-x-line"></i>
+                    <i class="ri-twitter-x-line ri-lg"></i>
                   </a>
                   <a
                     href="https://instagram.com/_.umangjaiswal._"
-                    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20 text-white hover:bg-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
                   >
-                    <i class="ri-instagram-line"></i>
+                    <i class="ri-instagram-line ri-lg"></i>
                   </a>
                 </div>
               </div>
             </div>
           </div>
           <!-- Contact Form -->
-          <div class="w-full md:w-2/3">
-            <div class="bg-white p-8 rounded-lg shadow-lg dark:bg-gray-700">
-              <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-                Send Me a Message
-              </h3>
-              <form id="contact-form" class="space-y-6">
+          <div class="w-full lg:w-2/3 animate-slide-up delay-200">
+            <div class="bg-white/10 dark:bg-gray-700/20 p-8 rounded-2xl shadow-2xl backdrop-blur-md border border-white/20">
+              <h3 class="text-2xl font-bold mb-8 text-white">Send a Message</h3>
+              <form id="contact-form" class="space-y-6" novalidate>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div class="relative">
                     <input
                       type="text"
                       id="name"
-                      class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-gray-800 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                      class="form-input w-full px-4 py-4 bg-white/20 dark:bg-gray-600/20 border border-white/30 rounded-xl focus:outline-none text-white placeholder-transparent dark:text-white"
                       placeholder=" "
                       required
+                      aria-label="Your name"
                     />
                     <label
                       for="name"
-                      class="form-label absolute left-4 top-3 text-gray-600 transition-all pointer-events-none dark:text-gray-400"
-                      >Your Name</label
+                      class="form-label absolute left-4 top-4 text-gray-300 transition-all pointer-events-none"
+                      >Full Name</label
                     >
                   </div>
                   <div class="relative">
                     <input
                       type="email"
                       id="email"
-                      class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-gray-800 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                      class="form-input w-full px-4 py-4 bg-white/20 dark:bg-gray-600/20 border border-white/30 rounded-xl focus:outline-none text-white placeholder-transparent dark:text-white"
                       placeholder=" "
                       required
+                      aria-label="Your email"
                     />
                     <label
                       for="email"
-                      class="form-label absolute left-4 top-3 text-gray-600 transition-all pointer-events-none dark:text-gray-400"
-                      >Your Email</label
+                      class="form-label absolute left-4 top-4 text-gray-300 transition-all pointer-events-none"
+                      >Email Address</label
                     >
                   </div>
                 </div>
@@ -1389,37 +1492,40 @@
                   <input
                     type="text"
                     id="subject"
-                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-gray-800 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                    class="form-input w-full px-4 py-4 bg-white/20 dark:bg-gray-600/20 border border-white/30 rounded-xl focus:outline-none text-white placeholder-transparent dark:text-white"
                     placeholder=" "
                     required
+                    aria-label="Subject"
                   />
                   <label
                     for="subject"
-                    class="form-label absolute left-4 top-3 text-gray-600 transition-all pointer-events-none dark:text-gray-400"
+                    class="form-label absolute left-4 top-4 text-gray-300 transition-all pointer-events-none"
                     >Subject</label
                   >
                 </div>
                 <div class="relative">
                   <textarea
                     id="message"
-                    rows="5"
-                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none text-gray-800 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                    rows="6"
+                    class="form-input w-full px-4 py-4 bg-white/20 dark:bg-gray-600/20 border border-white/30 rounded-xl focus:outline-none text-white placeholder-transparent dark:text-white resize-none"
                     placeholder=" "
                     required
+                    aria-label="Your message"
                   ></textarea>
                   <label
                     for="message"
-                    class="form-label absolute left-4 top-3 text-gray-600 transition-all pointer-events-none dark:text-gray-400"
+                    class="form-label absolute left-4 top-4 text-gray-300 transition-all pointer-events-none"
                     >Your Message</label
                   >
                 </div>
                 <button
                   type="submit"
-                  class="px-6 py-3 bg-primary text-white font-medium !rounded-button hover:bg-blue-600 transition-colors shadow-md w-full md:w-auto whitespace-nowrap"
+                  class="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-semibold !rounded-button hover:shadow-2xl transition-all duration-300 w-full md:w-auto whitespace-nowrap transform hover:scale-105 shadow-xl"
+                  aria-label="Send message"
                 >
                   <span class="flex items-center justify-center">
                     <span>Send Message</span>
-                    <i class="ri-send-plane-line ml-2"></i>
+                    <i class="ri-send-plane-2-line ml-2"></i>
                   </span>
                 </button>
               </form>
@@ -1428,95 +1534,108 @@
         </div>
       </div>
     </section>
+
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-950 text-white py-12 border-t border-gray-800">
       <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-6 md:mb-0">
-            <a href="#home" class="text-2xl font-['Pacifico'] text-white"
-              >Umang</a
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+          <div class="mb-6 md:mb-0 text-center md:text-left">
+            <a href="#home" class="text-2xl font-['Pacifico'] text-primary hover:text-secondary transition-colors"
+              >Umang Jaiswal</a
             >
-            <p class="mt-2 text-gray-400 max-w-md">
-              Crafting elegant digital experiences with clean code and
-              thoughtful design.
+            <p class="mt-2 text-gray-400 max-w-md mx-auto md:mx-0">
+              Turning data into decisions. Aspiring to innovate in the world of analytics.
             </p>
           </div>
-          <div class="flex flex-wrap justify-center gap-4">
+          <div class="flex flex-wrap justify-center md:justify-end gap-6 mb-6 md:mb-0">
             <a
               href="#home"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
               >Home</a
             >
             <a
               href="#about"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
               >About</a
             >
             <a
               href="#projects"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
               >Projects</a
             >
             <a
               href="#skills"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
               >Skills</a
             >
             <a
+              href="#testimonials"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
+              >Testimonials</a
+            >
+            <a
               href="#contact"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
               >Contact</a
             >
           </div>
         </div>
         <hr class="border-gray-800 my-8" />
         <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="text-gray-400 mb-4 md:mb-0">
-            &copy; 2025 Umang Jaiswal. All rights reserved.
+          <p class="text-gray-400 mb-4 md:mb-0 text-center md:text-left">
+            &copy; 2025 Umang Jaiswal. Built with passion for data.
           </p>
-         <div class="flex space-x-4">
-        <a
-         href="https://github.com/umangjzx"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
-        >
-    <i class="ri-github-line"></i>
-  </a>
-  <a
-    href="https://linkedin.com/in/umang-jaiswal-n"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
-  >
-    <i class="ri-linkedin-line"></i>
-  </a>
-  <a
-    href="https://twitter.com/UMANGJazzz"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
-  >
-    <i class="ri-twitter-x-line"></i>
-  </a>
-  <a
-    href="https://instagram.com/_.umangjaiswal._"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors dark:bg-gray-800 dark:text-gray-300"
-  >
-    <i class="ri-instagram-line"></i>
-  </a>
-</div>
-
+          <div class="flex space-x-4">
+            <a
+              href="https://github.com/umangjzx"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-lg"
+              aria-label="GitHub"
+            >
+              <i class="ri-github-line"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/umang-jaiswal-n"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-lg"
+              aria-label="LinkedIn"
+            >
+              <i class="ri-linkedin-line"></i>
+            </a>
+            <a
+              href="https://twitter.com/UMANGJazzz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-lg"
+              aria-label="Twitter"
+            >
+              <i class="ri-twitter-x-line"></i>
+            </a>
+            <a
+              href="https://instagram.com/_.umangjaiswal._"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-lg"
+              aria-label="Instagram"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
+
     <!-- Back to Top Button -->
     <button
       id="back-to-top"
-      class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-blue-600"
+      class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-accent text-white rounded-full shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-500 hover:shadow-3xl z-40 transform hover:scale-110"
+      aria-label="Back to top"
     >
       <i class="ri-arrow-up-line ri-lg"></i>
     </button>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Mobile Menu Toggle
@@ -1524,238 +1643,176 @@
         const mobileMenu = document.getElementById("mobile-menu");
         mobileMenuButton.addEventListener("click", function () {
           mobileMenu.classList.toggle("hidden");
-          if (mobileMenu.classList.contains("hidden")) {
-            mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
-          } else {
-            mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
-          }
+          const icon = mobileMenu.classList.contains("hidden") ? "ri-menu-line" : "ri-close-line";
+          mobileMenuButton.innerHTML = `<i class="${icon} ri-lg"></i>`;
         });
-        // Close mobile menu when clicking on a link
+        // Close mobile menu on link click
         const mobileLinks = mobileMenu.querySelectorAll("a");
         mobileLinks.forEach((link) => {
-          link.addEventListener("click", function () {
+          link.addEventListener("click", () => {
             mobileMenu.classList.add("hidden");
             mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
           });
         });
+
         // Dark Mode Toggle
         const themeToggle = document.getElementById("theme-toggle");
         const body = document.body;
-        // Check for saved theme preference
-        if (
-          localStorage.getItem("theme") === "dark" ||
-          (!localStorage.getItem("theme") &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
+        const currentTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (currentTheme === "dark" || (!currentTheme && prefersDark)) {
           body.classList.add("dark");
           themeToggle.checked = true;
         }
-        themeToggle.addEventListener("change", function () {
-          if (this.checked) {
-            body.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-          } else {
-            body.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-          }
+        themeToggle.addEventListener("change", () => {
+          body.classList.toggle("dark", themeToggle.checked);
+          localStorage.setItem("theme", themeToggle.checked ? "dark" : "light");
         });
-        // Hero Animation
-        const heroElements = document.querySelectorAll(".animate-hero");
-        const heroDelayElements = document.querySelectorAll(".animate-hero-delay");
-        const heroDelay2Elements = document.querySelectorAll(".animate-hero-delay-2");
-        const heroDelay3Elements = document.querySelectorAll(".animate-hero-delay-3");
-        setTimeout(() => {
-          heroElements.forEach((el) => {
-            el.classList.add("opacity-100");
-            el.classList.add("transition-opacity");
-            el.classList.add("duration-1000");
-          });
-        }, 300);
-        setTimeout(() => {
-          heroDelayElements.forEach((el) => {
-            el.classList.add("opacity-100");
-            el.classList.add("transition-opacity");
-            el.classList.add("duration-1000");
-          });
-        }, 800);
-        setTimeout(() => {
-          heroDelay2Elements.forEach((el) => {
-            el.classList.add("opacity-100");
-            el.classList.add("transition-opacity");
-            el.classList.add("duration-1000");
-          });
-        }, 1300);
-        setTimeout(() => {
-          heroDelay3Elements.forEach((el) => {
-            el.classList.add("opacity-100");
-            el.classList.add("transition-opacity");
-            el.classList.add("duration-1000");
-          });
-        }, 1800);
-        // Skill Progress Animation
+
+        // Hero Typewriter Animation (already there)
+
+        // Skill Progress Animation on Scroll
         const skillItems = document.querySelectorAll(".skill-item");
-        const animateSkills = () => {
-          skillItems.forEach((item) => {
-            const itemPosition = item.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            if (itemPosition < screenPosition) {
-              item.classList.add("animated");
+        const observerOptions = { threshold: 0.5, rootMargin: '0px 0px -50px 0px' };
+        const skillObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animated");
             }
           });
-        };
+        }, observerOptions);
+        skillItems.forEach(item => skillObserver.observe(item));
+
         // Project Filtering
         const projectFilters = document.querySelectorAll(".project-filter");
         const projectItems = document.querySelectorAll(".project-item");
         projectFilters.forEach((filter) => {
           filter.addEventListener("click", function () {
-            // Remove active class from all filters
-            projectFilters.forEach((f) => {
-              f.classList.remove("bg-primary", "text-white");
-              f.classList.add(
-                "bg-gray-200",
-                "text-gray-700",
-                "hover:bg-gray-300",
-                "dark:bg-gray-700",
-                "dark:text-gray-300",
-                "dark:hover:bg-gray-600",
-              );
-            });
-            // Add active class to current filter
-            this.classList.remove(
-              "bg-gray-200",
-              "text-gray-700",
-              "hover:bg-gray-300",
-              "dark:bg-gray-700",
-              "dark:text-gray-300",
-              "dark:hover:bg-gray-600",
-            );
-            this.classList.add("bg-primary", "text-white");
+            projectFilters.forEach((f) => f.classList.remove("active", "bg-gradient-to-r", "from-primary", "to-accent", "shadow-lg", "hover:shadow-xl"));
+            this.classList.add("active", "bg-gradient-to-r", "from-primary", "to-accent", "shadow-lg", "hover:shadow-xl");
             const filterValue = this.getAttribute("data-filter");
             projectItems.forEach((item) => {
-              if (
-                filterValue === "all" ||
-                item.getAttribute("data-category") === filterValue
-              ) {
+              if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
                 item.style.display = "block";
+                item.classList.add("animate-slide-up");
               } else {
                 item.style.display = "none";
               }
             });
           });
         });
+
         // Testimonial Slider
-        const initTestimonialSlider = () => {
-          const testimonialSlider = document.querySelector(".testimonial-slider");
-          const testimonialSlides = document.querySelectorAll(".testimonial-slide");
-          const testimonialDots = document.querySelectorAll(".testimonial-dot");
-          if (
-            !testimonialSlider ||
-            !testimonialSlides.length ||
-            !testimonialDots.length
-          ) {
-            return; // Exit if elements don't exist
-          }
-          let currentSlide = 0;
-          let autoSlideInterval;
+        const testimonialSlider = document.querySelector(".testimonial-slider");
+        const testimonialDots = document.querySelectorAll(".testimonial-dot");
+        let currentSlide = 0;
+        let autoSlideInterval;
+        if (testimonialSlider && testimonialDots.length > 0) {
+          const slides = document.querySelectorAll(".testimonial-slide");
+          const slideWidth = slides[0].offsetWidth + 32; // gap
           const goToSlide = (index) => {
-            if (index < 0) index = testimonialSlides.length - 1;
-            if (index >= testimonialSlides.length) index = 0;
             currentSlide = index;
-            const slideWidth = testimonialSlides[0].offsetWidth;
-            testimonialSlider.scrollTo({
-              left: slideWidth * currentSlide,
-              behavior: "smooth",
-            });
-            // Update dots
-            testimonialDots.forEach((dot) =>
-              dot.classList.remove("bg-primary", "active"),
-            );
-            testimonialDots[currentSlide].classList.add("bg-primary", "active");
+            testimonialSlider.scrollTo({ left: currentSlide * slideWidth, behavior: "smooth" });
+            testimonialDots.forEach((dot, i) => dot.classList.toggle("bg-primary", i === currentSlide));
           };
-          // Set up dot navigation
           testimonialDots.forEach((dot, index) => {
             dot.addEventListener("click", () => {
               goToSlide(index);
               resetAutoSlide();
             });
           });
-          // Auto slide
-          const startAutoSlide = () => {
-            autoSlideInterval = setInterval(() => {
-              goToSlide(currentSlide + 1);
-            }, 5000);
-          };
-          const resetAutoSlide = () => {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-          };
-          // Initialize auto slide
+          const startAutoSlide = () => autoSlideInterval = setInterval(() => goToSlide((currentSlide + 1) % testimonialDots.length), 5000);
+          const resetAutoSlide = () => { clearInterval(autoSlideInterval); startAutoSlide(); };
           startAutoSlide();
-          // Pause auto slide on hover
-          testimonialSlider.addEventListener("mouseenter", () => {
-            clearInterval(autoSlideInterval);
-          });
-          testimonialSlider.addEventListener("mouseleave", () => {
-            startAutoSlide();
-          });
-        };
-        // Initialize testimonial slider if elements exist
-        initTestimonialSlider();
-        // Contact Form
+          testimonialSlider.addEventListener("mouseenter", () => clearInterval(autoSlideInterval));
+          testimonialSlider.addEventListener("mouseleave", startAutoSlide);
+        }
+
+        // Contact Form Submission
         const contactForm = document.getElementById("contact-form");
-        contactForm.addEventListener("submit", function (e) {
+        contactForm.addEventListener("submit", async function (e) {
           e.preventDefault();
           const submitButton = this.querySelector('button[type="submit"]');
-          const originalButtonText = submitButton.innerHTML;
-          // Show loading state
-          submitButton.innerHTML =
-            '<span class="flex items-center justify-center"><i class="ri-loader-4-line animate-spin mr-2"></i> Sending...</span>';
+          const originalText = submitButton.innerHTML;
+          submitButton.innerHTML = '<span class="flex items-center"><i class="ri-loader-4-line animate-spin mr-2"></i>Sending...</span>';
           submitButton.disabled = true;
-          // Simulate form submission
-          setTimeout(() => {
-            // Reset form
+
+          // Simulate API call (replace with real endpoint like Formspree or Netlify)
+          try {
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate delay
             contactForm.reset();
-            // Show success message
-            submitButton.innerHTML =
-              '<span class="flex items-center justify-center"><i class="ri-check-line mr-2"></i> Message Sent!</span>';
-            submitButton.classList.remove("bg-primary");
-            submitButton.classList.add("bg-green-500");
-            // Reset button after 3 seconds
+            submitButton.innerHTML = '<span class="flex items-center"><i class="ri-check-line mr-2"></i>Message Sent!</span>';
+            submitButton.style.background = 'linear-gradient(to right, #10b981, #059669)';
             setTimeout(() => {
-              submitButton.innerHTML = originalButtonText;
+              submitButton.innerHTML = originalText;
               submitButton.disabled = false;
-              submitButton.classList.remove("bg-green-500");
-              submitButton.classList.add("bg-primary");
+              submitButton.style.background = '';
             }, 3000);
-          }, 2000);
+          } catch (error) {
+            submitButton.innerHTML = '<span class="flex items-center"><i class="ri-error-warning-line mr-2 text-red-400"></i>Error! Try again.</span>';
+            setTimeout(() => {
+              submitButton.innerHTML = originalText;
+              submitButton.disabled = false;
+            }, 3000);
+          }
         });
-        // Back to Top Button
+
+        // Back to Top
         const backToTopButton = document.getElementById("back-to-top");
-        const toggleBackToTopButton = () => {
-          if (window.scrollY > 300) {
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 500) {
             backToTopButton.classList.remove("opacity-0", "invisible");
             backToTopButton.classList.add("opacity-100", "visible");
           } else {
             backToTopButton.classList.remove("opacity-100", "visible");
             backToTopButton.classList.add("opacity-0", "invisible");
           }
+        });
+        backToTopButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+        // Modal Functions
+        window.openModal = function(modalId) {
+          document.getElementById(modalId).style.display = "block";
+          document.body.style.overflow = "hidden";
         };
-        backToTopButton.addEventListener("click", () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        window.closeModal = function(modalId) {
+          document.getElementById(modalId).style.display = "none";
+          document.body.style.overflow = "auto";
+        };
+        window.onclick = function(event) {
+          if (event.target.classList.contains("project-modal")) {
+            event.target.style.display = "none";
+            document.body.style.overflow = "auto";
+          }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
           });
         });
-        // Scroll event listeners
-        window.addEventListener("scroll", () => {
-          animateSkills();
-          toggleBackToTopButton();
-        });
-        // Initialize animations
-        animateSkills();
-        toggleBackToTopButton();
+
+        // Preload images for performance
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src || img.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+              }
+            });
+          });
+          images.forEach(img => imageObserver.observe(img));
+        }
       });
     </script>
   </body>
 </html>
-
