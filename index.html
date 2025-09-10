@@ -551,29 +551,21 @@
             </div>
           </div>
           
- <div class="w-full md:w-1/2 flex justify-center">
-  <div class="relative floating reveal" style="--stagger: 5">
-    
-    <!-- Profile Image Wrapper -->
-    <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden 
-                border-4 border-white/30 shadow-2xl backdrop-blur-sm">
-      <img src="https://drive.google.com/uc?export=view&id=1LXA-VdYkbU0ChjjM2tsQZq8iFKXwTO2B" 
-           alt="Umang Jaiswal" 
-           loading="lazy"
-           class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105" />
-    </div>
-    
-    <!-- Availability Badge -->
-    <div class="absolute -bottom-6 -right-6 glass rounded-2xl p-4 animate-bounce-subtle shadow-lg">
-      <div class="flex items-center space-x-2">
-        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-        <p class="text-white font-semibold">Available for Projects</p>
+          <div class="w-full md:w-1/2 flex justify-center">
+            <div class="relative floating reveal" style="--stagger: 5">
+              <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm">
+                <img src="images/IMG-20250724-WA0016.jpg" alt="Umang Jaiswal" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="absolute -bottom-6 -right-6 glass rounded-2xl p-4 animate-bounce-subtle">
+                <div class="flex items-center space-x-2">
+                  <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <p class="text-white font-semibold">Available for Projects</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    
-  </div>
-</div>
-
     </section>
 
     <!-- Enhanced About Section -->
@@ -1086,183 +1078,227 @@
       </div>
     </section>
 
-    <!-- Enhanced Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-black mb-6 reveal">
-            <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Technical Arsenal
-            </span>
-          </h2>
-          <div class="w-32 h-2 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full reveal mb-6"></div>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
-            A comprehensive toolkit spanning data analysis, machine learning, visualization, and modern development practices
-          </p>
-        </div>
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16 px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 reveal">
+        <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Technical Arsenal
+        </span>
+      </h2>
+      <div class="w-32 h-2 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full reveal mb-6"></div>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
+        A versatile toolkit spanning programming, data science, machine learning, visualization, cloud, and professional skills.
+      </p>
+    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <!-- Core Data Science Skills -->
-          <div class="reveal-left">
-            <h3 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white flex items-center">
-              <div class="w-3 h-8 bg-gradient-to-b from-primary to-secondary rounded-full mr-4"></div>
-              Core Data Science
-            </h3>
-            <div class="space-y-8">
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-code-s-slash-line text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">Python (Pandas, NumPy, Scikit-learn)</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">95%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[95%]"></div>
-                </div>
-              </div>
-
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-database-2-line text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">SQL & Databases</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">85%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[85%]"></div>
-                </div>
-              </div>
-
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-bar-chart-line text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">Statistics & Mathematics</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">90%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[90%]"></div>
-                </div>
-              </div>
+    <!-- Skills Grid: Core Data Science & Machine Learning -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+      
+      <!-- Core Data Science -->
+      <div class="reveal-left glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <h3 class="flex items-center text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+          <i class="ri-bar-chart-grouped-line text-primary mr-3 text-3xl" aria-hidden="true"></i>
+          Core Data Science
+        </h3>
+        <div class="space-y-6">
+          <!-- Python -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">🐍 Python (Pandas, NumPy, Scikit-learn)</span>
+              <span class="text-primary font-semibold">Expert</span>
+            </div>
+            <div class="progress-container" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Python proficiency">
+              <div class="progress-fill animate-fill" style="--w:95%"></div>
             </div>
           </div>
-
-          <!-- Machine Learning & AI Skills -->
-          <div class="reveal-right">
-            <h3 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white flex items-center">
-              <div class="w-3 h-8 bg-gradient-to-b from-primary to-secondary rounded-full mr-4"></div>
-              Machine Learning & AI
-            </h3>
-            <div class="space-y-8">
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-neural-network text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">Supervised Learning</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">88%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[88%]"></div>
-                </div>
-              </div>
-
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-robot-line text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">Deep Learning (TensorFlow, PyTorch)</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">75%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[75%]"></div>
-                </div>
-              </div>
-
-              <div class="skill-item">
-                <div class="flex justify-between items-center mb-3">
-                  <div class="flex items-center">
-                    <i class="ri-magic-line text-2xl text-primary mr-3"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white text-lg">Model Deployment & MLOps</span>
-                  </div>
-                  <span class="text-primary font-bold text-lg">70%</span>
-                </div>
-                <div class="progress-container">
-                  <div class="progress-fill w-[70%]"></div>
-                </div>
-              </div>
+          
+          <!-- SQL & Databases -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">🗄 SQL & Databases</span>
+              <span class="text-primary font-semibold">Advanced</span>
+            </div>
+            <div class="progress-container" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="SQL & Database proficiency">
+              <div class="progress-fill animate-fill" style="--w:85%"></div>
             </div>
           </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
-          <!-- Visualization Skills -->
-          <div class="reveal">
-            <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white flex items-center justify-center">
-              <div class="w-3 h-8 bg-gradient-to-b from-primary to-secondary rounded-full mr-4"></div>
-              Data Visualization
-            </h3>
-            <div class="space-y-6">
-              <div class="text-center skill-icon">
-                <i class="ri-pie-chart-2-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">Tableau & Power BI</span>
-                <span class="text-primary font-bold">82%</span>
-              </div>
-              <div class="text-center skill-icon">
-                <i class="ri-line-chart-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">Matplotlib, Seaborn, Plotly</span>
-                <span class="text-primary font-bold">90%</span>
-              </div>
+          
+          <!-- Statistics & Mathematics -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">📊 Statistics & Mathematics</span>
+              <span class="text-primary font-semibold">Advanced</span>
             </div>
-          </div>
-
-          <!-- Database & Cloud Skills -->
-          <div class="reveal">
-            <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white flex items-center justify-center">
-              <div class="w-3 h-8 bg-gradient-to-b from-primary to-secondary rounded-full mr-4"></div>
-              Database & Cloud
-            </h3>
-            <div class="space-y-6">
-              <div class="text-center skill-icon">
-                <i class="ri-cloud-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">AWS & Azure</span>
-                <span class="text-primary font-bold">65%</span>
-              </div>
-              <div class="text-center skill-icon">
-                <i class="ri-git-branch-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">Git & Version Control</span>
-                <span class="text-primary font-bold">85%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Soft Skills -->
-          <div class="reveal">
-            <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white flex items-center justify-center">
-              <div class="w-3 h-8 bg-gradient-to-b from-primary to-secondary rounded-full mr-4"></div>
-              Soft Skills
-            </h3>
-            <div class="space-y-6">
-              <div class="text-center skill-icon">
-                <i class="ri-team-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">Problem Solving</span>
-                <span class="text-primary font-bold">92%</span>
-              </div>
-              <div class="text-center skill-icon">
-                <i class="ri-lightbulb-line text-4xl text-primary mb-2 block"></i>
-                <span class="font-semibold text-gray-900 dark:text-white block">Communication & Storytelling</span>
-                <span class="text-primary font-bold">80%</span>
-              </div>
+            <div class="progress-container" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Statistics & Math proficiency">
+              <div class="progress-fill animate-fill" style="--w:90%"></div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
+      <!-- Machine Learning & AI -->
+      <div class="reveal-right glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <h3 class="flex items-center text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+          <i class="ri-brain-line text-primary mr-3 text-3xl" aria-hidden="true"></i>
+          Machine Learning & AI
+        </h3>
+        <div class="space-y-6">
+          <!-- Supervised & Unsupervised Learning -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">🤖 Supervised & Unsupervised Learning</span>
+              <span class="text-primary font-semibold">Advanced</span>
+            </div>
+            <div class="progress-container" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="ML proficiency">
+              <div class="progress-fill animate-fill" style="--w:88%"></div>
+            </div>
+          </div>
+          
+          <!-- Deep Learning -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">🧠 Deep Learning (TensorFlow, PyTorch, Keras)</span>
+              <span class="text-primary font-semibold">Intermediate</span>
+            </div>
+            <div class="progress-container" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Deep Learning proficiency">
+              <div class="progress-fill animate-fill" style="--w:75%"></div>
+            </div>
+          </div>
+          
+          <!-- MLOps & Deployment -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">⚙️ MLOps & Deployment (Docker, Flask, FastAPI)</span>
+              <span class="text-primary font-semibold">Intermediate</span>
+            </div>
+            <div class="progress-container" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="MLOps proficiency">
+              <div class="progress-fill animate-fill" style="--w:70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Categories: Visualization, Programming & Cloud, Big Data & Tools -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16 px-4">
+      
+      <!-- Data Visualization -->
+      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
+        <i class="ri-pie-chart-2-line text-4xl text-primary mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Data Visualization</h3>
+        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
+          <li><span class="font-semibold">📈 Tableau & Power BI</span> — Advanced</li>
+          <li><span class="font-semibold">📊 Matplotlib, Seaborn, Plotly</span> — Expert</li>
+        </ul>
+      </div>
+
+      <!-- Programming & Cloud -->
+      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
+        <i class="ri-cloud-line text-4xl text-primary mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Programming & Cloud</h3>
+        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
+          <li><span class="font-semibold">☁️ AWS & Azure</span> — Intermediate</li>
+          <li><span class="font-semibold">🔗 Git, GitHub, CI/CD</span> — Advanced</li>
+          <li><span class="font-semibold">💻 C, Java, React, Flask</span> — Intermediate</li>
+        </ul>
+      </div>
+
+      <!-- Big Data & Tools -->
+      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
+        <i class="ri-database-2-line text-4xl text-primary mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Big Data & Tools</h3>
+        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
+          <li><span class="font-semibold">🗂 Hadoop, Spark</span> — Intermediate</li>
+          <li><span class="font-semibold">📊 Excel (Analytics)</span> — Advanced</li>
+          <li><span class="font-semibold">📓 Jupyter, Google Colab</span> — Expert</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-4">
+      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
+        <i class="ri-team-line text-4xl text-primary mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Soft Skills</h3>
+        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-md">
+          <li><span class="font-semibold">🧩 Problem Solving</span> — Expert</li>
+          <li><span class="font-semibold">🗣 Communication & Storytelling</span> — Advanced</li>
+          <li><span class="font-semibold">🤝 Team Collaboration</span> — Advanced</li>
+          <li><span class="font-semibold">👨‍💼 Leadership & Management</span> — Intermediate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Styles for Progress Bars & Animations -->
+<style>
+  /* Container for progress bar */
+  .progress-container {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+  /* Fill of progress bar with gradient */
+  .progress-fill {
+    height: 10px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #6366F1, #EC4899);
+    width: 0;
+  }
+
+  /* Animate fill to target width */
+  .animate-fill {
+    animation: fillBar 1.5s ease forwards;
+  }
+
+  @keyframes fillBar {
+    to {
+      width: var(--w);
+    }
+  }
+
+  /* Optional: Add reveal animations for sections (if you haven't) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInLeft 1s forwards;
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInRight 1s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fadeInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
 <!-- Enhanced Contact Section -->
 <section id="contact" class="py-20 animated-bg">
   <div class="container mx-auto px-6">
@@ -1513,6 +1549,3 @@
     </script>
   </body>
 </html>
-
-
-
