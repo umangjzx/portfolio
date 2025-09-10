@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +23,9 @@
               'slide-up': 'slideUp 0.8s ease-out',
               'fade-in': 'fadeIn 1s ease-out',
               'bounce-subtle': 'bounceSubtle 2s infinite',
+              'spin-slow': 'spin 3s linear infinite',
+              'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+              'wave': 'wave 1.5s ease-in-out infinite',
             },
             keyframes: {
               float: {
@@ -45,11 +47,22 @@
               bounceSubtle: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-10px)' }
-              }
+              },
+              pulseGlow: {
+                '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' },
+                '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.8)' }
+              },
+              wave: {
+                '0%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.05)' },
+                '100%': { transform: 'scale(1)' }
+              },
             },
             backdropBlur: {
               xs: '2px',
-            }
+              md: '10px',
+              lg: '20px',
+            },
           },
         },
       };
@@ -75,41 +88,43 @@
         overflow-x: hidden;
       }
 
-      /* Enhanced Dark Mode */
+      /* Enhanced Dark Mode with smoother gradients */
       .dark {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         color: #f1f5f9;
       }
 
-      /* Glassmorphism Effects */
+      /* Upgraded Glassmorphism with more blur and depth */
       .glass {
-        backdrop-filter: blur(20px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(25px) saturate(150%);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       }
 
       .dark .glass {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* Enhanced Navigation */
+      /* Navigation with smoother blur and hover effects */
       .nav-blur {
-        backdrop-filter: blur(20px) saturate(180%);
-        background: rgba(255, 255, 255, 0.9);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(25px) saturate(180%);
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       }
 
       .dark .nav-blur {
-        background: rgba(15, 23, 42, 0.9);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* Animated Background */
+      /* Animated Background with smoother shifts */
       .animated-bg {
         background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
+        background-size: 500% 500%;
+        animation: gradientShift 20s ease infinite;
       }
 
       @keyframes gradientShift {
@@ -118,12 +133,12 @@
         100% { background-position: 0% 50%; }
       }
 
-      /* Enhanced Typewriter Effect */
+      /* Enhanced Typewriter with smoother cursor */
       .typewriter {
         overflow: hidden;
         border-right: 3px solid #6366f1;
         white-space: nowrap;
-        animation: typing 4s steps(40, end), blink-caret 1s step-end infinite;
+        animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
         font-family: 'JetBrains Mono', monospace;
       }
 
@@ -137,21 +152,22 @@
         50% { border-color: #6366f1 }
       }
 
-      /* Enhanced Progress Bars */
+      /* Upgraded Progress Bars with smoother animations and glow */
       .progress-container {
         position: relative;
-        height: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
+        height: 14px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
         overflow: hidden;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6);
-        border-radius: 6px;
+        background: linear-gradient(90deg, #6366f1, #ec4899);
+        border-radius: 9999px;
         position: relative;
-        transition: width 2s ease-in-out;
+        transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
       }
 
@@ -162,8 +178,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        animation: shimmer 2s infinite;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: shimmer 2.5s infinite;
       }
 
       @keyframes shimmer {
@@ -171,20 +187,20 @@
         100% { left: 100%; }
       }
 
-      /* Enhanced Cards */
+      /* Enhanced Cards with smoother hovers and gradients */
       .card-enhanced {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
         overflow: hidden;
       }
 
       .dark .card-enhanced {
-        background: rgba(30, 41, 59, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(30, 41, 59, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .card-enhanced::before {
@@ -194,8 +210,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-        transition: left 0.5s;
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent);
+        transition: left 0.6s ease-in-out;
       }
 
       .card-enhanced:hover::before {
@@ -203,11 +219,11 @@
       }
 
       .card-enhanced:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
       }
 
-      /* Floating Elements */
+      /* Floating Elements with variation */
       .floating {
         animation: float 6s ease-in-out infinite;
       }
@@ -220,26 +236,26 @@
         animation-delay: -4s;
       }
 
-      /* Enhanced Form Inputs */
+      /* Enhanced Form Inputs with glow on focus */
       .form-enhanced {
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        transition: all 0.4s ease;
       }
 
       .dark .form-enhanced {
-        background: rgba(30, 41, 59, 0.5);
-        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: rgba(30, 41, 59, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.08);
       }
 
       .form-enhanced:focus {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.15);
         border-color: #6366f1;
-        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.15), 0 0 20px rgba(99, 102, 241, 0.3);
       }
 
-      /* Particle Background */
+      /* Particle Background upgraded */
       #particles-canvas {
         position: fixed;
         top: 0;
@@ -247,64 +263,65 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.6;
+        opacity: 0.7;
       }
 
-      /* Custom Scrollbar */
+      /* Custom Scrollbar smoother */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
 
       ::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
       }
 
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #6366f1, #8b5cf6);
-        border-radius: 4px;
+        background: linear-gradient(180deg, #6366f1, #ec4899);
+        border-radius: 5px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, #4f46e5, #7c3aed);
+        background: linear-gradient(180deg, #4f46e5, #d946ef);
       }
 
-      /* Enhanced Toggle */
+      /* Enhanced Toggle with smoother transition */
       .theme-toggle {
         position: relative;
-        width: 60px;
-        height: 30px;
-        background: linear-gradient(45deg, #6366f1, #8b5cf6);
-        border-radius: 15px;
+        width: 64px;
+        height: 32px;
+        background: linear-gradient(45deg, #6366f1, #ec4899);
+        border-radius: 16px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
       }
 
       .theme-toggle::after {
         content: '';
         position: absolute;
-        top: 3px;
-        left: 3px;
+        top: 4px;
+        left: 4px;
         width: 24px;
         height: 24px;
         background: white;
         border-radius: 50%;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
       }
 
       .theme-toggle.active::after {
-        left: 33px;
+        left: 36px;
         background: #0f172a;
       }
 
-      /* Skill Icons Animation */
+      /* Skill Icons with smoother animations */
       .skill-icon {
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
         position: relative;
       }
 
       .skill-icon:hover {
-        transform: translateY(-5px) scale(1.1);
+        transform: translateY(-6px) scale(1.15);
         color: #6366f1;
       }
 
@@ -315,45 +332,41 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
         border-radius: 50%;
         opacity: 0;
         transform: scale(0);
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
       }
 
       .skill-icon:hover::after {
         opacity: 1;
-        transform: scale(1.2);
+        transform: scale(1.3);
       }
 
-      /* Enhanced Timeline */
+      /* Enhanced Timeline with glow and pulse */
       .timeline-line {
-        background: linear-gradient(180deg, #6366f1, #8b5cf6, #ec4899);
-        width: 4px;
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        background: linear-gradient(180deg, #6366f1, #ec4899, #f59e0b);
+        width: 5px;
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
       }
 
       .timeline-dot {
-        background: linear-gradient(45deg, #6366f1, #8b5cf6);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        animation: pulse 2s infinite;
+        background: linear-gradient(45deg, #6366f1, #ec4899);
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+        animation: pulse-glow 2s infinite;
       }
 
-      @keyframes pulse {
-        0%, 100% {
-          box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-        50% {
-          box-shadow: 0 0 40px rgba(99, 102, 241, 0.8);
-        }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 25px rgba(99, 102, 241, 0.6); }
+        50% { box-shadow: 0 0 50px rgba(99, 102, 241, 0.9); }
       }
 
-      /* Intersection Observer Animations */
+      /* Smoother Reveal Animations */
       .reveal {
         opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease;
+        transform: translateY(60px);
+        transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
       }
 
       .reveal.active {
@@ -363,8 +376,8 @@
 
       .reveal-left {
         opacity: 0;
-        transform: translateX(-50px);
-        transition: all 0.8s ease;
+        transform: translateX(-60px);
+        transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
       }
 
       .reveal-left.active {
@@ -374,8 +387,8 @@
 
       .reveal-right {
         opacity: 0;
-        transform: translateX(50px);
-        transition: all 0.8s ease;
+        transform: translateX(60px);
+        transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
       }
 
       .reveal-right.active {
@@ -383,7 +396,7 @@
         transform: translateX(0);
       }
 
-      /* Loading Screen */
+      /* Loading Screen smoother fade */
       .loading-screen {
         position: fixed;
         top: 0;
@@ -395,16 +408,16 @@
         align-items: center;
         justify-content: center;
         z-index: 9999;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.8s ease-out;
       }
 
       .loader {
-        width: 60px;
-        height: 60px;
-        border: 4px solid rgba(99, 102, 241, 0.3);
-        border-top: 4px solid #6366f1;
+        width: 70px;
+        height: 70px;
+        border: 5px solid rgba(99, 102, 241, 0.4);
+        border-top: 5px solid #6366f1;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 1.2s linear infinite;
       }
 
       @keyframes spin {
@@ -412,24 +425,24 @@
         100% { transform: rotate(360deg); }
       }
 
-      /* Responsive Design Enhancements */
+      /* Responsive Enhancements */
       @media (max-width: 768px) {
         .card-enhanced:hover {
-          transform: translateY(-5px) scale(1.01);
+          transform: translateY(-6px) scale(1.015);
         }
         
         .typewriter {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
       }
 
-      /* Smooth Animations */
+      /* Smooth Animations Mode */
       * {
         animation-fill-mode: both;
       }
 
       .stagger-animation {
-        animation-delay: calc(var(--stagger) * 0.1s);
+        animation-delay: calc(var(--stagger) * 0.15s);
       }
     </style>
   </head>
@@ -439,7 +452,7 @@
     <div id="loading-screen" class="loading-screen">
       <div class="text-center">
         <div class="loader mb-4"></div>
-        <p class="text-white text-lg">Loading Portfolio...</p>
+        <p class="text-white text-lg font-semibold">Crafting Your Experience...</p>
       </div>
     </div>
 
@@ -451,7 +464,7 @@
       <div class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
           <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Umang jaiswal
+            Umang Jaiswal
           </a>
           
           <nav class="hidden md:flex items-center space-x-8">
@@ -1078,7 +1091,7 @@
       </div>
     </section>
 
-<!-- Skills Section -->
+<!-- Skills Section (Cleared and Organized More Clearly) -->
 <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
   <div class="container mx-auto px-6">
     <!-- Header -->
@@ -1090,215 +1103,268 @@
       </h2>
       <div class="w-32 h-2 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full reveal mb-6"></div>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
-        A versatile toolkit spanning programming, data science, machine learning, visualization, cloud, and professional skills.
+        A clearly organized toolkit spanning programming, data science, machine learning, visualization, cloud, and professional skills. Progress bars indicate proficiency levels for easy understanding.
       </p>
     </div>
 
-    <!-- Skills Grid: Core Data Science & Machine Learning -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+    <!-- Skills Categories - Organized into Clear Sections with Icons and Progress Bars -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
       
       <!-- Core Data Science -->
-      <div class="reveal-left glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
-        <h3 class="flex items-center text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-          <i class="ri-bar-chart-grouped-line text-primary mr-3 text-3xl" aria-hidden="true"></i>
-          Core Data Science
-        </h3>
-        <div class="space-y-6">
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-bar-chart-grouped-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Core Data Science</h3>
+        </div>
+        <div class="space-y-8">
           <!-- Python -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">🐍 Python (Pandas, NumPy, Scikit-learn)</span>
-              <span class="text-primary font-semibold">Expert</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Python (Pandas, NumPy, Scikit-learn)</span>
+              <span class="text-primary font-semibold">Expert (95%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Python proficiency">
-              <div class="progress-fill animate-fill" style="--w:95%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 95%;"></div>
             </div>
           </div>
           
           <!-- SQL & Databases -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">🗄 SQL & Databases</span>
-              <span class="text-primary font-semibold">Advanced</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">SQL & Databases</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="SQL & Database proficiency">
-              <div class="progress-fill animate-fill" style="--w:85%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
             </div>
           </div>
           
           <!-- Statistics & Mathematics -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">📊 Statistics & Mathematics</span>
-              <span class="text-primary font-semibold">Advanced</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Statistics & Mathematics</span>
+              <span class="text-primary font-semibold">Advanced (90%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Statistics & Math proficiency">
-              <div class="progress-fill animate-fill" style="--w:90%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 90%;"></div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Machine Learning & AI -->
-      <div class="reveal-right glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
-        <h3 class="flex items-center text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-          <i class="ri-brain-line text-primary mr-3 text-3xl" aria-hidden="true"></i>
-          Machine Learning & AI
-        </h3>
-        <div class="space-y-6">
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-brain-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Machine Learning & AI</h3>
+        </div>
+        <div class="space-y-8">
           <!-- Supervised & Unsupervised Learning -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">🤖 Supervised & Unsupervised Learning</span>
-              <span class="text-primary font-semibold">Advanced</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Supervised & Unsupervised Learning</span>
+              <span class="text-primary font-semibold">Advanced (88%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="ML proficiency">
-              <div class="progress-fill animate-fill" style="--w:88%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 88%;"></div>
             </div>
           </div>
           
           <!-- Deep Learning -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">🧠 Deep Learning (TensorFlow, PyTorch, Keras)</span>
-              <span class="text-primary font-semibold">Intermediate</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Deep Learning (TensorFlow, PyTorch, Keras)</span>
+              <span class="text-primary font-semibold">Intermediate (75%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="Deep Learning proficiency">
-              <div class="progress-fill animate-fill" style="--w:75%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 75%;"></div>
             </div>
           </div>
           
           <!-- MLOps & Deployment -->
           <div class="skill-item">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-semibold text-lg text-gray-900 dark:text-white">⚙️ MLOps & Deployment (Docker, Flask, FastAPI)</span>
-              <span class="text-primary font-semibold">Intermediate</span>
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">MLOps & Deployment (Docker, Flask, FastAPI)</span>
+              <span class="text-primary font-semibold">Intermediate (70%)</span>
             </div>
-            <div class="progress-container" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" role="progressbar" aria-label="MLOps proficiency">
-              <div class="progress-fill animate-fill" style="--w:70%"></div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Visualization -->
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-pie-chart-2-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Data Visualization</h3>
+        </div>
+        <div class="space-y-8">
+          <!-- Tableau & Power BI -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Tableau & Power BI</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <!-- Matplotlib, Seaborn, Plotly -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Matplotlib, Seaborn, Plotly</span>
+              <span class="text-primary font-semibold">Expert (95%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 95%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programming & Cloud -->
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-cloud-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Programming & Cloud</h3>
+        </div>
+        <div class="space-y-8">
+          <!-- AWS & Azure -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">AWS & Azure</span>
+              <span class="text-primary font-semibold">Intermediate (70%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+          
+          <!-- Git, GitHub, CI/CD -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Git, GitHub, CI/CD</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <!-- C, Java, React, Flask -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">C, Java, React, Flask</span>
+              <span class="text-primary font-semibold">Intermediate (75%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Big Data & Tools -->
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-database-2-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Big Data & Tools</h3>
+        </div>
+        <div class="space-y-8">
+          <!-- Hadoop, Spark -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Hadoop, Spark</span>
+              <span class="text-primary font-semibold">Intermediate (70%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+          
+          <!-- Excel (Analytics) -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Excel (Analytics)</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <!-- Jupyter, Google Colab -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Jupyter, Google Colab</span>
+              <span class="text-primary font-semibold">Expert (95%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 95%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="reveal glass rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out">
+        <div class="flex items-center justify-center mb-6">
+          <i class="ri-team-line text-primary text-4xl mr-3"></i>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Soft Skills</h3>
+        </div>
+        <div class="space-y-8">
+          <!-- Problem Solving -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Problem Solving</span>
+              <span class="text-primary font-semibold">Expert (95%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 95%;"></div>
+            </div>
+          </div>
+          
+          <!-- Communication & Storytelling -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Communication & Storytelling</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <!-- Team Collaboration -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Team Collaboration</span>
+              <span class="text-primary font-semibold">Advanced (85%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <!-- Leadership & Management -->
+          <div class="skill-item">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-semibold text-lg text-gray-900 dark:text-white">Leadership & Management</span>
+              <span class="text-primary font-semibold">Intermediate (75%)</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill" style="width: 75%;"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Additional Categories: Visualization, Programming & Cloud, Big Data & Tools -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16 px-4">
-      
-      <!-- Data Visualization -->
-      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
-        <i class="ri-pie-chart-2-line text-4xl text-primary mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Data Visualization</h3>
-        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
-          <li><span class="font-semibold">📈 Tableau & Power BI</span> — Advanced</li>
-          <li><span class="font-semibold">📊 Matplotlib, Seaborn, Plotly</span> — Expert</li>
-        </ul>
-      </div>
-
-      <!-- Programming & Cloud -->
-      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
-        <i class="ri-cloud-line text-4xl text-primary mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Programming & Cloud</h3>
-        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
-          <li><span class="font-semibold">☁️ AWS & Azure</span> — Intermediate</li>
-          <li><span class="font-semibold">🔗 Git, GitHub, CI/CD</span> — Advanced</li>
-          <li><span class="font-semibold">💻 C, Java, React, Flask</span> — Intermediate</li>
-        </ul>
-      </div>
-
-      <!-- Big Data & Tools -->
-      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
-        <i class="ri-database-2-line text-4xl text-primary mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Big Data & Tools</h3>
-        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-xs">
-          <li><span class="font-semibold">🗂 Hadoop, Spark</span> — Intermediate</li>
-          <li><span class="font-semibold">📊 Excel (Analytics)</span> — Advanced</li>
-          <li><span class="font-semibold">📓 Jupyter, Google Colab</span> — Expert</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Soft Skills -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-4">
-      <div class="reveal glass p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
-        <i class="ri-team-line text-4xl text-primary mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Soft Skills</h3>
-        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-left mx-auto max-w-md">
-          <li><span class="font-semibold">🧩 Problem Solving</span> — Expert</li>
-          <li><span class="font-semibold">🗣 Communication & Storytelling</span> — Advanced</li>
-          <li><span class="font-semibold">🤝 Team Collaboration</span> — Advanced</li>
-          <li><span class="font-semibold">👨‍💼 Leadership & Management</span> — Intermediate</li>
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- Styles for Progress Bars & Animations -->
-<style>
-  /* Container for progress bar */
-  .progress-container {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 9999px;
-    height: 10px;
-    overflow: hidden;
-  }
-
-  /* Fill of progress bar with gradient */
-  .progress-fill {
-    height: 10px;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, #6366F1, #EC4899);
-    width: 0;
-  }
-
-  /* Animate fill to target width */
-  .animate-fill {
-    animation: fillBar 1.5s ease forwards;
-  }
-
-  @keyframes fillBar {
-    to {
-      width: var(--w);
-    }
-  }
-
-  /* Optional: Add reveal animations for sections (if you haven't) */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards;
-  }
-  .reveal-left {
-    opacity: 0;
-    transform: translateX(-20px);
-    animation: fadeInLeft 1s forwards;
-  }
-  .reveal-right {
-    opacity: 0;
-    transform: translateX(20px);
-    animation: fadeInRight 1s forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes fadeInLeft {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  @keyframes fadeInRight {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-</style>
 <!-- Enhanced Contact Section -->
 <section id="contact" class="py-20 animated-bg">
   <div class="container mx-auto px-6">
