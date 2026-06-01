@@ -481,7 +481,9 @@ function CameraRig({ onDone }: { onDone: () => void }) {
    Scene assembly
 ============================================================ */
 function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => void }) {
-  const textCount = quality === 'high' ? 8000 : 3500;
+  // Reduce particle count further on mobile for performance
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const textCount = isMobile ? 2500 : quality === 'high' ? 8000 : 3500;
 
   const sprite = useMemo(() => makeCircleTexture(), []);
   const coreGlow = useMemo(() => makeGlowTexture('#6366f1'), []);
@@ -503,11 +505,11 @@ function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => voi
       <CameraRig onDone={onDone} />
 
       {/* Parallax depth layers */}
-      <AmbientField count={quality === 'high' ? 600 : 280} depth={-20} spread={50} color="#a5b4fc" size={0.35} sprite={sprite} />
-      <AmbientField count={quality === 'high' ? 450 : 200} depth={-10} spread={40} color="#818cf8" size={0.28} sprite={sprite} />
-      <AmbientField count={quality === 'high' ? 300 : 140} depth={-3} spread={30} color="#06b6d4" size={0.22} sprite={sprite} />
+      <AmbientField count={isMobile ? 150 : quality === 'high' ? 600 : 280} depth={-20} spread={50} color="#a5b4fc" size={0.35} sprite={sprite} />
+      <AmbientField count={isMobile ? 100 : quality === 'high' ? 450 : 200} depth={-10} spread={40} color="#818cf8" size={0.28} sprite={sprite} />
+      <AmbientField count={isMobile ? 80 : quality === 'high' ? 300 : 140} depth={-3} spread={30} color="#06b6d4" size={0.22} sprite={sprite} />
 
-      <LightStreaks count={quality === 'high' ? 200 : 100} />
+      <LightStreaks count={isMobile ? 60 : quality === 'high' ? 200 : 100} />
       <HoloRings />
       <EnergyCore glow={coreGlow} />
       <TextParticles count={textCount} sprite={sprite} />
@@ -521,11 +523,12 @@ export interface CinematicIntroProps {
 }
 
 export default function CinematicIntro({ quality = 'high', onDone }: CinematicIntroProps) {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <Canvas
       camera={{ position: [0, 0, 18], fov: 60, near: 0.1, far: 150 }}
-      dpr={[1, quality === 'high' ? 2 : 1.5]}
-      gl={{ antialias: quality === 'high', alpha: true, powerPreference: 'high-performance' }}
+      dpr={isMobile ? [1, 1.5] : [1, quality === 'high' ? 2 : 1.5]}
+      gl={{ antialias: !isMobile && quality === 'high', alpha: true, powerPreference: 'high-performance' }}
       onCreated={({ gl }) => gl.setClearColor('#fafafa', 1)}
       style={{ position: 'absolute', inset: 0 }}
     >

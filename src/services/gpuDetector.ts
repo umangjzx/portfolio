@@ -78,13 +78,28 @@ function classifyRenderer(renderer: string | null): GPUTier {
   return isHighEnd ? 'high' : 'low';
 }
 
+/**
+ * Detects if the device is mobile based on screen width.
+ * Mobile devices are forced to 'low' tier regardless of GPU capability
+ * to preserve battery and prevent thermal throttling.
+ */
+function isMobileDevice(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768;
+}
+
 function createGPUDetector(): GPUDetectorService {
   return {
     /**
      * Detects the GPU tier by reading WebGL renderer info.
+     * Mobile devices are always classified as 'low' regardless of GPU.
      * Defaults to 'low' if detection fails (Requirement 15.7).
      */
     detect(): GPUTier {
+      // Force low tier on mobile to preserve battery and performance
+      if (isMobileDevice()) {
+        return 'low';
+      }
       const renderer = getRendererInfo();
       return classifyRenderer(renderer);
     },

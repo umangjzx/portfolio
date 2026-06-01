@@ -4,6 +4,7 @@ import { usePortfolioStore } from '../../store/portfolioStore';
 import { fuzzySearchService } from '../../services/fuzzySearch';
 import { COMMANDS } from '../../data/commands';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import type { Command } from '../../types';
 
 function getCommandsWithActions(): Command[] {

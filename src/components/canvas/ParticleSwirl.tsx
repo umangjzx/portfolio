@@ -1,15 +1,19 @@
 import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { checkIsMobile } from '../../hooks/useIsMobile';
+import { detectTouchDevice } from '../../services/mouseTracker';
 
-function Particles({ count = 3000 }) {
+function Particles({ count = 3000, disableRepulsion = false }) {
   const points = useRef<THREE.Points>(null);
   const mouseRef = useRef(new THREE.Vector3(0, 0, 0));
   const [mouseActive, setMouseActive] = useState(false);
   const { camera } = useThree();
 
-  // Track mouse position in 3D space
+  // Track mouse position in 3D space — skip on touch devices
   useEffect(() => {
+    if (disableRepulsion) return;
+
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -31,7 +35,7 @@ function Particles({ count = 3000 }) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [camera]);
+  }, [camera, disableRepulsion]);
 
   const particlesData = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -81,6 +85,9 @@ function Particles({ count = 3000 }) {
 
     points.current.rotation.y = state.clock.elapsedTime * 0.03;
     points.current.rotation.z = state.clock.elapsedTime * 0.01;
+
+    // Skip per-particle repulsion on mobile (just rotate)
+    if (disableRepulsion) return;
 
     // Apply cursor repulsion
     const posAttr = points.current.geometry.attributes.position;
@@ -164,14 +171,22 @@ function Particles({ count = 3000 }) {
 }
 
 export function ParticleSwirl() {
+  const isMobile = checkIsMobile();
+  const isTouch = detectTouchDevice();
+
+  // Mobile: 500 particles, no repulsion, lower DPR
+  // Desktop: 4000 particles, full repulsion, higher DPR
+  const particleCount = isMobile ? 500 : 4000;
+
   return (
     <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
-        dpr={[1, 2]}
+        dpr={isMobile ? [1, 1] : [1, 2]}
+        gl={{ antialias: !isMobile, powerPreference: isMobile ? 'low-power' : 'high-performance' }}
         style={{ pointerEvents: 'none' }}
       >
-        <Particles count={4000} />
+        <Particles count={particleCount} disableRepulsion={isMobile || isTouch} />
       </Canvas>
     </div>
   );

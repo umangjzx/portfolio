@@ -104,6 +104,13 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     return () => clearTimeout(t);
   }, [cinematic, finish]);
 
+  // Safety timeout: if the 3D scene hasn't fired onDone after 8s (slow device), force complete.
+  useEffect(() => {
+    if (!cinematic) return;
+    const t = setTimeout(finish, 8000);
+    return () => clearTimeout(t);
+  }, [cinematic, finish]);
+
   const showSubtitle = elapsed >= SEQUENCE.CHARGE_START - 0.4 && elapsed < SEQUENCE.FLASH_START;
   const showHud = elapsed < SEQUENCE.PUSH_START;
 
