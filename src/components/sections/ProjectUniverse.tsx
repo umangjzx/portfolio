@@ -26,7 +26,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
       className={spanFor(project, index)}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: (index % 4) * 0.06 }}
     >
       <TiltCard spotlightColor={`${c1}26`} className="h-full" onClick={() => onOpen(project)}>

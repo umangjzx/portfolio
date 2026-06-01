@@ -85,7 +85,7 @@ function ExperimentCard({ exp, index }: { exp: LabExperiment; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: (index % 3) * 0.08 }}
     >
       <TiltCard spotlightColor={`${status.color}1f`} className="h-full">
@@ -159,7 +159,7 @@ function ExperimentCard({ exp, index }: { exp: LabExperiment; index: number }) {
 
 export default function AILaboratory() {
   const sectionRef = useRef<HTMLElement>(null);
-  const inView = useInView(sectionRef, { amount: 0.2, once: true });
+  const inView = useInView(sectionRef, { amount: 0.05, once: true });
 
   const liveCount = useMemo(
     () => LAB_EXPERIMENTS.filter((e) => e.status === 'live' || e.status === 'in-progress').length,
