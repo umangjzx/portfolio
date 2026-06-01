@@ -1,6 +1,7 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { checkIsMobile } from '../../hooks/useIsMobile';
 
 /* ============================================================
    Cinematic Intro — premium light-themed 3D title sequence.
@@ -482,7 +483,7 @@ function CameraRig({ onDone }: { onDone: () => void }) {
 ============================================================ */
 function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => void }) {
   // Reduce particle count further on mobile for performance
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isMobile = checkIsMobile();
   const textCount = isMobile ? 2500 : quality === 'high' ? 8000 : 3500;
 
   const sprite = useMemo(() => makeCircleTexture(), []);
@@ -523,7 +524,7 @@ export interface CinematicIntroProps {
 }
 
 export default function CinematicIntro({ quality = 'high', onDone }: CinematicIntroProps) {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isMobile = checkIsMobile();
   return (
     <Canvas
       camera={{ position: [0, 0, 18], fov: 60, near: 0.1, far: 150 }}
