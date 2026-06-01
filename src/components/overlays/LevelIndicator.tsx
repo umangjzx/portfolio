@@ -23,7 +23,7 @@ export function LevelIndicator() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed right-4 top-4 z-50 hidden sm:block"
+      className="fixed right-4 top-4 z-50"
       onHoverStart={() => setOpen(true)}
       onHoverEnd={() => setOpen(false)}
     >
@@ -31,13 +31,13 @@ export function LevelIndicator() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-label="Builder stats"
-        className="flex items-center gap-2.5 rounded-2xl border border-line bg-white/85 px-4 py-2.5 backdrop-blur-xl transition-shadow hover:shadow-lg"
+        className="flex items-center gap-2 sm:gap-2.5 rounded-2xl border border-line bg-white/85 px-3 py-2 sm:px-4 sm:py-2.5 backdrop-blur-xl transition-shadow hover:shadow-lg"
         style={{ boxShadow: '0 4px 24px rgba(15,23,42,0.08)' }}
       >
         <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-indigo/10">
           <Rocket size={15} className="text-indigo" />
         </span>
-        <span className="text-sm font-semibold text-ink">Builder Stats</span>
+        <span className="hidden sm:inline text-sm font-semibold text-ink">Builder Stats</span>
         <motion.span animate={{ rotate: open ? 180 : 0 }} className="text-ink-muted">
           <ChevronDown size={15} />
         </motion.span>

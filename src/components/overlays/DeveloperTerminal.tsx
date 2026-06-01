@@ -138,17 +138,20 @@ export function DeveloperTerminal() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleTerminal}
-                  className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center group"
+                  className="w-5 h-5 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center group"
+                  aria-label="Close terminal"
                 >
-                  <X size={8} className="opacity-0 group-hover:opacity-100 text-black" />
+                  <X size={10} className="opacity-0 group-hover:opacity-100 text-black" />
                 </button>
                 <button
-                  className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400"
+                  className="w-5 h-5 rounded-full bg-yellow-500 hover:bg-yellow-400"
                   onClick={() => setIsMaximized(m => !m)}
+                  aria-label="Minimize terminal"
                 />
                 <button
-                  className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400"
+                  className="w-5 h-5 rounded-full bg-green-500 hover:bg-green-400"
                   onClick={() => setIsMaximized(m => !m)}
+                  aria-label="Maximize terminal"
                 />
               </div>
               <div className="flex items-center gap-2 text-gray-500 text-xs">
