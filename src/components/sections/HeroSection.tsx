@@ -260,12 +260,17 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
                 alt={PROFILE.name}
                 className="w-full h-full object-cover"
                 loading="eager"
+                decoding="async"
+                width={352}
+                height={352}
               />
             </div>
-            {/* Decorative accents behind photo */}
-            <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
-            <div className="absolute -top-3 -left-3 w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
+            {/* Decorative accents — no blur on mobile for performance */}
+            {!isMobile && (
+              <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
+            )}
+            <div className="absolute -bottom-4 -right-4 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
+            <div className="absolute -top-3 -left-3 w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
           </div>
         </motion.div>
       </motion.div>
