@@ -251,10 +251,10 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
         {/* Right column — large profile photo */}
         <motion.div
           variants={item}
-          className="mt-12 lg:mt-0 flex justify-center"
+          className="mt-10 lg:mt-0 flex justify-center"
         >
           <div className="relative">
-            <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
+            <div className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
               <img
                 src={PROFILE.photoUrl}
                 alt={PROFILE.name}
@@ -269,8 +269,8 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
             {!isMobile && (
               <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
             )}
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
-            <div className="absolute -top-3 -left-3 w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
+            <div className="absolute -bottom-3 -right-3 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
+            <div className="absolute -top-2 -left-2 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
           </div>
         </motion.div>
       </motion.div>

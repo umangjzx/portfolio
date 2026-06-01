@@ -32,7 +32,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-8 flex justify-center lg:justify-start"
+            className="mb-8 hidden lg:flex justify-start"
           >
             <div className="relative">
               <div className="w-28 h-28 md:w-32 md:h-32 rounded-3xl overflow-hidden border-2 border-white shadow-[0_8px_32px_rgba(99,102,241,0.15)] ring-1 ring-gray-100">
@@ -40,7 +40,7 @@ export default function AboutSection() {
                   src={PROFILE.photoUrl}
                   alt={PROFILE.name}
                   className="w-full h-full object-cover"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               {/* Decorative accent */}
