@@ -1,0 +1,230 @@
+import { useRef, useState, useCallback, useEffect } from 'react';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { Download, ArrowDown, Calendar, FolderGit2, Sparkles } from 'lucide-react';
+import MagneticButton from '../ui/MagneticButton';
+import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
+import { PROFILE } from '../../data/profile';
+
+export interface HeroSectionProps {
+  isVisible?: boolean;
+}
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+};
+const item: Variants = {
+  hidden: { opacity: 0, y: 28, filter: 'blur(10px)' },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE } },
+};
+
+function scrollToId(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+export default function HeroSection({ isVisible = true }: HeroSectionProps) {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
+
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+
+  // Mouse parallax for depth layers
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
+  const reducedMotion = useRef(false);
+
+  useEffect(() => {
+    reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (reducedMotion.current) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    setParallax({ x, y });
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <section
+      ref={containerRef}
+      id="hero"
+      onMouseMove={handleMouseMove}
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent"
+    >
+      {/* ── Depth layer: aurora blobs (mouse parallax) ── */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        animate={{ x: parallax.x * -28, y: parallax.y * -28 }}
+        transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+      >
+        <div
+          className="absolute -left-20 top-24 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite' }}
+        />
+        <div
+          className="absolute -right-16 bottom-16 h-[460px] w-[460px] rounded-full opacity-40 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse' }}
+        />
+        <div
+          className="absolute left-1/2 top-1/3 h-[360px] w-[360px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite' }}
+        />
+      </motion.div>
+
+      {/* ── Depth layer: fine grid ── */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.5]"
+        animate={{ x: parallax.x * -10, y: parallax.y * -10 }}
+        transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+          maskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
+        }}
+      />
+
+      {/* ── Floating accent dots (depth) ── */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        animate={{ x: parallax.x * 20, y: parallax.y * 20 }}
+        transition={{ type: 'spring', stiffness: 40, damping: 20 }}
+      >
+        {[
+          { l: '18%', t: '28%', c: '#6366F1', s: 8 },
+          { l: '82%', t: '22%', c: '#06B6D4', s: 10 },
+          { l: '74%', t: '70%', c: '#8B5CF6', s: 7 },
+          { l: '24%', t: '74%', c: '#EC4899', s: 9 },
+          { l: '50%', t: '14%', c: '#6366F1', s: 6 },
+        ].map((d, i) => (
+          <motion.span
+            key={i}
+            className="absolute rounded-full"
+            style={{ left: d.l, top: d.t, width: d.s, height: d.s, background: d.c, boxShadow: `0 0 14px ${d.c}` }}
+            animate={{ y: [0, -16, 0], opacity: [0.4, 0.9, 0.4] }}
+            transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+          />
+        ))}
+      </motion.div>
+
+      {/* soft vignette to focus the center */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, rgba(250,250,250,0.55) 100%)' }}
+      />
+
+      {/* ── Content ── */}
+      <motion.div
+        className="container relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 text-center md:px-12"
+        variants={container}
+        initial="hidden"
+        animate="show"
+        style={{ y: yText, opacity: opacityText }}
+      >
+        {/* availability */}
+        <motion.div
+          variants={item}
+          className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-5 py-2.5 shadow-sm backdrop-blur-md"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          <span className="text-sm font-medium tracking-wide text-ink-soft">{PROFILE.availability}</span>
+        </motion.div>
+
+        {/* WHO — name */}
+        <motion.h1
+          variants={item}
+          className="font-display text-[18vw] font-semibold leading-[0.92] tracking-tight sm:text-7xl md:text-8xl lg:text-[8.5rem]"
+        >
+          <span className="text-gradient">{PROFILE.firstName}</span>{' '}
+          <span className="text-ink">{PROFILE.lastName}</span>
+        </motion.h1>
+
+        {/* WHAT — tagline (the hook) */}
+        <motion.p
+          variants={item}
+          className="mt-6 max-w-2xl font-display text-2xl font-medium leading-tight text-ink sm:text-3xl md:text-4xl"
+        >
+          I turn <span className="text-gradient">messy data</span> into intelligent products.
+        </motion.p>
+
+        {/* roles */}
+        <motion.div variants={item} className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          {PROFILE.roles.map((role, i) => (
+            <span key={role} className="flex items-center gap-3 text-base font-light text-ink-soft md:text-lg">
+              {i > 0 && <span className="h-1 w-1 rounded-full bg-ink-muted" />}
+              {role}
+            </span>
+          ))}
+        </motion.div>
+
+        {/* WHY — proof line */}
+        <motion.p variants={item} className="mt-6 flex items-center gap-2 text-sm text-ink-muted">
+          <Sparkles size={15} className="text-violet" />
+          11 products shipped · 4 hackathon podiums · 2 published papers
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <MagneticButton href={PROFILE.resumeUrl} external download variant="primary" ariaLabel="Download résumé">
+            <Download size={17} /> Download Résumé
+          </MagneticButton>
+          <MagneticButton onClick={() => scrollToId('projects')} variant="secondary" ariaLabel="View projects">
+            <FolderGit2 size={17} /> View Projects
+          </MagneticButton>
+          <MagneticButton href={PROFILE.calendly} external variant="secondary" ariaLabel="Schedule a meeting">
+            <Calendar size={17} /> Schedule a Meeting
+          </MagneticButton>
+        </motion.div>
+
+        {/* social */}
+        <motion.div variants={item} className="mt-7 flex items-center gap-3">
+          <a
+            href={PROFILE.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+          >
+            <GithubIcon size={19} />
+          </a>
+          <a
+            href={PROFILE.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+          >
+            <LinkedinIcon size={19} />
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* scroll cue */}
+      <motion.button
+        onClick={() => scrollToId('about')}
+        aria-label="Scroll to about section"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-ink-muted transition-colors hover:text-indigo"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6 }}
+      >
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
+          <ArrowDown size={16} />
+        </motion.span>
+      </motion.button>
+    </section>
+  );
+}

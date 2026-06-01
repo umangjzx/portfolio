@@ -1,0 +1,345 @@
+import type { Project } from '../types';
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'medrelay',
+    title: 'MedRelay',
+    tagline: 'AI clinical handoff platform — voice to structured SBAR',
+    category: 'Healthcare AI',
+    year: '2026',
+    featured: true,
+    accent: ['#6366F1', '#06B6D4'],
+    description:
+      'AI-powered clinical handoff system that converts spoken nurse-to-nurse handoffs into structured SBAR reports using a 14-agent pipeline.',
+    problem:
+      'Clinical shift handoffs are verbal, inconsistent, and a leading source of medical error. Critical details get lost between shifts and there is no structured, searchable record.',
+    solution:
+      'A multi-agent pipeline (LangGraph + HuggingFace) transcribes voice handoffs, extracts clinical entities, scores patient risk, and emits a standardized SBAR report with a real-time dashboard for the incoming team.',
+    architecture: [
+      'FastAPI backend with JWT auth and WebSocket streaming',
+      '14-agent LangGraph orchestration for transcription → extraction → risk',
+      'HuggingFace ASR + clinical NER models',
+      'React + SQLite real-time dashboard',
+    ],
+    impact: 'Cuts handoff documentation time and produces a consistent, auditable SBAR record for every shift change.',
+    metrics: [
+      { label: 'AI Agents', value: '14' },
+      { label: 'Handoff format', value: 'SBAR' },
+      { label: 'Latency', value: 'Real-time' },
+    ],
+    lessons: [
+      'Orchestrating many small agents beats one monolithic prompt for reliability.',
+      'Streaming partial results keeps clinicians trusting the system.',
+    ],
+    techStack: ['Python', 'FastAPI', 'React', 'LangGraph', 'HuggingFace', 'SQLite', 'WebSocket'],
+    thumbnailUrl: '/assets/projects/medrelay.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'civicpulse',
+    title: 'CivicPulse',
+    tagline: 'Smart community complaint management & analytics',
+    category: 'Civic Tech',
+    year: '2025',
+    featured: true,
+    accent: ['#8B5CF6', '#6366F1'],
+    description:
+      'Complaint management platform with role-based access, real-time tracking, ML classification, and an admin analytics suite.',
+    problem:
+      'Municipal complaint handling is slow and opaque. Citizens cannot track status and administrators lack the data to prioritize what matters.',
+    solution:
+      'A full-stack platform that auto-classifies and priority-tags incoming complaints with ML, tracks them in real time, and surfaces an analytics dashboard for administrators.',
+    architecture: [
+      'PostgreSQL data layer with role-based access control',
+      'ML classifier for category + priority tagging',
+      'Admin analytics suite with live status tracking',
+      'Responsive Bootstrap front end',
+    ],
+    impact: 'ML classification and priority tagging reached 75–85% accuracy, routing urgent issues to the right desk faster.',
+    metrics: [
+      { label: 'Classification', value: '75–85%' },
+      { label: 'Access model', value: 'Role-based' },
+      { label: 'Tracking', value: 'Real-time' },
+    ],
+    lessons: [
+      'A simple priority model delivers most of the operational value.',
+      'Status transparency is what citizens actually want.',
+    ],
+    techStack: ['Python', 'PostgreSQL', 'Machine Learning', 'Bootstrap', 'HTML', 'CSS'],
+    thumbnailUrl: '/assets/projects/civicpulse.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'stock-prediction',
+    title: 'Equity Valuation Engine',
+    tagline: 'Non-linear modelling for stock forecasting',
+    category: 'FinTech / ML',
+    year: '2025',
+    featured: true,
+    accent: ['#06B6D4', '#10B981'],
+    description:
+      'Stock forecasting system blending XGBoost, Random Forest, SVR and LSTM models over 500+ trading days of market data.',
+    problem:
+      'Linear models miss the non-linear, regime-shifting behavior of equity markets, producing brittle forecasts.',
+    solution:
+      'Engineered 15+ technical and fundamental indicators (RSI, MACD, Bollinger Bands) and trained an ensemble of tree-based and sequence models with blending for robustness.',
+    architecture: [
+      'yFinance ingestion of 500+ trading days',
+      '15+ engineered technical/fundamental features',
+      'XGBoost + Random Forest + SVR + LSTM ensemble',
+      'Weighted blending for final prediction',
+    ],
+    impact: 'Ensemble blending measurably improved accuracy and stability over any single model.',
+    metrics: [
+      { label: 'Indicators', value: '15+' },
+      { label: 'Trading days', value: '500+' },
+      { label: 'Models', value: '4 blended' },
+    ],
+    lessons: [
+      'Feature engineering moved the needle more than model choice.',
+      'Ensembles trade a little interpretability for a lot of stability.',
+    ],
+    techStack: ['Python', 'XGBoost', 'LSTM', 'yFinance', 'Scikit-learn'],
+    thumbnailUrl: '/assets/projects/stock-prediction.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'solar-irradiance',
+    title: 'Solar Irradiance Predictor',
+    tagline: 'Hybrid ML for renewable energy forecasting',
+    category: 'ML / Energy',
+    year: '2025',
+    accent: ['#F59E0B', '#EC4899'],
+    description:
+      'End-to-end Streamlit app predicting solar irradiance (W/m²) with LightGBM, XGBoost, CatBoost and Random Forest.',
+    problem:
+      'Grid operators need accurate, real-time solar irradiance forecasts to balance renewable supply, but raw sensor data is noisy and time-dependent.',
+    solution:
+      'An automated pipeline that cleans data, engineers time-series features, splits with time-awareness, and serves predictions with confidence scoring through an interactive dashboard.',
+    architecture: [
+      'Automated cleaning + feature engineering',
+      'Time-series-aware train/test splitting',
+      'LightGBM / XGBoost / CatBoost / RF comparison',
+      'Streamlit dashboard with confidence scoring',
+    ],
+    impact: 'Delivers real-time irradiance predictions with confidence intervals for energy planning.',
+    metrics: [
+      { label: 'Target', value: 'W/m²' },
+      { label: 'Models', value: '4' },
+      { label: 'Output', value: 'Confidence-scored' },
+    ],
+    lessons: ['Time-aware splits are non-negotiable for honest time-series metrics.'],
+    techStack: ['Python', 'Streamlit', 'LightGBM', 'XGBoost', 'CatBoost'],
+    thumbnailUrl: '/assets/projects/solar-irradiance.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'cognisync',
+    title: 'COGNISYNC',
+    tagline: 'GenAI music therapy for neurorehabilitation',
+    category: 'GenAI / HealthTech',
+    year: '2025',
+    accent: ['#8B5CF6', '#EC4899'],
+    description:
+      'AI-driven neurorehab platform for stroke & Parkinson\'s patients using a custom adaptive beat-generation engine.',
+    problem:
+      'Rhythmic auditory stimulation helps motor rehab, but therapy is generic and progress is hard to measure objectively.',
+    solution:
+      'A platform that generates adaptive rhythmic patterns tuned to each patient, tracks progress over time, and gives clinicians real-time monitoring with secure storage.',
+    architecture: [
+      'Custom beat-generation engine with adaptive rhythm',
+      'Flask + SQLite secure data layer',
+      'Progress-tracking dashboards',
+      'Real-time session monitoring',
+    ],
+    impact: 'Turns rhythmic therapy into a measurable, personalized, trackable program.',
+    metrics: [
+      { label: 'Use case', value: 'Stroke / PD' },
+      { label: 'Engine', value: 'Adaptive beats' },
+      { label: 'Tracking', value: 'Per-session' },
+    ],
+    lessons: ['Personalization plus measurement is what makes a therapy tool credible.'],
+    techStack: ['Python', 'Flask', 'SQLite', 'GenAI'],
+    thumbnailUrl: '/assets/projects/cognisync.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'pews',
+    title: 'PEWS',
+    tagline: 'Procrastination early-warning system',
+    category: 'Applied ML',
+    year: '2025',
+    accent: ['#6366F1', '#8B5CF6'],
+    description:
+      'Real-time system that predicts user distraction from browsing behavior using a lightweight PyTorch LSTM.',
+    problem:
+      'People lose focus without realizing it. By the time you notice you are procrastinating, the session is already gone.',
+    solution:
+      'A Chrome extension captures tab switches, scroll, mouse movement and idle time; a local LSTM predicts distraction in real time and nudges the user — all on-device for privacy.',
+    architecture: [
+      'Chrome extension behavior capture',
+      'PyTorch LSTM for sequence prediction',
+      'FastAPI local inference server',
+      'SQLite behavioral logging',
+    ],
+    impact: 'Detects distraction in real time while keeping all behavioral data local to the user.',
+    metrics: [
+      { label: 'Model', value: 'LSTM' },
+      { label: 'Inference', value: 'On-device' },
+      { label: 'Signals', value: '4 streams' },
+    ],
+    lessons: ['On-device inference earns trust for anything that watches behavior.'],
+    techStack: ['Python', 'PyTorch', 'FastAPI', 'Chrome Extension', 'SQLite'],
+    thumbnailUrl: '/assets/projects/pews.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'dsa-visualizer',
+    title: 'DSA Visualizer',
+    tagline: 'Interactive data structures & algorithms playground',
+    category: 'EdTech',
+    year: '2024',
+    accent: ['#06B6D4', '#6366F1'],
+    description:
+      'Streamlit app that visualizes arrays, trees, sorting, and graph algorithms (BFS, DFS, Dijkstra) in real time.',
+    problem: 'Algorithms are hard to internalize from static textbook diagrams.',
+    solution:
+      'An interactive visualizer that animates each step of classic data structures and algorithms, using NetworkX and Plotly for graph and sorting visuals.',
+    architecture: [
+      'Streamlit interactive UI',
+      'NetworkX graph algorithms',
+      'Plotly step-by-step animations',
+    ],
+    impact: 'Makes BFS, DFS, Dijkstra and sorting tangible through live animation.',
+    metrics: [
+      { label: 'Structures', value: '8+' },
+      { label: 'Graph algos', value: 'BFS/DFS/Dijkstra' },
+    ],
+    lessons: ['Animation is the fastest path to algorithmic intuition.'],
+    techStack: ['Python', 'Streamlit', 'NetworkX', 'Plotly'],
+    thumbnailUrl: '/assets/projects/dsa-visualizer.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'disease-prediction',
+    title: 'Disease Prediction System',
+    tagline: 'Symptom-driven diagnosis & recommendation',
+    category: 'HealthTech / ML',
+    year: '2024',
+    accent: ['#10B981', '#06B6D4'],
+    description:
+      'AI system that predicts probable diseases from reported symptoms with a Flask backend and Tailwind UI.',
+    problem: 'People struggle to make sense of symptoms before they can see a doctor.',
+    solution:
+      'A scikit-learn model loaded from a pre-trained .pkl serves fast predictions through a responsive Flask + Tailwind interface.',
+    architecture: [
+      'Scikit-learn model (.pkl) loading',
+      'Flask prediction API',
+      'Responsive Tailwind front end',
+    ],
+    impact: 'Provides fast, scalable symptom-to-disease predictions with a clean UX.',
+    metrics: [
+      { label: 'Serving', value: 'Pre-trained .pkl' },
+      { label: 'UI', value: 'Responsive' },
+    ],
+    lessons: ['Loading a pre-trained model keeps inference instant and cheap.'],
+    techStack: ['Python', 'Flask', 'Scikit-learn', 'Tailwind CSS', 'JavaScript'],
+    thumbnailUrl: '/assets/projects/disease-prediction.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'telecom-churn',
+    title: 'Telecom Churn Analysis',
+    tagline: 'Power BI churn dashboard for 7,043 customers',
+    category: 'Analytics / BI',
+    year: '2024',
+    accent: ['#F59E0B', '#6366F1'],
+    description:
+      'Interactive Power BI dashboard identifying a 27% churn rate and $139K+ revenue at risk across 7,043 customers.',
+    problem: 'The business knew it was losing customers but not who, why, or how much it cost.',
+    solution:
+      'A Power BI model analyzing tenure, contract type, payment method and services to surface high-risk segments with dynamic KPI cards and slicers.',
+    architecture: [
+      'DAX measures for churn KPIs',
+      'Segment analysis by tenure/contract/payment',
+      'Dynamic slicers + KPI cards',
+    ],
+    impact: 'Quantified a 27% churn rate and $139K+ revenue loss, pinpointing high-risk segments.',
+    metrics: [
+      { label: 'Customers', value: '7,043' },
+      { label: 'Churn rate', value: '27%' },
+      { label: 'Revenue at risk', value: '$139K+' },
+    ],
+    lessons: ['A single quantified number ($139K) changes the conversation with stakeholders.'],
+    techStack: ['Power BI', 'DAX', 'Data Analytics'],
+    thumbnailUrl: '/assets/projects/telecom-churn.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'loan-risk',
+    title: 'Loan Risk Analysis',
+    tagline: 'Lending Club default prediction pipeline',
+    category: 'FinTech / ML',
+    year: '2024',
+    accent: ['#EC4899', '#8B5CF6'],
+    description:
+      'End-to-end ML pipeline predicting loan default risk with Logistic Regression, Random Forest and XGBoost.',
+    problem: 'Lenders need to score default risk while handling heavily imbalanced approval data.',
+    solution:
+      'A pipeline using SMOTE for class imbalance, RandomizedSearchCV tuning, and a Low/Medium/High risk-scoring framework with ROC and feature-importance diagnostics.',
+    architecture: [
+      'SMOTE for class imbalance',
+      'RandomizedSearchCV hyperparameter tuning',
+      'Risk-scoring framework (Low/Med/High)',
+      'ROC curves + feature importance',
+    ],
+    impact: 'Produces an interpretable risk tier for each applicant with diagnostic transparency.',
+    metrics: [
+      { label: 'Risk tiers', value: '3' },
+      { label: 'Imbalance', value: 'SMOTE' },
+      { label: 'Models', value: '3' },
+    ],
+    lessons: ['Handling class imbalance correctly mattered more than squeezing model accuracy.'],
+    techStack: ['Python', 'XGBoost', 'Scikit-learn', 'SMOTE'],
+    thumbnailUrl: '/assets/projects/loan-risk.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+  {
+    id: 'hr-analytics',
+    title: 'HR Analytics Dashboard',
+    tagline: 'Predicting candidate job-change behavior',
+    category: 'Analytics / BI',
+    year: '2024',
+    accent: ['#6366F1', '#06B6D4'],
+    description:
+      'Interactive Power BI dashboard analyzing and predicting candidate job-change behavior with DAX-driven KPIs.',
+    problem: 'Recruiters lacked a data view of which candidates were likely to switch jobs.',
+    solution:
+      'A multi-page Power BI dashboard with DAX measures for Total Candidates, Job Switchers, Switch % and Average Training Hours, tied together with synchronized slicers.',
+    architecture: [
+      'DAX KPI measures',
+      'Multi-page synchronized dashboards',
+      'Cross-filtering slicers',
+    ],
+    impact: 'Gives recruiters a live, filterable view of job-change likelihood across the candidate pool.',
+    metrics: [
+      { label: 'KPIs', value: '4 core' },
+      { label: 'Pages', value: 'Multi' },
+    ],
+    lessons: ['Synchronized slicers turn a static report into an exploratory tool.'],
+    techStack: ['Power BI', 'DAX', 'HR Analytics'],
+    thumbnailUrl: '/assets/projects/hr-analytics.webp',
+    githubUrl: 'https://github.com/umangjzx',
+    screenshots: [],
+  },
+];
