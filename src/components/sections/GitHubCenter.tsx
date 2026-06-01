@@ -5,6 +5,7 @@ import { Star, BookOpen, Activity } from 'lucide-react';
 import { fetchGitHubUser, fetchGitHubRepos, calculateLanguageStats, type GitHubUser, type GitHubRepo } from '../../services/githubAPI';
 import { GithubIcon } from '../ui/BrandIcons';
 import { usePortfolioStore } from '../../store/portfolioStore';
+import { checkIsMobile } from '../../hooks/useIsMobile';
 
 const GITHUB_USERNAME = 'umangjzx';
 
@@ -91,11 +92,12 @@ export function GitHubCenter() {
   const topRepos = repos.slice(0, 6);
   const langStats = calculateLanguageStats(repos);
   const totalStars = repos.reduce((a, r) => a + r.stargazers_count, 0);
+  const isMobile = checkIsMobile();
 
   return (
     <section
       id="github"
-      className="py-32 px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden"
+      className="py-20 md:py-32 px-4 sm:px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden"
       onMouseEnter={handleHover}
     >
       {/* Soft background accent */}
@@ -108,27 +110,27 @@ export function GitHubCenter() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          viewport={{ once: true, margin: '-50px' }}
+          className="mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-gray-200 text-xs font-semibold text-gray-500 tracking-widest uppercase mb-6">
             <GithubIcon size={12} /> Open Source
           </div>
-          <h2 className="text-5xl md:text-6xl font-black tracking-tight text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-gray-900 mb-4">
             GitHub Command Center
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl font-light">
+          <p className="text-lg md:text-xl text-gray-500 max-w-2xl font-light">
             Live telemetry from my open-source ecosystem.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Profile Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="lg:col-span-1 rounded-3xl p-8 flex flex-col relative overflow-hidden"
+            viewport={{ once: true, margin: '-30px' }}
+            className="lg:col-span-1 rounded-3xl p-6 md:p-8 flex flex-col relative overflow-hidden"
             style={{
               background: 'rgba(255,255,255,0.88)',
               backdropFilter: 'blur(24px)',
@@ -198,13 +200,13 @@ export function GitHubCenter() {
 
           {/* Right Column */}
           <div className="lg:col-span-2 flex flex-col gap-8">
-            {/* Contribution Calendar */}
+            {/* Contribution Calendar — hidden on mobile, shown on tablet+ */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: 0.1 }}
-              className="rounded-3xl p-8 overflow-x-auto"
+              className="rounded-3xl p-6 md:p-8 overflow-hidden"
               style={{
                 background: 'rgba(255,255,255,0.88)',
                 backdropFilter: 'blur(24px)',
@@ -216,19 +218,42 @@ export function GitHubCenter() {
                 <Activity size={18} className="text-blue-500" />
                 <h3 className="text-lg font-bold text-gray-900">Contribution Activity</h3>
               </div>
-              <div className="min-w-[700px] pointer-events-none">
-                <GitHubCalendar
-                  username={GITHUB_USERNAME}
-                  colorScheme="light"
-                  theme={{
-                    light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1'],
-                  }}
-                />
-              </div>
+              {isMobile ? (
+                /* Mobile: compact contribution summary instead of full calendar */
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-2xl p-4 border border-gray-100 bg-gray-50/80 text-center">
+                    <p className="text-xs text-gray-400 font-medium mb-1">Public Repos</p>
+                    <p className="text-2xl font-black text-gray-900">{user.public_repos}</p>
+                  </div>
+                  <div className="rounded-2xl p-4 border border-gray-100 bg-gray-50/80 text-center">
+                    <p className="text-xs text-gray-400 font-medium mb-1">Total Stars</p>
+                    <p className="text-2xl font-black text-yellow-600">{totalStars}</p>
+                  </div>
+                  <div className="rounded-2xl p-4 border border-gray-100 bg-gray-50/80 text-center">
+                    <p className="text-xs text-gray-400 font-medium mb-1">Followers</p>
+                    <p className="text-2xl font-black text-gray-900">{user.followers}</p>
+                  </div>
+                  <div className="rounded-2xl p-4 border border-gray-100 bg-gray-50/80 text-center">
+                    <p className="text-xs text-gray-400 font-medium mb-1">Languages</p>
+                    <p className="text-2xl font-black text-blue-600">{Object.keys(langStats).length}</p>
+                  </div>
+                </div>
+              ) : (
+                /* Desktop/Tablet: full contribution calendar */
+                <div className="min-w-[700px] pointer-events-none">
+                  <GitHubCalendar
+                    username={GITHUB_USERNAME}
+                    colorScheme="light"
+                    theme={{
+                      light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1'],
+                    }}
+                  />
+                </div>
+              )}
             </motion.div>
 
             {/* Repo Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {topRepos.map((repo, i) => (
                 <motion.a
                   key={repo.id}
@@ -237,7 +262,7 @@ export function GitHubCenter() {
                   rel="noreferrer"
                   initial={{ opacity: 0, scale: 0.96 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: '-20px' }}
                   transition={{ delay: 0.05 * i }}
                   className="rounded-2xl p-6 flex flex-col group transition-all duration-300"
                   style={{
