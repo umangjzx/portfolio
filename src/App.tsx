@@ -1,9 +1,10 @@
-import { useState, useCallback, lazy, Suspense, Component, type ReactNode } from 'react';
+import { useState, useCallback, lazy, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Hooks
 import { useScrollEngine } from './hooks/useScrollEngine';
 import { usePerformance } from './hooks/usePerformance';
+import { checkIsMobile } from './hooks/useIsMobile';
 
 // Lightweight loading fallback (small footprint, no Three.js)
 import SectionLoader from './components/SectionLoader';
@@ -47,6 +48,7 @@ class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNod
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
+  const isMobile = useMemo(() => checkIsMobile(), []);
 
   // Initialize Lenis scroll engine
   useScrollEngine();
@@ -84,7 +86,7 @@ function App() {
             key="intro-loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: isMobile ? 0.25 : 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[100]"
             role="status"
             aria-label="Loading portfolio"
@@ -102,7 +104,7 @@ function App() {
             key="main-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0.1 : 0.2 }}
             aria-label="Portfolio content"
           >
             <ErrorBoundary fallback={<SectionLoader />}>

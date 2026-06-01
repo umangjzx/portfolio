@@ -67,10 +67,14 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     []
   );
   const webglOk = useMemo(() => detectWebGL(), []);
-  // Always attempt the cinematic 3D intro if WebGL is available.
-  // Reduced-motion users get fewer particles but still see the scene.
+  const isMobile = useMemo(
+    () => typeof window !== 'undefined' && window.innerWidth < 768,
+    []
+  );
+  // Skip the heavy 3D intro entirely on mobile — use the fast 2D reveal instead.
+  // This eliminates the biggest source of lag and gives a snappy first impression.
   const [sceneFailed, setSceneFailed] = useState(false);
-  const cinematic = webglOk && !sceneFailed;
+  const cinematic = webglOk && !sceneFailed && !isMobile;
   const quality: 'high' | 'low' = gpuTier === 'high' && !reducedMotion ? 'high' : 'low';
 
   const finish = useRef(() => {
@@ -97,12 +101,13 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     return () => cancelAnimationFrame(raf);
   }, [cinematic, finish]);
 
-  // Reduced-motion / no-WebGL: a calm, fast 2D reveal then continue.
+  // Reduced-motion / no-WebGL / mobile: a calm, fast 2D reveal then continue.
   useEffect(() => {
     if (cinematic) return;
-    const t = setTimeout(finish, 2200);
+    // On mobile, finish faster (1.2s) for a snappy feel
+    const t = setTimeout(finish, isMobile ? 1200 : 2200);
     return () => clearTimeout(t);
-  }, [cinematic, finish]);
+  }, [cinematic, finish, isMobile]);
 
   // Safety timeout: if the 3D scene hasn't fired onDone after 8s (slow device), force complete.
   useEffect(() => {
@@ -208,22 +213,22 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
               {/* ── white-out handled by App's exit animation ── */}
             </>
           ) : (
-            /* ── 2D fallback (no WebGL / scene crashed) ── */
+            /* ── 2D fallback (no WebGL / scene crashed / mobile) ── */
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-white">
               <motion.h1
                 className="font-display text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl"
-                initial={{ opacity: 0, scale: 0.6, filter: 'blur(14px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: isMobile ? 0.6 : 1.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className="text-gradient">{PROFILE.firstName}</span>{' '}
                 <span className="text-ink">{PROFILE.lastName}</span>
               </motion.h1>
               <motion.p
                 className="mt-5 font-mono text-xs uppercase tracking-[0.4em] text-ink-soft sm:text-sm"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                transition={{ delay: isMobile ? 0.3 : 0.6, duration: 0.5 }}
               >
                 {PROFILE.roles.join('  •  ')}
               </motion.p>

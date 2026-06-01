@@ -86,7 +86,7 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     points.current.rotation.y = state.clock.elapsedTime * 0.03;
     points.current.rotation.z = state.clock.elapsedTime * 0.01;
 
-    // Skip per-particle repulsion on mobile (just rotate)
+    // Skip per-particle repulsion when disabled (mobile/touch)
     if (disableRepulsion) return;
 
     // Apply cursor repulsion
@@ -96,7 +96,6 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     const repulsionRadius = 3.5;
     const repulsionStrength = 2.5;
 
-    // Get inverse rotation to transform mouse into particle local space
     const invMatrix = new THREE.Matrix4().copy(points.current.matrixWorld).invert();
     const localMouse = mouseRef.current.clone().applyMatrix4(invMatrix);
 
@@ -124,13 +123,11 @@ function Particles({ count = 3000, disableRepulsion = false }) {
           positions[iy] += ny * force * 0.3;
           positions[iz] += nz * force * 0.3;
         } else {
-          // Ease back to original position
           positions[ix] += (ox - positions[ix]) * 0.02;
           positions[iy] += (oy - positions[iy]) * 0.02;
           positions[iz] += (oz - positions[iz]) * 0.02;
         }
       } else {
-        // No mouse — ease back to original
         positions[ix] += (ox - positions[ix]) * 0.02;
         positions[iy] += (oy - positions[iy]) * 0.02;
         positions[iz] += (oz - positions[iz]) * 0.02;
@@ -170,23 +167,73 @@ function Particles({ count = 3000, disableRepulsion = false }) {
   );
 }
 
+/**
+ * Lightweight CSS-only background for mobile.
+ * Uses subtle animated gradients instead of a full WebGL canvas.
+ * Zero GPU overhead — pure compositor-friendly CSS animations.
+ */
+function MobileBackground() {
+  return (
+    <div className="fixed inset-0 z-[-1] bg-white overflow-hidden" style={{ pointerEvents: 'none' }}>
+      {/* Soft animated gradient orbs */}
+      <div
+        className="absolute -top-1/4 -left-1/4 w-[80vw] h-[80vw] rounded-full opacity-[0.15]"
+        style={{
+          background: 'radial-gradient(circle, #6366f1, transparent 70%)',
+          animation: 'mobileOrb1 20s ease-in-out infinite',
+        }}
+      />
+      <div
+        className="absolute -bottom-1/4 -right-1/4 w-[70vw] h-[70vw] rounded-full opacity-[0.12]"
+        style={{
+          background: 'radial-gradient(circle, #06b6d4, transparent 70%)',
+          animation: 'mobileOrb2 24s ease-in-out infinite',
+        }}
+      />
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] rounded-full opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle, #8b5cf6, transparent 70%)',
+          animation: 'mobileOrb3 18s ease-in-out infinite',
+        }}
+      />
+      <style>{`
+        @keyframes mobileOrb1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(10vw, 8vh) scale(1.1); }
+        }
+        @keyframes mobileOrb2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-8vw, -6vh) scale(1.05); }
+        }
+        @keyframes mobileOrb3 {
+          0%, 100% { transform: translate(-50%, 0) scale(1); }
+          50% { transform: translate(-50%, -5vh) scale(1.08); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function ParticleSwirl() {
   const isMobile = checkIsMobile();
   const isTouch = detectTouchDevice();
 
-  // Mobile: 500 particles, no repulsion, lower DPR
-  // Desktop: 4000 particles, full repulsion, higher DPR
-  const particleCount = isMobile ? 500 : 4000;
+  // Mobile: skip Three.js entirely, use lightweight CSS background
+  if (isMobile) {
+    return <MobileBackground />;
+  }
 
+  // Desktop: full 3D particle experience
   return (
     <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
-        dpr={isMobile ? [1, 1] : [1, 2]}
-        gl={{ antialias: !isMobile, powerPreference: isMobile ? 'low-power' : 'high-performance' }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: 'high-performance' }}
         style={{ pointerEvents: 'none' }}
       >
-        <Particles count={particleCount} disableRepulsion={isMobile || isTouch} />
+        <Particles count={4000} disableRepulsion={isTouch} />
       </Canvas>
     </div>
   );

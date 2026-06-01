@@ -4,20 +4,22 @@ import { Download, ArrowDown, Calendar, FolderGit2, Sparkles } from 'lucide-reac
 import MagneticButton from '../ui/MagneticButton';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
 import { PROFILE } from '../../data/profile';
+import { checkIsMobile } from '../../hooks/useIsMobile';
 
 export interface HeroSectionProps {
   isVisible?: boolean;
 }
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const isMobileStatic = checkIsMobile();
 
 const container: Variants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+  show: { opacity: 1, transition: { staggerChildren: isMobileStatic ? 0.06 : 0.1, delayChildren: 0.1 } },
 };
 const item: Variants = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(10px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
 function scrollToId(id: string) {
@@ -26,12 +28,13 @@ function scrollToId(id: string) {
 
 export default function HeroSection({ isVisible = true }: HeroSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = checkIsMobile();
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
   const yText = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const opacityText = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
-  // Mouse parallax for depth layers
+  // Mouse parallax for depth layers — disabled on mobile
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
   const reducedMotion = useRef(false);
 
@@ -40,11 +43,11 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
   }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (reducedMotion.current) return;
+    if (reducedMotion.current || isMobile) return;
     const x = (e.clientX / window.innerWidth - 0.5) * 2;
     const y = (e.clientY / window.innerHeight - 0.5) * 2;
     setParallax({ x, y });
-  }, []);
+  }, [isMobile]);
 
   if (!isVisible) return null;
 
@@ -55,65 +58,71 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
       onMouseMove={handleMouseMove}
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent"
     >
-      {/* ── Depth layer: aurora blobs (mouse parallax) ── */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        animate={{ x: parallax.x * -28, y: parallax.y * -28 }}
-        transition={{ type: 'spring', stiffness: 50, damping: 20 }}
-      >
-        <div
-          className="absolute -left-20 top-24 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite' }}
-        />
-        <div
-          className="absolute -right-16 bottom-16 h-[460px] w-[460px] rounded-full opacity-40 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse' }}
-        />
-        <div
-          className="absolute left-1/2 top-1/3 h-[360px] w-[360px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite' }}
-        />
-      </motion.div>
-
-      {/* ── Depth layer: fine grid ── */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.5]"
-        animate={{ x: parallax.x * -10, y: parallax.y * -10 }}
-        transition={{ type: 'spring', stiffness: 50, damping: 20 }}
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-          maskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
-        }}
-      />
-
-      {/* ── Floating accent dots (depth) ── */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        animate={{ x: parallax.x * 20, y: parallax.y * 20 }}
-        transition={{ type: 'spring', stiffness: 40, damping: 20 }}
-      >
-        {[
-          { l: '18%', t: '28%', c: '#6366F1', s: 8 },
-          { l: '82%', t: '22%', c: '#06B6D4', s: 10 },
-          { l: '74%', t: '70%', c: '#8B5CF6', s: 7 },
-          { l: '24%', t: '74%', c: '#EC4899', s: 9 },
-          { l: '50%', t: '14%', c: '#6366F1', s: 6 },
-        ].map((d, i) => (
-          <motion.span
-            key={i}
-            className="absolute rounded-full"
-            style={{ left: d.l, top: d.t, width: d.s, height: d.s, background: d.c, boxShadow: `0 0 14px ${d.c}` }}
-            animate={{ y: [0, -16, 0], opacity: [0.4, 0.9, 0.4] }}
-            transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+      {/* ── Depth layer: aurora blobs (mouse parallax) — hidden on mobile for perf ── */}
+      {!isMobile && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0"
+          animate={{ x: parallax.x * -28, y: parallax.y * -28 }}
+          transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+        >
+          <div
+            className="absolute -left-20 top-24 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite' }}
           />
-        ))}
-      </motion.div>
+          <div
+            className="absolute -right-16 bottom-16 h-[460px] w-[460px] rounded-full opacity-40 blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse' }}
+          />
+          <div
+            className="absolute left-1/2 top-1/3 h-[360px] w-[360px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite' }}
+          />
+        </motion.div>
+      )}
+
+      {/* ── Depth layer: fine grid — hidden on mobile ── */}
+      {!isMobile && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0 opacity-[0.5]"
+          animate={{ x: parallax.x * -10, y: parallax.y * -10 }}
+          transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+            maskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
+          }}
+        />
+      )}
+
+      {/* ── Floating accent dots (depth) — hidden on mobile ── */}
+      {!isMobile && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0"
+          animate={{ x: parallax.x * 20, y: parallax.y * 20 }}
+          transition={{ type: 'spring', stiffness: 40, damping: 20 }}
+        >
+          {[
+            { l: '18%', t: '28%', c: '#6366F1', s: 8 },
+            { l: '82%', t: '22%', c: '#06B6D4', s: 10 },
+            { l: '74%', t: '70%', c: '#8B5CF6', s: 7 },
+            { l: '24%', t: '74%', c: '#EC4899', s: 9 },
+            { l: '50%', t: '14%', c: '#6366F1', s: 6 },
+          ].map((d, i) => (
+            <motion.span
+              key={i}
+              className="absolute rounded-full"
+              style={{ left: d.l, top: d.t, width: d.s, height: d.s, background: d.c, boxShadow: `0 0 14px ${d.c}` }}
+              animate={{ y: [0, -16, 0], opacity: [0.4, 0.9, 0.4] }}
+              transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+            />
+          ))}
+        </motion.div>
+      )}
 
       {/* soft vignette to focus the center */}
       <div

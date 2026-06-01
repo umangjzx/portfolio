@@ -3,6 +3,7 @@ import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { usePortfolioStore } from '../store/portfolioStore';
+import { checkIsMobile } from './useIsMobile';
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -93,13 +94,17 @@ export function useScrollEngine(options: ScrollEngineOptions = {}) {
   const setCurrentSection = usePortfolioStore((state) => state.setCurrentSection);
 
   useEffect(() => {
+    const isMobile = checkIsMobile();
+
     // Initialize Lenis with specified configuration
+    // On mobile: disable syncTouch to use native scroll (much smoother),
+    // reduce duration, and lower multiplier to avoid fighting the OS.
     const lenis = new Lenis({
-      duration,
+      duration: isMobile ? 0.8 : duration,
       easing,
       smoothWheel: true,
-      syncTouch,
-      touchMultiplier: 2,
+      syncTouch: isMobile ? false : syncTouch,
+      touchMultiplier: isMobile ? 1 : 2,
       wheelMultiplier: 1,
     });
 
