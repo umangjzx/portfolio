@@ -16,7 +16,7 @@ export const PROFILE = {
   githubUser: 'umangjzx',
   linkedin: 'https://www.linkedin.com/in/umang-jaiswal-n',
   calendly: 'https://calendly.com/umang2468jaiswal',
-  resumeUrl: 'https://drive.google.com/uc?export=download&id=1NnWvWiaYCxnaC9HgCRgkzK-f84jIFrSL',
+  resumeUrl: 'https://drive.google.com/uc?export=download&id=1UWWzbf0Jszy7K_RiiadRthrOlgEvh7vR',
   photoUrl: '/profile.jpg',
 } as const;
 

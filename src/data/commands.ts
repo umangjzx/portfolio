@@ -14,7 +14,7 @@ export const COMMANDS: Command[] = [
     id: 'download-resume',
     label: 'Download Resume',
     action: () => {
-      window.open('/resume.pdf', '_blank');
+      window.open('https://drive.google.com/uc?export=download&id=1UWWzbf0Jszy7K_RiiadRthrOlgEvh7vR', '_blank');
     },
     keywords: ['resume', 'cv', 'download', 'pdf'],
     icon: '📄',

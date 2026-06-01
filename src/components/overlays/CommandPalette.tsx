@@ -13,7 +13,7 @@ function getCommandsWithActions(): Command[] {
       case 'view-projects':
         return { ...cmd, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) };
       case 'download-resume':
-        return { ...cmd, action: () => { const a = document.createElement('a'); a.href = '/resume.pdf'; a.download = 'Umang_Jaiswal_Resume.pdf'; a.click(); } };
+        return { ...cmd, action: () => { window.open('https://drive.google.com/uc?export=download&id=1UWWzbf0Jszy7K_RiiadRthrOlgEvh7vR', '_blank'); } };
       case 'contact':
         return { ...cmd, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) };
       case 'github':

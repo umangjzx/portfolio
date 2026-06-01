@@ -39,7 +39,7 @@ export function DeveloperTerminal() {
 
     switch (cmd) {
       case 'help':
-        response = `Available commands:\n  help       — show this message\n  projects   — navigate to projects\n  skills     — navigate to skills\n  github     — navigate to GitHub section\n  contact    — navigate to contact\n  about      — my bio\n  clear      — clear terminal\n  resume     — download resume (coming soon)\n  easteregg  — 👀`;
+        response = `Available commands:\n  help       — show this message\n  projects   — navigate to projects\n  skills     — navigate to skills\n  github     — navigate to GitHub section\n  contact    — navigate to contact\n  about      — my bio\n  clear      — clear terminal\n  resume     — download resume\n  easteregg  — 👀`;
         break;
       case 'clear':
         setHistory([]);
@@ -69,7 +69,8 @@ export function DeveloperTerminal() {
         response = 'Umang Jaiswal | ML Engineer & Full-Stack Dev | Turning caffeine → code since 2020.';
         break;
       case 'resume':
-        response = '📄 Resume download coming soon. Connect on LinkedIn for now!';
+        response = '📄 Downloading resume...';
+        window.open('https://drive.google.com/uc?export=download&id=1UWWzbf0Jszy7K_RiiadRthrOlgEvh7vR', '_blank');
         break;
       case 'easteregg':
       case 'sudo':
