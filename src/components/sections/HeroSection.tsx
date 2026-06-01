@@ -159,90 +159,114 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
 
       {/* ── Content ── */}
       <motion.div
-        className="container relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 text-center md:px-12"
+        className="container relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 md:px-12 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16"
         variants={container}
         initial="hidden"
         animate="show"
         style={{ y: yText, opacity: opacityText }}
       >
-        {/* availability */}
+        {/* Left column — text content */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          {/* availability */}
+          <motion.div
+            variants={item}
+            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-5 py-2.5 shadow-sm backdrop-blur-md"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-sm font-medium tracking-wide text-ink-soft">{PROFILE.availability}</span>
+          </motion.div>
+
+          {/* WHO — name */}
+          <motion.h1
+            variants={item}
+            className="font-display text-[15vw] font-semibold leading-[0.92] tracking-tight sm:text-6xl md:text-7xl lg:text-[6.5rem]"
+          >
+            <span className="text-gradient">{PROFILE.firstName}</span>{' '}
+            <span className="text-ink">{PROFILE.lastName}</span>
+          </motion.h1>
+
+          {/* WHAT — tagline (the hook) */}
+          <motion.p
+            variants={item}
+            className="mt-6 max-w-xl font-display text-xl font-medium leading-tight text-ink sm:text-2xl md:text-3xl"
+          >
+            I turn <span className="text-gradient">messy data</span> into intelligent products.
+          </motion.p>
+
+          {/* roles */}
+          <motion.div variants={item} className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-2">
+            {PROFILE.roles.map((role, i) => (
+              <span key={role} className="flex items-center gap-3 text-base font-light text-ink-soft md:text-lg">
+                {i > 0 && <span className="h-1 w-1 rounded-full bg-ink-muted" />}
+                {role}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* WHY — proof line */}
+          <motion.p variants={item} className="mt-6 flex items-center gap-2 text-sm text-ink-muted">
+            <Sparkles size={15} className="text-violet" />
+            11 products shipped · 4 hackathon podiums · 2 published papers
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+            <MagneticButton href={PROFILE.resumeUrl} external download variant="primary" ariaLabel="Download résumé">
+              <Download size={17} /> Download Résumé
+            </MagneticButton>
+            <MagneticButton onClick={() => scrollToId('projects')} variant="secondary" ariaLabel="View projects">
+              <FolderGit2 size={17} /> View Projects
+            </MagneticButton>
+            <MagneticButton href={PROFILE.calendly} external variant="secondary" ariaLabel="Schedule a meeting">
+              <Calendar size={17} /> Schedule a Meeting
+            </MagneticButton>
+          </motion.div>
+
+          {/* social */}
+          <motion.div variants={item} className="mt-7 flex items-center gap-3">
+            <a
+              href={PROFILE.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+            >
+              <GithubIcon size={19} />
+            </a>
+            <a
+              href={PROFILE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+            >
+              <LinkedinIcon size={19} />
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Right column — large profile photo */}
         <motion.div
           variants={item}
-          className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-5 py-2.5 shadow-sm backdrop-blur-md"
+          className="mt-12 lg:mt-0 flex justify-center"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          <span className="text-sm font-medium tracking-wide text-ink-soft">{PROFILE.availability}</span>
-        </motion.div>
-
-        {/* WHO — name */}
-        <motion.h1
-          variants={item}
-          className="font-display text-[18vw] font-semibold leading-[0.92] tracking-tight sm:text-7xl md:text-8xl lg:text-[8.5rem]"
-        >
-          <span className="text-gradient">{PROFILE.firstName}</span>{' '}
-          <span className="text-ink">{PROFILE.lastName}</span>
-        </motion.h1>
-
-        {/* WHAT — tagline (the hook) */}
-        <motion.p
-          variants={item}
-          className="mt-6 max-w-2xl font-display text-2xl font-medium leading-tight text-ink sm:text-3xl md:text-4xl"
-        >
-          I turn <span className="text-gradient">messy data</span> into intelligent products.
-        </motion.p>
-
-        {/* roles */}
-        <motion.div variants={item} className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-          {PROFILE.roles.map((role, i) => (
-            <span key={role} className="flex items-center gap-3 text-base font-light text-ink-soft md:text-lg">
-              {i > 0 && <span className="h-1 w-1 rounded-full bg-ink-muted" />}
-              {role}
-            </span>
-          ))}
-        </motion.div>
-
-        {/* WHY — proof line */}
-        <motion.p variants={item} className="mt-6 flex items-center gap-2 text-sm text-ink-muted">
-          <Sparkles size={15} className="text-violet" />
-          11 products shipped · 4 hackathon podiums · 2 published papers
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <MagneticButton href={PROFILE.resumeUrl} external download variant="primary" ariaLabel="Download résumé">
-            <Download size={17} /> Download Résumé
-          </MagneticButton>
-          <MagneticButton onClick={() => scrollToId('projects')} variant="secondary" ariaLabel="View projects">
-            <FolderGit2 size={17} /> View Projects
-          </MagneticButton>
-          <MagneticButton href={PROFILE.calendly} external variant="secondary" ariaLabel="Schedule a meeting">
-            <Calendar size={17} /> Schedule a Meeting
-          </MagneticButton>
-        </motion.div>
-
-        {/* social */}
-        <motion.div variants={item} className="mt-7 flex items-center gap-3">
-          <a
-            href={PROFILE.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
-          >
-            <GithubIcon size={19} />
-          </a>
-          <a
-            href={PROFILE.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
-          >
-            <LinkedinIcon size={19} />
-          </a>
+          <div className="relative">
+            <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
+              <img
+                src={PROFILE.photoUrl}
+                alt={PROFILE.name}
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            {/* Decorative accents behind photo */}
+            <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
+            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
+            <div className="absolute -top-3 -left-3 w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
+          </div>
         </motion.div>
       </motion.div>
 

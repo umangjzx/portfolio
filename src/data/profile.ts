@@ -16,7 +16,8 @@ export const PROFILE = {
   githubUser: 'umangjzx',
   linkedin: 'https://www.linkedin.com/in/umang-jaiswal-n',
   calendly: 'https://calendly.com/umang2468jaiswal',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: 'https://drive.google.com/uc?export=download&id=1NnWvWiaYCxnaC9HgCRgkzK-f84jIFrSL',
+  photoUrl: '/profile.jpg',
 } as const;
 
 /** Narrative blocks for the About section storytelling. */
