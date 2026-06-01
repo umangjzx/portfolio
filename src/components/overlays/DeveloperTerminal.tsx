@@ -106,6 +106,7 @@ export function DeveloperTerminal() {
           boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
         }}
         title="Developer Terminal"
+        aria-label="Open developer terminal"
       >
         <TerminalIcon size={20} className="text-gray-700" />
       </motion.button>
@@ -189,6 +190,7 @@ export function DeveloperTerminal() {
                 onChange={e => setInput(e.target.value)}
                 className="flex-1 bg-transparent border-none outline-none text-white font-mono text-sm placeholder-gray-700"
                 placeholder="type a command..."
+                aria-label="Terminal command input"
                 spellCheck={false}
                 autoComplete="off"
               />
