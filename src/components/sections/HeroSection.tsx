@@ -124,6 +124,32 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
         </motion.div>
       )}
 
+      {/* ── Mobile: lightweight static decorative elements ── */}
+      {isMobile && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+          {/* Subtle gradient accent at top */}
+          <div
+            className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[90vw] h-[40vh] rounded-full opacity-[0.12]"
+            style={{ background: 'radial-gradient(ellipse, #6366f1, transparent 70%)' }}
+          />
+          {/* Bottom accent */}
+          <div
+            className="absolute -bottom-[5%] -right-[10%] w-[50vw] h-[50vw] rounded-full opacity-[0.08]"
+            style={{ background: 'radial-gradient(circle, #06b6d4, transparent 65%)' }}
+          />
+          {/* Fine grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+              maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%)',
+            }}
+          />
+        </div>
+      )}
+
       {/* soft vignette to focus the center */}
       <div
         aria-hidden

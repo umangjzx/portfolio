@@ -38,6 +38,8 @@ const SEQUENCE = {
   TOTAL: 5.6,
 };
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 /** Detects whether WebGL is usable; if not we fall back to a 2D reveal. */
 function detectWebGL(): boolean {
   try {
@@ -104,8 +106,8 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
   // Reduced-motion / no-WebGL / mobile: a calm, fast 2D reveal then continue.
   useEffect(() => {
     if (cinematic) return;
-    // On mobile, finish faster (1.2s) for a snappy feel
-    const t = setTimeout(finish, isMobile ? 1200 : 2200);
+    // On mobile, give enough time to see the stylish reveal (1.8s)
+    const t = setTimeout(finish, isMobile ? 1800 : 2200);
     return () => clearTimeout(t);
   }, [cinematic, finish, isMobile]);
 
@@ -214,24 +216,94 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
             </>
           ) : (
             /* ── 2D fallback (no WebGL / scene crashed / mobile) ── */
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white">
-              <motion.h1
-                className="font-display text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: isMobile ? 0.6 : 1.1, ease: [0.16, 1, 0.3, 1] }}
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#fafafa] overflow-hidden">
+              {/* Animated gradient backdrop */}
+              <div className="absolute inset-0 pointer-events-none">
+                <motion.div
+                  className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] rounded-full"
+                  style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.2), transparent 60%)' }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1.2, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                />
+                <motion.div
+                  className="absolute bottom-1/4 right-0 w-[50vw] h-[50vw] rounded-full"
+                  style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.15), transparent 60%)' }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                />
+              </div>
+
+              {/* Decorative lines that sweep in */}
+              <motion.div
+                className="absolute top-[38%] left-0 right-0 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.3), transparent)' }}
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
+              />
+              <motion.div
+                className="absolute top-[62%] left-0 right-0 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.2), transparent)' }}
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
+              />
+
+              {/* Corner accents */}
+              <motion.div
+                className="absolute top-8 left-6 font-mono text-[9px] uppercase tracking-[0.3em] text-indigo-400/60"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <span className="text-gradient">{PROFILE.firstName}</span>{' '}
+                ◢ loading
+              </motion.div>
+              <motion.div
+                className="absolute top-8 right-6 font-mono text-[9px] uppercase tracking-[0.3em] text-violet-400/60"
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+              >
+                v2.0
+              </motion.div>
+
+              {/* Main name — dramatic scale-up */}
+              <motion.h1
+                className="relative z-10 font-display text-[15vw] font-bold tracking-tighter leading-none"
+                initial={{ opacity: 0, scale: 0.7, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="text-gradient">{PROFILE.firstName}</span>
+              </motion.h1>
+              <motion.h1
+                className="relative z-10 font-display text-[15vw] font-bold tracking-tighter leading-none -mt-2"
+                initial={{ opacity: 0, scale: 0.7, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <span className="text-ink">{PROFILE.lastName}</span>
               </motion.h1>
-              <motion.p
-                className="mt-5 font-mono text-xs uppercase tracking-[0.4em] text-ink-soft sm:text-sm"
-                initial={{ opacity: 0, y: 8 }}
+
+              {/* Roles with animated underline */}
+              <motion.div
+                className="relative z-10 mt-6 flex flex-col items-center gap-2"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: isMobile ? 0.3 : 0.6, duration: 0.5 }}
+                transition={{ delay: 0.35, duration: 0.5, ease: EASE }}
               >
-                {PROFILE.roles.join('  •  ')}
-              </motion.p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink-soft">
+                  {PROFILE.roles.join('  ·  ')}
+                </p>
+                <motion.div
+                  className="h-0.5 w-12 rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4, ease: EASE }}
+                />
+              </motion.div>
             </div>
           )}
     </div>

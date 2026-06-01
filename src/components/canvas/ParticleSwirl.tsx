@@ -168,47 +168,111 @@ function Particles({ count = 3000, disableRepulsion = false }) {
 }
 
 /**
- * Lightweight CSS-only background for mobile.
- * Uses subtle animated gradients instead of a full WebGL canvas.
- * Zero GPU overhead — pure compositor-friendly CSS animations.
+ * Lightweight but visually rich CSS background for mobile.
+ * Uses animated mesh gradients, floating geometric shapes, and subtle noise
+ * for a premium feel without any WebGL overhead.
+ * All animations use transform/opacity only (compositor-friendly, 60fps).
  */
 function MobileBackground() {
   return (
-    <div className="fixed inset-0 z-[-1] bg-white overflow-hidden" style={{ pointerEvents: 'none' }}>
-      {/* Soft animated gradient orbs */}
+    <div className="fixed inset-0 z-[-1] bg-[#fafafa] overflow-hidden" style={{ pointerEvents: 'none' }}>
+      {/* Mesh gradient base — slow morphing blobs */}
       <div
-        className="absolute -top-1/4 -left-1/4 w-[80vw] h-[80vw] rounded-full opacity-[0.15]"
+        className="absolute -top-[20%] -left-[15%] w-[70vw] h-[70vw] rounded-full opacity-[0.22]"
         style={{
-          background: 'radial-gradient(circle, #6366f1, transparent 70%)',
-          animation: 'mobileOrb1 20s ease-in-out infinite',
+          background: 'radial-gradient(circle, #6366f1, transparent 65%)',
+          animation: 'meshFloat1 14s ease-in-out infinite',
         }}
       />
       <div
-        className="absolute -bottom-1/4 -right-1/4 w-[70vw] h-[70vw] rounded-full opacity-[0.12]"
+        className="absolute -bottom-[15%] -right-[10%] w-[65vw] h-[65vw] rounded-full opacity-[0.18]"
         style={{
-          background: 'radial-gradient(circle, #06b6d4, transparent 70%)',
-          animation: 'mobileOrb2 24s ease-in-out infinite',
+          background: 'radial-gradient(circle, #06b6d4, transparent 65%)',
+          animation: 'meshFloat2 18s ease-in-out infinite',
         }}
       />
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] rounded-full opacity-[0.1]"
+        className="absolute top-[40%] left-[20%] w-[50vw] h-[50vw] rounded-full opacity-[0.14]"
         style={{
-          background: 'radial-gradient(circle, #8b5cf6, transparent 70%)',
-          animation: 'mobileOrb3 18s ease-in-out infinite',
+          background: 'radial-gradient(circle, #8b5cf6, transparent 60%)',
+          animation: 'meshFloat3 16s ease-in-out infinite',
         }}
       />
+      <div
+        className="absolute top-[10%] right-[5%] w-[40vw] h-[40vw] rounded-full opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle, #ec4899, transparent 65%)',
+          animation: 'meshFloat4 20s ease-in-out infinite',
+        }}
+      />
+
+      {/* Floating geometric shapes — subtle depth */}
+      <div
+        className="absolute top-[15%] left-[12%] w-3 h-3 rounded-full bg-indigo-400/40"
+        style={{ animation: 'floatDot 6s ease-in-out infinite' }}
+      />
+      <div
+        className="absolute top-[25%] right-[18%] w-2 h-2 rounded-full bg-cyan-400/50"
+        style={{ animation: 'floatDot 8s ease-in-out infinite 1s' }}
+      />
+      <div
+        className="absolute bottom-[30%] left-[22%] w-2.5 h-2.5 rounded-full bg-violet-400/40"
+        style={{ animation: 'floatDot 7s ease-in-out infinite 0.5s' }}
+      />
+      <div
+        className="absolute bottom-[20%] right-[15%] w-2 h-2 rounded-full bg-pink-400/35"
+        style={{ animation: 'floatDot 9s ease-in-out infinite 2s' }}
+      />
+      <div
+        className="absolute top-[55%] left-[8%] w-1.5 h-1.5 rounded-full bg-indigo-300/50"
+        style={{ animation: 'floatDot 5s ease-in-out infinite 1.5s' }}
+      />
+      <div
+        className="absolute top-[70%] right-[25%] w-3 h-3 rounded-full bg-cyan-300/30"
+        style={{ animation: 'floatDot 10s ease-in-out infinite 0.8s' }}
+      />
+
+      {/* Thin decorative lines */}
+      <div
+        className="absolute top-[20%] left-0 right-0 h-px opacity-[0.06]"
+        style={{ background: 'linear-gradient(90deg, transparent, #6366f1, transparent)' }}
+      />
+      <div
+        className="absolute top-[60%] left-0 right-0 h-px opacity-[0.04]"
+        style={{ background: 'linear-gradient(90deg, transparent, #06b6d4, transparent)' }}
+      />
+
+      {/* Subtle grid overlay for texture */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
       <style>{`
-        @keyframes mobileOrb1 {
+        @keyframes meshFloat1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(10vw, 8vh) scale(1.1); }
+          33% { transform: translate(8vw, 5vh) scale(1.08); }
+          66% { transform: translate(-3vw, 8vh) scale(0.95); }
         }
-        @keyframes mobileOrb2 {
+        @keyframes meshFloat2 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-8vw, -6vh) scale(1.05); }
+          33% { transform: translate(-6vw, -4vh) scale(1.05); }
+          66% { transform: translate(4vw, -7vh) scale(0.97); }
         }
-        @keyframes mobileOrb3 {
-          0%, 100% { transform: translate(-50%, 0) scale(1); }
-          50% { transform: translate(-50%, -5vh) scale(1.08); }
+        @keyframes meshFloat3 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(5vw, -6vh) scale(1.1); }
+        }
+        @keyframes meshFloat4 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-4vw, 5vh) scale(1.06); }
+        }
+        @keyframes floatDot {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+          50% { transform: translateY(-12px) scale(1.3); opacity: 0.8; }
         }
       `}</style>
     </div>
