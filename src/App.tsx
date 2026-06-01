@@ -23,7 +23,6 @@ const ProjectUniverse = lazy(() => import('./components/sections/ProjectUniverse
 const ExperienceTimeline = lazy(() => import('./components/sections/ExperienceTimeline'));
 const GitHubCenter = lazy(() => import('./components/sections/GitHubCenter'));
 const AILaboratory = lazy(() => import('./components/sections/AILaboratory'));
-const TestimonialsSection = lazy(() => import('./components/sections/TestimonialsSection'));
 const ContactPortal = lazy(() => import('./components/sections/ContactPortal'));
 
 // Lazy-loaded overlay components (not critical for initial render)
@@ -146,12 +145,6 @@ function App() {
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
                 <AILaboratory />
-              </Suspense>
-            </ErrorBoundary>
-
-            <ErrorBoundary fallback={<SectionLoader />}>
-              <Suspense fallback={<SectionLoader />}>
-                <TestimonialsSection />
               </Suspense>
             </ErrorBoundary>
 
