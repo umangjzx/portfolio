@@ -486,9 +486,9 @@ function CameraRig({ onDone }: { onDone: () => void }) {
    Scene assembly
 ============================================================ */
 function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => void }) {
-  // Reduce particle count further on mobile for performance
+  // Significantly reduce particle counts for smoother performance on all devices
   const isMobile = checkIsMobile();
-  const textCount = isMobile ? 2500 : quality === 'high' ? 8000 : 3500;
+  const textCount = isMobile ? 1800 : quality === 'high' ? 5000 : 2500;
 
   const sprite = useMemo(() => makeCircleTexture(), []);
   const coreGlow = useMemo(() => makeGlowTexture('#6366f1'), []);
@@ -509,12 +509,12 @@ function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => voi
 
       <CameraRig onDone={onDone} />
 
-      {/* Parallax depth layers */}
-      <AmbientField count={isMobile ? 150 : quality === 'high' ? 600 : 280} depth={-20} spread={50} color="#a5b4fc" size={0.35} sprite={sprite} />
-      <AmbientField count={isMobile ? 100 : quality === 'high' ? 450 : 200} depth={-10} spread={40} color="#818cf8" size={0.28} sprite={sprite} />
-      <AmbientField count={isMobile ? 80 : quality === 'high' ? 300 : 140} depth={-3} spread={30} color="#06b6d4" size={0.22} sprite={sprite} />
+      {/* Parallax depth layers — reduced counts */}
+      <AmbientField count={isMobile ? 100 : quality === 'high' ? 350 : 150} depth={-20} spread={50} color="#a5b4fc" size={0.35} sprite={sprite} />
+      <AmbientField count={isMobile ? 70 : quality === 'high' ? 250 : 120} depth={-10} spread={40} color="#818cf8" size={0.28} sprite={sprite} />
+      <AmbientField count={isMobile ? 50 : quality === 'high' ? 180 : 80} depth={-3} spread={30} color="#06b6d4" size={0.22} sprite={sprite} />
 
-      <LightStreaks count={isMobile ? 60 : quality === 'high' ? 200 : 100} />
+      <LightStreaks count={isMobile ? 40 : quality === 'high' ? 120 : 60} />
       <HoloRings />
       <EnergyCore glow={coreGlow} />
       <TextParticles count={textCount} sprite={sprite} />
@@ -532,8 +532,8 @@ export default function CinematicIntro({ quality = 'high', onDone }: CinematicIn
   return (
     <Canvas
       camera={{ position: [0, 0, 18], fov: 60, near: 0.1, far: 150 }}
-      dpr={isMobile ? [1, 1.5] : [1, quality === 'high' ? 2 : 1.5]}
-      gl={{ antialias: !isMobile && quality === 'high', alpha: true, powerPreference: 'high-performance', stencil: false, depth: true }}
+      dpr={isMobile ? [1, 1] : [1, quality === 'high' ? 1.5 : 1]}
+      gl={{ antialias: false, alpha: true, powerPreference: 'high-performance', stencil: false, depth: true }}
       frameloop="always"
       onCreated={({ gl }) => gl.setClearColor('#fafafa', 1)}
       style={{ position: 'absolute', inset: 0 }}

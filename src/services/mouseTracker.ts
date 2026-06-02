@@ -45,7 +45,14 @@ export function createMouseTracker(options?: MouseTrackerOptions): MouseTrackerS
   let currentPosition: MousePosition = { ...NEUTRAL_POSITION };
   const touchDevice = options?.isTouchDevice ?? detectTouchDevice();
 
+  let lastUpdate = 0;
+  const THROTTLE_MS = 16; // ~60fps max update rate
+
   function handleMouseMove(event: MouseEvent): void {
+    const now = performance.now();
+    if (now - lastUpdate < THROTTLE_MS) return;
+    lastUpdate = now;
+
     const x = event.clientX;
     const y = event.clientY;
     const nx = normalizeX(x, window.innerWidth);
@@ -58,7 +65,7 @@ export function createMouseTracker(options?: MouseTrackerOptions): MouseTrackerS
 
   // Only attach listener on non-touch devices
   if (!touchDevice && typeof window !== 'undefined') {
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
   }
 
   return {

@@ -151,7 +151,7 @@ export interface MousePosition {
   normalizedY: number; // -1 to 1
 }
 
-export type GPUTier = 'high' | 'low';
+export type GPUTier = 'high' | 'mid' | 'low';
 
 // ============================================================
 // Contact Form

@@ -1,25 +1,32 @@
-import { useRef, useMemo, useEffect, useState } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useRef, useMemo, useEffect } from 'react';
+import { Canvas, useFrame, useThree, invalidate } from '@react-three/fiber';
 import * as THREE from 'three';
 import { checkIsMobile } from '../../hooks/useIsMobile';
 import { detectTouchDevice } from '../../services/mouseTracker';
+import { usePortfolioStore } from '../../store/portfolioStore';
 
-function Particles({ count = 3000, disableRepulsion = false }) {
-  const points = useRef<THREE.Points>(null);
+/**
+ * Throttled mouse position tracker — updates at most every 32ms (~30fps)
+ * to avoid expensive raycasting on every pixel of movement.
+ */
+function useThrottledMouse(camera: THREE.Camera, disabled: boolean) {
   const mouseRef = useRef(new THREE.Vector3(0, 0, 0));
-  const [mouseActive, setMouseActive] = useState(false);
-  const { camera } = useThree();
+  const activeRef = useRef(false);
 
-  // Track mouse position in 3D space — skip on touch devices
   useEffect(() => {
-    if (disableRepulsion) return;
+    if (disabled) return;
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
     const intersection = new THREE.Vector3();
+    let lastUpdate = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
+      const now = performance.now();
+      if (now - lastUpdate < 32) return; // ~30fps throttle
+      lastUpdate = now;
+
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 
@@ -28,26 +35,36 @@ function Particles({ count = 3000, disableRepulsion = false }) {
       if (intersection) {
         mouseRef.current.copy(intersection);
       }
-      setMouseActive(true);
+      activeRef.current = true;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [camera, disableRepulsion]);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [camera, disabled]);
+
+  return { mouseRef, activeRef };
+}
+
+function Particles({ count = 1200, disableRepulsion = false }: { count?: number; disableRepulsion?: boolean }) {
+  const points = useRef<THREE.Points>(null);
+  const { camera } = useThree();
+  const { mouseRef, activeRef } = useThrottledMouse(camera, disableRepulsion);
+
+  // Reusable matrix/vector — avoid allocations in the render loop
+  const invMatrix = useMemo(() => new THREE.Matrix4(), []);
+  const localMouse = useMemo(() => new THREE.Vector3(), []);
 
   const particlesData = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const originalPositions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    
-    const color1 = new THREE.Color('#6366F1'); // Indigo
-    const color2 = new THREE.Color('#06B6D4'); // Cyan
-    const color3 = new THREE.Color('#8B5CF6'); // Violet
-    const color4 = new THREE.Color('#14B8A6'); // Teal
-    const color5 = new THREE.Color('#EC4899'); // Pink
-    
+
+    const color1 = new THREE.Color('#6366F1');
+    const color2 = new THREE.Color('#06B6D4');
+    const color3 = new THREE.Color('#8B5CF6');
+    const color4 = new THREE.Color('#14B8A6');
+    const color5 = new THREE.Color('#EC4899');
+
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(Math.random() * 2 - 1);
@@ -67,25 +84,29 @@ function Particles({ count = 3000, disableRepulsion = false }) {
       const mixRatio = Math.random();
       const finalColor = new THREE.Color();
       if (y > 3) {
-        finalColor.lerpColors(color2, color4, mixRatio); // cyan → teal (top)
+        finalColor.lerpColors(color2, color4, mixRatio);
       } else if (y > 0) {
-        finalColor.lerpColors(color3, color2, mixRatio); // violet → cyan (upper mid)
+        finalColor.lerpColors(color3, color2, mixRatio);
       } else if (y > -3) {
-        finalColor.lerpColors(color1, color3, mixRatio); // indigo → violet (lower mid)
+        finalColor.lerpColors(color1, color3, mixRatio);
       } else {
-        finalColor.lerpColors(color1, color5, mixRatio); // indigo → pink (bottom)
+        finalColor.lerpColors(color1, color5, mixRatio);
       }
 
       colors[i * 3] = finalColor.r;
       colors[i * 3 + 1] = finalColor.g;
       colors[i * 3 + 2] = finalColor.b;
     }
-    
+
     return { positions, originalPositions, colors };
   }, [count]);
 
+  // Frame counter for skipping repulsion on alternate frames (low-end optimization)
+  const frameCount = useRef(0);
+
   useFrame((state) => {
     if (!points.current) return;
+    frameCount.current++;
 
     points.current.rotation.y = state.clock.elapsedTime * 0.03;
     points.current.rotation.z = state.clock.elapsedTime * 0.01;
@@ -93,7 +114,6 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     // Skip per-particle repulsion when disabled (mobile/touch)
     if (disableRepulsion) return;
 
-    // Apply cursor repulsion — optimized with squared distance to avoid sqrt
     const posAttr = points.current.geometry.attributes.position;
     const positions = posAttr.array as Float32Array;
     const originals = particlesData.originalPositions;
@@ -102,9 +122,11 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     const repulsionStrength = 2.5;
     const returnSpeed = 0.02;
 
-    const invMatrix = new THREE.Matrix4().copy(points.current.matrixWorld).invert();
-    const localMouse = mouseRef.current.clone().applyMatrix4(invMatrix);
+    // Reuse pre-allocated objects
+    invMatrix.copy(points.current.matrixWorld).invert();
+    localMouse.copy(mouseRef.current).applyMatrix4(invMatrix);
     const mx = localMouse.x, my = localMouse.y, mz = localMouse.z;
+    const mouseActive = activeRef.current;
 
     for (let i = 0; i < count; i++) {
       const ix = i * 3;
@@ -300,26 +322,43 @@ function MobileBackground() {
   );
 }
 
+/**
+ * Continuously requests frames so the particle rotation stays smooth.
+ * This is lighter than frameloop="always" because we control the cadence.
+ */
+function FrameDriver() {
+  useFrame(() => {
+    invalidate();
+  });
+  return null;
+}
+
 export function ParticleSwirl() {
   const isMobile = checkIsMobile();
   const isTouch = detectTouchDevice();
+  const gpuTier = usePortfolioStore((s) => s.gpuTier);
 
   // Mobile: skip Three.js entirely, use lightweight CSS background
   if (isMobile) {
     return <MobileBackground />;
   }
 
-  // Desktop: full 3D particle experience — reduced count for scroll perf
+  // Determine particle count based on GPU tier
+  // high: 1500, mid: 800, low: 400
+  const count = gpuTier === 'high' ? 1500 : gpuTier === 'mid' ? 800 : 400;
+
+  // Desktop: full 3D particle experience with adaptive count
   return (
     <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none', contain: 'strict' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
-        dpr={[1, 1.5]}
+        dpr={[1, gpuTier === 'high' ? 1.5 : 1]}
         gl={{ antialias: false, powerPreference: 'high-performance', stencil: false, depth: false }}
-        frameloop="always"
+        frameloop="demand"
         style={{ pointerEvents: 'none' }}
       >
-        <Particles count={3000} disableRepulsion={isTouch} />
+        <FrameDriver />
+        <Particles count={count} disableRepulsion={isTouch} />
       </Canvas>
     </div>
   );

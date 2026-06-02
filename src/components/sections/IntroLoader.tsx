@@ -73,10 +73,10 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     () => typeof window !== 'undefined' && window.innerWidth < 768,
     []
   );
-  // Skip the heavy 3D intro entirely on mobile — use the fast 2D reveal instead.
+  // Skip the heavy 3D intro entirely on mobile or low-tier devices — use the fast 2D reveal instead.
   // This eliminates the biggest source of lag and gives a snappy first impression.
   const [sceneFailed, setSceneFailed] = useState(false);
-  const cinematic = webglOk && !sceneFailed && !isMobile;
+  const cinematic = webglOk && !sceneFailed && !isMobile && gpuTier !== 'low';
   const quality: 'high' | 'low' = gpuTier === 'high' && !reducedMotion ? 'high' : 'low';
 
   const finish = useRef(() => {

@@ -24,5 +24,7 @@ export function usePerformance() {
     gpuTier,
     particleCount: gpuDetector.getParticleCount(gpuTier),
     enable3D: gpuDetector.shouldEnable3D(gpuTier),
+    /** True for high tier only — use for premium effects like high DPR, antialiasing */
+    isPremium: gpuTier === 'high',
   };
 }

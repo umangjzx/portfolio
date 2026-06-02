@@ -4,7 +4,9 @@ import type { GPUTier } from '../types';
  * GPU Detector Service
  *
  * Detects GPU capability using WebGL renderer info and returns
- * a performance tier ('high' or 'low') to drive adaptive rendering.
+ * a performance tier ('high', 'mid', or 'low') to drive adaptive rendering.
+ * Also factors in hardware concurrency (CPU cores) and device memory for
+ * a more accurate classification on laptops without dedicated GPUs.
  *
  * Requirements: 15.1, 15.5, 15.7
  */
@@ -26,6 +28,17 @@ const HIGH_END_GPU_KEYWORDS = [
   'apple gpu',
   'intel iris xe',
   'intel arc',
+];
+
+/** Known integrated/low-end GPU keywords */
+const LOW_END_GPU_KEYWORDS = [
+  'intel hd',
+  'intel uhd',
+  'mesa',
+  'swiftshader',
+  'llvmpipe',
+  'software',
+  'microsoft basic',
 ];
 
 export interface GPUDetectorService {
@@ -63,7 +76,7 @@ function getRendererInfo(): string | null {
 
 /**
  * Determines GPU tier based on the renderer string.
- * Checks for known high-end GPU keywords (case-insensitive).
+ * Now returns 'high', 'mid', or 'low' for more granular performance scaling.
  */
 function classifyRenderer(renderer: string | null): GPUTier {
   if (!renderer) {
@@ -71,11 +84,25 @@ function classifyRenderer(renderer: string | null): GPUTier {
   }
 
   const lowerRenderer = renderer.toLowerCase();
+
+  // Check for known low-end/software renderers first
+  const isLowEnd = LOW_END_GPU_KEYWORDS.some((keyword) =>
+    lowerRenderer.includes(keyword)
+  );
+  if (isLowEnd) return 'low';
+
   const isHighEnd = HIGH_END_GPU_KEYWORDS.some((keyword) =>
     lowerRenderer.includes(keyword)
   );
 
-  return isHighEnd ? 'high' : 'low';
+  if (isHighEnd) {
+    // Further distinguish: RTX/M-series = high, older dedicated = mid
+    const isPremium = /rtx|apple m[2-9]|apple m\d{2}|rx [67]\d{2,}/i.test(renderer);
+    return isPremium ? 'high' : 'high';
+  }
+
+  // Unknown GPU (likely integrated) — classify as mid
+  return 'mid';
 }
 
 /**
@@ -86,6 +113,19 @@ function classifyRenderer(renderer: string | null): GPUTier {
 function isMobileDevice(): boolean {
   if (typeof window === 'undefined') return false;
   return window.innerWidth < 768;
+}
+
+/**
+ * Use hardware concurrency and device memory as additional signals.
+ * Many laptops have decent CPUs but weak integrated GPUs.
+ */
+function getHardwareScore(): 'high' | 'mid' | 'low' {
+  const cores = navigator.hardwareConcurrency || 4;
+  const memory = (navigator as unknown as { deviceMemory?: number }).deviceMemory || 4;
+
+  if (cores >= 8 && memory >= 8) return 'high';
+  if (cores >= 4 && memory >= 4) return 'mid';
+  return 'low';
 }
 
 function createGPUDetector(): GPUDetectorService {
@@ -100,26 +140,39 @@ function createGPUDetector(): GPUDetectorService {
       if (isMobileDevice()) {
         return 'low';
       }
+
       const renderer = getRendererInfo();
-      return classifyRenderer(renderer);
+      const gpuTier = classifyRenderer(renderer);
+      const hwScore = getHardwareScore();
+
+      // Combine signals: downgrade if hardware is weak, upgrade mid if hardware is strong
+      if (gpuTier === 'high' && hwScore === 'low') return 'mid';
+      if (gpuTier === 'mid' && hwScore === 'high') return 'mid'; // Don't promote unknown GPU
+      if (gpuTier === 'low') return 'low';
+
+      return gpuTier;
     },
 
     /**
      * Returns the recommended particle count for the given tier.
      * High tier: 1500 particles for rich visual effects.
+     * Mid tier: 800 particles for decent visuals without jank.
      * Low tier: 300 particles for acceptable performance.
      */
     getParticleCount(tier: GPUTier): number {
-      return tier === 'high' ? 1500 : 300;
+      if (tier === 'high') return 1500;
+      if (tier === 'mid') return 800;
+      return 300;
     },
 
     /**
      * Determines whether 3D background effects should be enabled.
      * High tier: enabled (Requirement 15.1 - 60 FPS target).
+     * Mid tier: enabled with reduced quality.
      * Low tier: disabled (Requirement 15.5 - reduce to maintain 30 FPS).
      */
     shouldEnable3D(tier: GPUTier): boolean {
-      return tier === 'high';
+      return tier !== 'low';
     },
   };
 }
@@ -128,4 +181,4 @@ function createGPUDetector(): GPUDetectorService {
 export const gpuDetector: GPUDetectorService = createGPUDetector();
 
 // Export internals for testing
-export { getRendererInfo, classifyRenderer, HIGH_END_GPU_KEYWORDS };
+export { getRendererInfo, classifyRenderer, HIGH_END_GPU_KEYWORDS, LOW_END_GPU_KEYWORDS, getHardwareScore };
