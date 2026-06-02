@@ -38,8 +38,11 @@ describe('GPUDetectorService', () => {
       expect(classifyRenderer('Intel UHD Graphics 620')).toBe('low');
     });
 
-    it('should return "low" for unknown renderer strings', () => {
-      expect(classifyRenderer('Unknown GPU')).toBe('low');
+    it('should return "mid" for unknown renderer strings', () => {
+      expect(classifyRenderer('Unknown GPU')).toBe('mid');
+    });
+
+    it('should return "low" for known low-end renderer strings', () => {
       expect(classifyRenderer('Mesa DRI Intel')).toBe('low');
       expect(classifyRenderer('ANGLE (Google Swiftshader)')).toBe('low');
     });
