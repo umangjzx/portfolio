@@ -294,11 +294,11 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
         </motion.div>
       </motion.div>
 
-      {/* scroll cue */}
+      {/* scroll cue — hidden on mobile to save space */}
       <motion.button
         onClick={() => scrollToId('about')}
         aria-label="Scroll to about section"
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-ink-muted transition-colors hover:text-indigo"
+        className="absolute bottom-8 left-1/2 z-10 hidden md:flex -translate-x-1/2 flex-col items-center gap-2 text-ink-muted transition-colors hover:text-indigo"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}
