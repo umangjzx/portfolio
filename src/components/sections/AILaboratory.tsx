@@ -167,7 +167,7 @@ export default function AILaboratory() {
   );
 
   return (
-    <section ref={sectionRef} id="ai-lab" className="relative overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
+    <section ref={sectionRef} id="ai-lab" className="relative overflow-hidden px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:px-24">
       {/* faint grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"

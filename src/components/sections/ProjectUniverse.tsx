@@ -274,7 +274,7 @@ export default function ProjectUniverse() {
   );
 
   return (
-    <section id="projects" className="relative min-h-screen px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
+    <section id="projects" className="relative px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:px-24">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         style={{ backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)', backgroundSize: '30px 30px', maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)' }}

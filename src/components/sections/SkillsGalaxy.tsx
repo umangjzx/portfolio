@@ -47,7 +47,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
     : [];
 
   return (
-    <section id="skills" className="relative w-full overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
+    <section id="skills" className="relative w-full overflow-hidden px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:px-24">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
         <div

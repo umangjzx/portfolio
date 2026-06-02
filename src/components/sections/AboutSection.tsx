@@ -21,7 +21,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24"
+      className="relative flex items-center justify-center overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-28 lg:px-24"
     >
       <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-10 sm:gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         {/* Left — narrative anchor */}

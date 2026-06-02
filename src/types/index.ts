@@ -80,7 +80,7 @@ export interface TimelineMilestone {
   /** Rich career fields (optional for backwards compatibility). */
   company?: string;
   role?: string;
-  type?: 'work' | 'education' | 'award' | 'research' | 'project';
+  type?: 'work' | 'education' | 'award' | 'research' | 'project' | 'leadership';
   impact?: string;
   skills?: string[];
   achievements?: string[];

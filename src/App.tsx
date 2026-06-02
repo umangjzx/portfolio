@@ -19,9 +19,10 @@ const ParticleSwirl = lazy(() => import('./components/canvas/ParticleSwirl'));
 const HeroSection = lazy(() => import('./components/sections/HeroSection'));
 const SkillsGalaxy = lazy(() => import('./components/sections/SkillsGalaxy'));
 const AboutSection = lazy(() => import('./components/sections/AboutSection'));
+const HowIWork = lazy(() => import('./components/sections/HowIWork'));
 const ProjectUniverse = lazy(() => import('./components/sections/ProjectUniverse'));
 const ExperienceTimeline = lazy(() => import('./components/sections/ExperienceTimeline'));
-const GitHubCenter = lazy(() => import('./components/sections/GitHubCenter'));
+const SocialHub = lazy(() => import('./components/sections/SocialHub'));
 const AILaboratory = lazy(() => import('./components/sections/AILaboratory'));
 const ContactPortal = lazy(() => import('./components/sections/ContactPortal'));
 
@@ -120,6 +121,12 @@ function App() {
 
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
+                <HowIWork />
+              </Suspense>
+            </ErrorBoundary>
+
+            <ErrorBoundary fallback={<SectionLoader />}>
+              <Suspense fallback={<SectionLoader />}>
                 <SkillsGalaxy />
               </Suspense>
             </ErrorBoundary>
@@ -132,7 +139,7 @@ function App() {
 
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
-                <GitHubCenter />
+                <SocialHub />
               </Suspense>
             </ErrorBoundary>
 

@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Briefcase, GraduationCap, Award, FlaskConical, Rocket, ChevronLeft, ChevronRight, Sparkles,
+  Briefcase, GraduationCap, Award, FlaskConical, Rocket, ChevronLeft, ChevronRight, Sparkles, Users,
 } from 'lucide-react';
 import { MILESTONES } from '../../data/milestones';
 import type { TimelineMilestone } from '../../types';
@@ -13,6 +13,7 @@ const TYPE_META: Record<NonNullable<TimelineMilestone['type']>, { icon: typeof B
   award: { icon: Award, color: '#F59E0B', label: 'Award' },
   research: { icon: FlaskConical, color: '#8B5CF6', label: 'Research' },
   project: { icon: Rocket, color: '#EC4899', label: 'Project' },
+  leadership: { icon: Users, color: '#10B981', label: 'Leadership' },
 };
 
 function meta(m: TimelineMilestone) {
@@ -56,7 +57,7 @@ export default function ExperienceTimeline() {
   const progress = ((active + 1) / MILESTONES.length) * 100;
 
   return (
-    <section id="experience" className="relative overflow-hidden py-20 md:py-32">
+    <section id="experience" className="relative overflow-hidden py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-12 lg:px-24">
         <SectionHeading
           eyebrow="Career Timeline"
