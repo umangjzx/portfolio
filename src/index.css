@@ -9,6 +9,14 @@
   --color-emerald: #10b981;
   --color-amber: #f59e0b;
 
+  /* ── New accent colors for richer depth ── */
+  --color-rose: #f43f5e;
+  --color-sky: #0ea5e9;
+  --color-gold: #eab308;
+  --color-teal: #14b8a6;
+  --color-lavender: #a78bfa;
+  --color-coral: #fb7185;
+
   --color-surface: #fafafa;
   --color-card: #ffffff;
   --color-ink: #0f172a;
@@ -28,7 +36,11 @@
   --blur-glass: 20px;
   --shadow-soft: 0 4px 24px rgba(15, 23, 42, 0.06);
   --shadow-lift: 0 24px 60px rgba(99, 102, 241, 0.14), 0 8px 20px rgba(15, 23, 42, 0.06);
+  --shadow-glow-indigo: 0 0 30px rgba(99, 102, 241, 0.15);
+  --shadow-glow-cyan: 0 0 30px rgba(6, 182, 212, 0.15);
+  --shadow-glow-pink: 0 0 30px rgba(236, 72, 153, 0.12);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ===== Base ===== */
@@ -48,10 +60,37 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'ss01', 'cv01', 'cv11';
+  /* Enable GPU compositing for root to reduce paint operations */
+  transform: translateZ(0);
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* ===== GPU-Accelerated Animation Targets ===== */
+/* Promote frequently animated elements to their own compositor layer */
+.will-animate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Contain layout recalculations within sections */
+section {
+  contain: layout style;
+}
+
+/* Force compositor layer for fixed/absolute positioned animated elements */
+.fixed, [class*="fixed"] {
+  will-change: transform;
+}
+
+/* Optimize paint for cards that animate on hover */
+.glass,
+[data-magnetic] {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,7 +118,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Gradient text helper ===== */
 .text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 45%, #06b6d4 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 30%, #06b6d4 65%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Extended gradient with warm tones ===== */
+.text-gradient-warm {
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 35%, #8b5cf6 70%, #6366f1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cool {
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 40%, #6366f1 75%, #8b5cf6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -92,6 +146,26 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(15, 23, 42, 0.07);
   box-shadow: var(--shadow-soft);
+  transform: translateZ(0);
+}
+
+/* ===== Glass variants with color tints ===== */
+.glass-indigo {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(99, 102, 241, 0.06);
+  transform: translateZ(0);
+}
+
+.glass-cyan {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(6, 182, 212, 0.12);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(6, 182, 212, 0.06);
+  transform: translateZ(0);
 }
 
 /* ===== Screen-reader-only ===== */
@@ -165,6 +239,37 @@ h1, h2, h3, h4, h5, h6 {
   66% { transform: translate(-3%, 3%) scale(0.97); }
 }
 
+/* ===== High refresh rate optimizations ===== */
+/* 
+ * Use transform-only animations (compositor-handled, no layout/paint).
+ * Easing is optimized for 120Hz+ — short durations to avoid perceivable lag.
+ */
+@keyframes micro-float {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-6px) translateZ(0); }
+}
+.animate-micro-float { animation: micro-float 3s ease-in-out infinite; will-change: transform; }
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Smooth color transitions for interactive elements (120Hz-friendly) */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.2), 0 0 60px rgba(139, 92, 246, 0.08); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
 /* ===== Cyberpunk easter egg ===== */
 html.cyberpunk-mode body {
   background-color: #0a0a0f;
@@ -185,6 +290,30 @@ html.cyberpunk-mode body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ===== 120Hz+ display optimization ===== */
+@media (min-resolution: 2dppx) {
+  .will-animate {
+    /* Sub-pixel rendering on HiDPI */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ===== Touch device performance ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable expensive hover effects on touch */
+  .shimmer-hover::after { display: none; }
+  .animate-glow-pulse { animation: none; }
+  
+  /* Reduce animation complexity */
+  .animate-float-slow { animation-duration: 8s; }
+  .animate-pulse-glow { animation-duration: 4s; }
+  
+  /* Ensure touch targets use GPU layers */
+  button, a, [role="button"] {
+    transform: translateZ(0);
   }
 }
 

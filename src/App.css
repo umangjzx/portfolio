@@ -1,9 +1,15 @@
-/* Portfolio-specific global styles */
-/* All responsive layout is handled via Tailwind utility classes in components */
+/* Portfolio-specific global styles — supplements index.css */
+
+/* ── Override gradient text with richer color stops ── */
+.text-gradient {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 20%, #06B6D4 50%, #14B8A6 75%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ── Mobile touch & interaction optimizations ── */
 @media (max-width: 767px) {
-  /* Ensure minimum touch target size (44px) for interactive elements */
   button,
   a,
   [role="button"] {
@@ -11,29 +17,27 @@
     min-width: 44px;
   }
 
-  /* Prevent text selection on interactive card elements */
   .snap-start {
     -webkit-user-select: none;
     user-select: none;
   }
 
-  /* Optimize scroll performance on horizontal scrollers */
   .no-scrollbar {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
   }
 
-  /* Prevent overscroll bounce from interfering with horizontal scroll */
   .overflow-x-auto {
     overscroll-behavior-x: contain;
   }
 }
 
-/* ── Smooth transitions for all interactive elements ── */
+/* ── Smooth transitions for interactive elements ── */
 @media (hover: hover) {
   a,
   button {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    will-change: transform;
   }
 }
 
@@ -44,9 +48,34 @@
   }
 }
 
-/* ── Safe area padding for notched mobile devices ── */
+/* ── Safe area for notched devices ── */
 @supports (padding: env(safe-area-inset-bottom)) {
   #contact {
     padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   }
+}
+
+/* ── Colorful scrollbar (overrides index.css with more vibrant gradient) ── */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fafafa;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6366F1, #8B5CF6, #14B8A6, #06B6D4, #EC4899);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4F46E5, #7C3AED, #0D9488, #0891B2, #DB2777);
+  }
+}
+
+/* ── Aurora animation used by HeroSection blobs ── */
+@keyframes aurora {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate3d(5%, 3%, 0) scale(1.05); opacity: 0.5; }
+  50% { transform: translate3d(-3%, 5%, 0) scale(0.98); opacity: 0.35; }
+  75% { transform: translate3d(4%, -2%, 0) scale(1.03); opacity: 0.45; }
 }

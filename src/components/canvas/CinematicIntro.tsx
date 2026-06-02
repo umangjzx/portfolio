@@ -25,6 +25,8 @@ const COL = {
   violet: new THREE.Color('#7c3aed'),
   cyan: new THREE.Color('#0891b2'),
   pink: new THREE.Color('#db2777'),
+  teal: new THREE.Color('#14b8a6'),
+  rose: new THREE.Color('#f43f5e'),
 };
 
 /* ---------- easing ---------- */
@@ -126,11 +128,13 @@ function buildTextTargets(text: string, count: number, worldW: number) {
     targets[i * 3 + 1] = wy;
     targets[i * 3 + 2] = wz;
 
-    // Color sweep: indigo → violet → cyan
+    // Color sweep: indigo → violet → cyan with teal/rose accents
     const u = clamp01((wx / worldW) + 0.5);
-    if (u < 0.5) tmp.lerpColors(COL.indigo, COL.violet, u / 0.5);
-    else tmp.lerpColors(COL.violet, COL.cyan, (u - 0.5) / 0.5);
+    if (u < 0.33) tmp.lerpColors(COL.indigo, COL.violet, u / 0.33);
+    else if (u < 0.66) tmp.lerpColors(COL.violet, COL.cyan, (u - 0.33) / 0.33);
+    else tmp.lerpColors(COL.cyan, COL.teal, (u - 0.66) / 0.34);
     if (Math.random() > 0.93) tmp.lerp(COL.pink, 0.7);
+    if (Math.random() > 0.97) tmp.lerp(COL.rose, 0.5);
     colors[i * 3] = tmp.r;
     colors[i * 3 + 1] = tmp.g;
     colors[i * 3 + 2] = tmp.b;
@@ -529,7 +533,8 @@ export default function CinematicIntro({ quality = 'high', onDone }: CinematicIn
     <Canvas
       camera={{ position: [0, 0, 18], fov: 60, near: 0.1, far: 150 }}
       dpr={isMobile ? [1, 1.5] : [1, quality === 'high' ? 2 : 1.5]}
-      gl={{ antialias: !isMobile && quality === 'high', alpha: true, powerPreference: 'high-performance' }}
+      gl={{ antialias: !isMobile && quality === 'high', alpha: true, powerPreference: 'high-performance', stencil: false, depth: true }}
+      frameloop="always"
       onCreated={({ gl }) => gl.setClearColor('#fafafa', 1)}
       style={{ position: 'absolute', inset: 0 }}
     >

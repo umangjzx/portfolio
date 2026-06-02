@@ -99,6 +99,7 @@ export function useScrollEngine(options: ScrollEngineOptions = {}) {
     // Initialize Lenis with specified configuration
     // On mobile: disable syncTouch to use native scroll (much smoother),
     // reduce duration, and lower multiplier to avoid fighting the OS.
+    // Desktop: optimized for 120Hz+ with shorter duration and responsive easing.
     const lenis = new Lenis({
       duration: isMobile ? 0.8 : duration,
       easing,
@@ -106,6 +107,8 @@ export function useScrollEngine(options: ScrollEngineOptions = {}) {
       syncTouch: isMobile ? false : syncTouch,
       touchMultiplier: isMobile ? 1 : 2,
       wheelMultiplier: 1,
+      // Lenis lerp for silky interpolation at any refresh rate
+      lerp: isMobile ? 0.12 : 0.1,
     });
 
     lenisRef.current = lenis;

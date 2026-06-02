@@ -65,18 +65,28 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           className="pointer-events-none absolute inset-0 z-0"
           animate={{ x: parallax.x * -28, y: parallax.y * -28 }}
           transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+          style={{ willChange: 'transform' }}
         >
           <div
             className="absolute -left-20 top-24 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite' }}
+            style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite', willChange: 'transform, opacity' }}
           />
           <div
             className="absolute -right-16 bottom-16 h-[460px] w-[460px] rounded-full opacity-40 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse' }}
+            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse', willChange: 'transform, opacity' }}
           />
           <div
             className="absolute left-1/2 top-1/3 h-[360px] w-[360px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite' }}
+            style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite', willChange: 'transform, opacity' }}
+          />
+          {/* Extra teal and rose accents for color depth */}
+          <div
+            className="absolute right-1/4 top-1/4 h-[280px] w-[280px] rounded-full opacity-25 blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(20,184,166,0.35), transparent 70%)', animation: 'aurora 22s ease-in-out infinite 2s', willChange: 'transform, opacity' }}
+          />
+          <div
+            className="absolute left-1/3 bottom-1/4 h-[200px] w-[200px] rounded-full opacity-20 blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(244,63,94,0.3), transparent 70%)', animation: 'aurora 24s ease-in-out infinite 4s', willChange: 'transform, opacity' }}
           />
         </motion.div>
       )}
@@ -112,6 +122,8 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
             { l: '74%', t: '70%', c: '#8B5CF6', s: 7 },
             { l: '24%', t: '74%', c: '#EC4899', s: 9 },
             { l: '50%', t: '14%', c: '#6366F1', s: 6 },
+            { l: '90%', t: '50%', c: '#14B8A6', s: 7 },
+            { l: '10%', t: '55%', c: '#F43F5E', s: 6 },
           ].map((d, i) => (
             <motion.span
               key={i}

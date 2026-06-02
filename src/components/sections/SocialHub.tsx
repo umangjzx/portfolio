@@ -82,7 +82,7 @@ function GitHubColumn() {
   const totalStars = repos.reduce((a, r) => a + r.stargazers_count, 0);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4">
       {/* Profile card */}
       <div
         className="rounded-2xl border border-line p-5 sm:rounded-3xl sm:p-6"
@@ -198,7 +198,7 @@ function LinkedInColumn() {
   const p = LINKEDIN_PROFILE;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4">
       {/* Profile card */}
       <div
         className="relative overflow-hidden rounded-2xl border border-line sm:rounded-3xl"

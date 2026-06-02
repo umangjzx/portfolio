@@ -12,6 +12,7 @@ export default function CursorEffects() {
   const isTouchDevice = useRef(detectTouchDevice());
   const magneticElements = useRef<HTMLElement[]>([]);
   const isHoveringInteractive = useRef(false);
+  const lastFrameTime = useRef(0);
 
   const isTouch = usePortfolioStore((s) => s.isTouch);
 
@@ -23,23 +24,31 @@ export default function CursorEffects() {
       const centerY = rect.top + rect.height / 2;
       const { translateX, translateY } = computeMagneticPull(x, y, centerX, centerY);
 
-      el.style.transform = `translate(${translateX}px, ${translateY}px)`;
-      el.style.transition = 'transform 150ms ease-out';
+      el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
     });
   }, []);
 
-  // Animation loop for smooth ring trailing
+  // Animation loop — optimized for 120Hz+ with frame-rate independent lerping
   useEffect(() => {
     if (isTouchDevice.current || isTouch) return;
 
     let animFrame: number;
-    const loop = () => {
-      // Linear interpolation for smooth trailing
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.2;
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.2;
+    lastFrameTime.current = performance.now();
+
+    const loop = (now: number) => {
+      // Frame-rate independent interpolation (smooth at 60Hz, 120Hz, 144Hz, 240Hz)
+      const dt = Math.min((now - lastFrameTime.current) / 1000, 0.05); // cap at 50ms
+      lastFrameTime.current = now;
+      
+      // Use exponential decay for frame-rate independent smoothing
+      // Factor of 12 gives ~83ms response time (butter-smooth trailing)
+      const lerpFactor = 1 - Math.exp(-12 * dt);
+
+      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * lerpFactor;
+      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * lerpFactor;
 
       if (cursorRingRef.current) {
-        cursorRingRef.current.style.transform = `translate(${ringPos.current.x}px, ${ringPos.current.y}px) translate(-50%, -50%) scale(${isHoveringInteractive.current ? 1.5 : 1})`;
+        cursorRingRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%) scale(${isHoveringInteractive.current ? 1.5 : 1})`;
         cursorRingRef.current.style.opacity = isHoveringInteractive.current ? '0.3' : '0.7';
       }
 
@@ -56,11 +65,12 @@ export default function CursorEffects() {
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
       if (cursorDotRef.current) {
-        cursorDotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%) scale(${isHoveringInteractive.current ? 0 : 1})`;
+        // Dot follows instantly — use translate3d for GPU compositing
+        cursorDotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%) scale(${isHoveringInteractive.current ? 0 : 1})`;
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isTouch]);
 
@@ -99,8 +109,13 @@ export default function CursorEffects() {
     <>
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[9999] transition-transform duration-100 ease-out"
-        style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}
+        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[9999]"
+        style={{
+          background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          contain: 'layout style size',
+        }}
       />
       <div
         ref={cursorRingRef}
@@ -108,7 +123,9 @@ export default function CursorEffects() {
         style={{ 
           border: '2px solid rgba(139, 92, 246, 0.6)',
           boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)',
-          transition: 'transform 0.1s ease-out, opacity 0.2s ease' 
+          willChange: 'transform, opacity',
+          backfaceVisibility: 'hidden',
+          contain: 'layout style size',
         }}
       />
     </>

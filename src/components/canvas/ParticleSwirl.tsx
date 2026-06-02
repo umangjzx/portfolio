@@ -45,6 +45,8 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     const color1 = new THREE.Color('#6366F1'); // Indigo
     const color2 = new THREE.Color('#06B6D4'); // Cyan
     const color3 = new THREE.Color('#8B5CF6'); // Violet
+    const color4 = new THREE.Color('#14B8A6'); // Teal
+    const color5 = new THREE.Color('#EC4899'); // Pink
     
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
@@ -64,12 +66,14 @@ function Particles({ count = 3000, disableRepulsion = false }) {
 
       const mixRatio = Math.random();
       const finalColor = new THREE.Color();
-      if (y > 2) {
-        finalColor.lerpColors(color2, color3, mixRatio);
-      } else if (y < -2) {
-        finalColor.lerpColors(color1, color3, mixRatio);
+      if (y > 3) {
+        finalColor.lerpColors(color2, color4, mixRatio); // cyan → teal (top)
+      } else if (y > 0) {
+        finalColor.lerpColors(color3, color2, mixRatio); // violet → cyan (upper mid)
+      } else if (y > -3) {
+        finalColor.lerpColors(color1, color3, mixRatio); // indigo → violet (lower mid)
       } else {
-        finalColor.lerpColors(color1, color2, mixRatio);
+        finalColor.lerpColors(color1, color5, mixRatio); // indigo → pink (bottom)
       }
 
       colors[i * 3] = finalColor.r;
@@ -89,48 +93,50 @@ function Particles({ count = 3000, disableRepulsion = false }) {
     // Skip per-particle repulsion when disabled (mobile/touch)
     if (disableRepulsion) return;
 
-    // Apply cursor repulsion
+    // Apply cursor repulsion — optimized with squared distance to avoid sqrt
     const posAttr = points.current.geometry.attributes.position;
     const positions = posAttr.array as Float32Array;
     const originals = particlesData.originalPositions;
     const repulsionRadius = 3.5;
+    const repulsionRadiusSq = repulsionRadius * repulsionRadius;
     const repulsionStrength = 2.5;
+    const returnSpeed = 0.02;
 
     const invMatrix = new THREE.Matrix4().copy(points.current.matrixWorld).invert();
     const localMouse = mouseRef.current.clone().applyMatrix4(invMatrix);
+    const mx = localMouse.x, my = localMouse.y, mz = localMouse.z;
 
     for (let i = 0; i < count; i++) {
       const ix = i * 3;
-      const iy = i * 3 + 1;
-      const iz = i * 3 + 2;
+      const iy = ix + 1;
+      const iz = ix + 2;
 
       const ox = originals[ix];
       const oy = originals[iy];
       const oz = originals[iz];
 
       if (mouseActive) {
-        const dx = positions[ix] - localMouse.x;
-        const dy = positions[iy] - localMouse.y;
-        const dz = positions[iz] - localMouse.z;
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        const dx = positions[ix] - mx;
+        const dy = positions[iy] - my;
+        const dz = positions[iz] - mz;
+        const distSq = dx * dx + dy * dy + dz * dz;
 
-        if (dist < repulsionRadius && dist > 0.01) {
-          const force = (1 - dist / repulsionRadius) * repulsionStrength;
-          const nx = dx / dist;
-          const ny = dy / dist;
-          const nz = dz / dist;
-          positions[ix] += nx * force * 0.3;
-          positions[iy] += ny * force * 0.3;
-          positions[iz] += nz * force * 0.3;
+        if (distSq < repulsionRadiusSq && distSq > 0.0001) {
+          const dist = Math.sqrt(distSq);
+          const force = (1 - dist / repulsionRadius) * repulsionStrength * 0.3;
+          const invDist = 1 / dist;
+          positions[ix] += dx * invDist * force;
+          positions[iy] += dy * invDist * force;
+          positions[iz] += dz * invDist * force;
         } else {
-          positions[ix] += (ox - positions[ix]) * 0.02;
-          positions[iy] += (oy - positions[iy]) * 0.02;
-          positions[iz] += (oz - positions[iz]) * 0.02;
+          positions[ix] += (ox - positions[ix]) * returnSpeed;
+          positions[iy] += (oy - positions[iy]) * returnSpeed;
+          positions[iz] += (oz - positions[iz]) * returnSpeed;
         }
       } else {
-        positions[ix] += (ox - positions[ix]) * 0.02;
-        positions[iy] += (oy - positions[iy]) * 0.02;
-        positions[iz] += (oz - positions[iz]) * 0.02;
+        positions[ix] += (ox - positions[ix]) * returnSpeed;
+        positions[iy] += (oy - positions[iy]) * returnSpeed;
+        positions[iz] += (oz - positions[iz]) * returnSpeed;
       }
     }
 
@@ -176,7 +182,7 @@ function Particles({ count = 3000, disableRepulsion = false }) {
 function MobileBackground() {
   return (
     <div className="fixed inset-0 z-[-1] bg-[#fafafa] overflow-hidden" style={{ pointerEvents: 'none' }}>
-      {/* Mesh gradient base — slow morphing blobs */}
+      {/* Mesh gradient base — slow morphing blobs with richer palette */}
       <div
         className="absolute -top-[20%] -left-[15%] w-[70vw] h-[70vw] rounded-full opacity-[0.22]"
         style={{
@@ -203,6 +209,21 @@ function MobileBackground() {
         style={{
           background: 'radial-gradient(circle, #ec4899, transparent 65%)',
           animation: 'meshFloat4 20s ease-in-out infinite',
+        }}
+      />
+      {/* Additional warm accent blobs for color richness */}
+      <div
+        className="absolute top-[60%] left-[50%] w-[35vw] h-[35vw] rounded-full opacity-[0.08]"
+        style={{
+          background: 'radial-gradient(circle, #f43f5e, transparent 60%)',
+          animation: 'meshFloat1 22s ease-in-out infinite 3s',
+        }}
+      />
+      <div
+        className="absolute top-[5%] left-[40%] w-[30vw] h-[30vw] rounded-full opacity-[0.07]"
+        style={{
+          background: 'radial-gradient(circle, #14b8a6, transparent 60%)',
+          animation: 'meshFloat2 24s ease-in-out infinite 2s',
         }}
       />
 
@@ -290,11 +311,12 @@ export function ParticleSwirl() {
 
   // Desktop: full 3D particle experience
   return (
-    <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none' }}>
+    <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none', contain: 'strict' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
         dpr={[1, 2]}
-        gl={{ antialias: true, powerPreference: 'high-performance' }}
+        gl={{ antialias: true, powerPreference: 'high-performance', stencil: false, depth: false }}
+        frameloop="always"
         style={{ pointerEvents: 'none' }}
       >
         <Particles count={4000} disableRepulsion={isTouch} />
