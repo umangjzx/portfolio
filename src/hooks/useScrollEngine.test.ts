@@ -101,23 +101,21 @@ describe('useScrollEngine', () => {
     const Lenis = (await import('@studio-freight/lenis')).default;
     expect(Lenis).toHaveBeenCalledWith(
       expect.objectContaining({
-        duration: 1.2,
+        lerp: 0.12,
         smoothWheel: true,
-        syncTouch: true,
-        touchMultiplier: 2,
-        wheelMultiplier: 1,
+        wheelMultiplier: 1.2,
       })
     );
   });
 
-  it('should accept custom duration option', async () => {
+  it('should accept custom syncTouch option', async () => {
     const { useScrollEngine } = await import('./useScrollEngine');
-    renderHook(() => useScrollEngine({ duration: 2.0 }));
+    renderHook(() => useScrollEngine({ syncTouch: true }));
 
     const Lenis = (await import('@studio-freight/lenis')).default;
     expect(Lenis).toHaveBeenCalledWith(
       expect.objectContaining({
-        duration: 2.0,
+        syncTouch: true,
       })
     );
   });
@@ -196,7 +194,7 @@ describe('useScrollEngine', () => {
     expect(mockLenisScrollTo).toHaveBeenCalledWith(
       '#about',
       expect.objectContaining({
-        duration: 1.2,
+        duration: 0.8,
       })
     );
   });
@@ -257,13 +255,24 @@ describe('useScrollEngine', () => {
     )?.[1];
 
     if (scrollCallback) {
+      // Mock a section element so getCurrentSection returns something different
+      const mockElement = { getBoundingClientRect: () => ({ top: -100, bottom: 600 }) };
+      vi.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'about') return mockElement as unknown as HTMLElement;
+        return null;
+      });
+
       scrollCallback({ scroll: 100, progress: 0.1 });
-      expect(mockSetCurrentSection).toHaveBeenCalled();
+      // Section detection is throttled via rAF — trigger pending callbacks
+      if (rafCallbacks.length > 0) {
+        rafCallbacks[rafCallbacks.length - 1](16.67);
+      }
+      expect(mockSetCurrentSection).toHaveBeenCalledWith('about');
     }
   });
 });
 
-describe('cubicBezierEasing (via Lenis constructor)', () => {
+describe('Lenis lerp-based scroll configuration', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     globalThis.requestAnimationFrame = vi.fn(() => 1) as unknown as typeof requestAnimationFrame;
@@ -275,45 +284,25 @@ describe('cubicBezierEasing (via Lenis constructor)', () => {
     vi.restoreAllMocks();
   });
 
-  it('should pass an easing function to Lenis', async () => {
+  it('should use lerp-based smoothing instead of duration-based', async () => {
     const { useScrollEngine } = await import('./useScrollEngine');
     const Lenis = (await import('@studio-freight/lenis')).default;
 
     renderHook(() => useScrollEngine());
 
     const lenisCall = (Lenis as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0];
-    expect(lenisCall.easing).toBeInstanceOf(Function);
+    expect(lenisCall.lerp).toBe(0.12);
+    // Should NOT have a duration property (lerp takes precedence)
+    expect(lenisCall.duration).toBeUndefined();
   });
 
-  it('should produce values between 0 and 1 for the easing function', async () => {
+  it('should set wheelMultiplier to 1.2 for responsive scrolling', async () => {
     const { useScrollEngine } = await import('./useScrollEngine');
     const Lenis = (await import('@studio-freight/lenis')).default;
 
     renderHook(() => useScrollEngine());
 
     const lenisCall = (Lenis as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0];
-    const easing = lenisCall.easing;
-
-    // Test at various points
-    expect(easing(0)).toBeGreaterThanOrEqual(0);
-    expect(easing(0.25)).toBeGreaterThanOrEqual(0);
-    expect(easing(0.25)).toBeLessThanOrEqual(1);
-    expect(easing(0.5)).toBeGreaterThanOrEqual(0);
-    expect(easing(0.5)).toBeLessThanOrEqual(1);
-    expect(easing(0.75)).toBeGreaterThanOrEqual(0);
-    expect(easing(0.75)).toBeLessThanOrEqual(1);
-    expect(easing(1)).toBeLessThanOrEqual(1);
-  });
-
-  it('should return 1 at t=1 for the easing function', async () => {
-    const { useScrollEngine } = await import('./useScrollEngine');
-    const Lenis = (await import('@studio-freight/lenis')).default;
-
-    renderHook(() => useScrollEngine());
-
-    const lenisCall = (Lenis as unknown as ReturnType<typeof vi.fn>).mock.calls[0][0];
-    const easing = lenisCall.easing;
-
-    expect(easing(1)).toBe(1);
+    expect(lenisCall.wheelMultiplier).toBe(1.2);
   });
 });

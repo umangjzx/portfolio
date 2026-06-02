@@ -31,8 +31,8 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
   const isMobile = checkIsMobile();
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
-  const yText = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Mouse parallax for depth layers — disabled on mobile
   const [parallax, setParallax] = useState({ x: 0, y: 0 });

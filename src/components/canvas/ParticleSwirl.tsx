@@ -309,17 +309,17 @@ export function ParticleSwirl() {
     return <MobileBackground />;
   }
 
-  // Desktop: full 3D particle experience
+  // Desktop: full 3D particle experience — reduced count for scroll perf
   return (
     <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none', contain: 'strict' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, powerPreference: 'high-performance', stencil: false, depth: false }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance', stencil: false, depth: false }}
         frameloop="always"
         style={{ pointerEvents: 'none' }}
       >
-        <Particles count={4000} disableRepulsion={isTouch} />
+        <Particles count={3000} disableRepulsion={isTouch} />
       </Canvas>
     </div>
   );
