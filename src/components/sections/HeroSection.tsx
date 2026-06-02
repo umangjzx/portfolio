@@ -56,7 +56,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
       ref={containerRef}
       id="hero"
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-transparent py-20 md:py-0"
     >
       {/* ── Depth layer: aurora blobs (mouse parallax) — hidden on mobile for perf ── */}
       {!isMobile && (
@@ -163,8 +163,30 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
         variants={container}
         initial="hidden"
         animate="show"
-        style={{ y: yText, opacity: opacityText }}
+        style={isMobile ? {} : { y: yText, opacity: opacityText }}
       >
+        {/* Right column — profile photo (shown first on mobile for visual hierarchy) */}
+        <motion.div
+          variants={item}
+          className="mb-8 flex justify-center lg:hidden"
+        >
+          <div className="relative">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-[3px] border-white shadow-[0_12px_40px_rgba(99,102,241,0.15)] ring-1 ring-indigo-100/50">
+              <img
+                src={PROFILE.photoUrl}
+                alt={PROFILE.name}
+                className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+                width={160}
+                height={160}
+              />
+            </div>
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
+            <div className="absolute -top-1 -left-1 w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
+          </div>
+        </motion.div>
+
         {/* Left column — text content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           {/* availability */}
@@ -248,13 +270,13 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           </motion.div>
         </div>
 
-        {/* Right column — large profile photo */}
+        {/* Right column — large profile photo (desktop only, mobile shown above) */}
         <motion.div
           variants={item}
-          className="mt-10 lg:mt-0 flex justify-center"
+          className="hidden lg:flex justify-center"
         >
           <div className="relative">
-            <div className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
+            <div className="w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
               <img
                 src={PROFILE.photoUrl}
                 alt={PROFILE.name}
@@ -265,12 +287,9 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
                 height={352}
               />
             </div>
-            {/* Decorative accents — no blur on mobile for performance */}
-            {!isMobile && (
-              <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
-            )}
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
-            <div className="absolute -top-2 -left-2 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
+            <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-indigo-400/15 via-violet-400/10 to-cyan-400/15 -z-10 blur-xl" />
+            <div className="absolute -bottom-3 -right-3 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 opacity-20 -z-10" />
+            <div className="absolute -top-2 -left-2 w-10 h-10 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 opacity-20 -z-10" />
           </div>
         </motion.div>
       </motion.div>

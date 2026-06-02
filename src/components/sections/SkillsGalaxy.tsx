@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowUpRight, Wrench, Layers3, Cpu } from 'lucide-react';
+import { X, ArrowUpRight, Wrench, Layers3, Cpu, Sparkles } from 'lucide-react';
 import { SKILLS, SKILL_CLUSTERS } from '../../data/skills';
 import { PROJECTS } from '../../data/projects';
 import type { SkillPlanet, SkillClusterId } from '../../types';
@@ -16,6 +16,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
   const [selected, setSelected] = useState<SkillPlanet | null>(null);
   const [activeCluster, setActiveCluster] = useState<SkillClusterId | null>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const addXP = usePortfolioStore((s) => s.addXP);
   const grantedRef = useRef(false);
 
@@ -47,7 +48,29 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
 
   return (
     <section id="skills" className="relative w-full overflow-hidden px-6 py-32 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-6xl">
+      {/* Background decorations */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute top-20 -left-40 h-[600px] w-[600px] rounded-full opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-20 -right-40 h-[500px] w-[500px] rounded-full opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.3]"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, rgba(99,102,241,0.06) 1px, transparent 0)',
+            backgroundSize: '40px 40px',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%)',
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Skill Ecosystem"
           align="center"
@@ -59,14 +82,20 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
           description="The tools and technologies I use to build intelligent products — from model to interface."
         />
 
-        {/* Cluster filter */}
-        <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2">
+        {/* Cluster filter — pill style with glow */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2.5"
+        >
           <button
             onClick={() => setActiveCluster(null)}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
               activeCluster === null
-                ? 'border-indigo bg-indigo text-white shadow-[0_4px_16px_rgba(99,102,241,0.25)]'
-                : 'border-line bg-white text-ink-soft hover:border-indigo/40 hover:text-ink'
+                ? 'border-indigo/50 bg-gradient-to-r from-indigo to-violet text-white shadow-[0_4px_20px_rgba(99,102,241,0.35)]'
+                : 'border-line bg-white/80 text-ink-soft hover:border-indigo/40 hover:text-ink hover:shadow-md backdrop-blur-md'
             }`}
           >
             All
@@ -75,89 +104,141 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
             <button
               key={c.id}
               onClick={() => setActiveCluster(activeCluster === c.id ? null : c.id)}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+              className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                 activeCluster === c.id
-                  ? 'border-transparent text-white shadow-md'
-                  : 'border-line bg-white text-ink-soft hover:border-indigo/40 hover:text-ink'
+                  ? 'border-transparent text-white shadow-lg'
+                  : 'border-line bg-white/80 text-ink-soft hover:border-indigo/40 hover:text-ink hover:shadow-md backdrop-blur-md'
               }`}
-              style={activeCluster === c.id ? { background: c.color } : {}}
+              style={
+                activeCluster === c.id
+                  ? { background: `linear-gradient(135deg, ${c.color}, ${c.color}cc)`, boxShadow: `0 4px 20px ${c.color}40` }
+                  : {}
+              }
             >
               <span
-                className="h-2 w-2 rounded-full"
-                style={{ background: activeCluster === c.id ? '#fff' : c.color }}
+                className="h-2.5 w-2.5 rounded-full transition-transform duration-300"
+                style={{
+                  background: activeCluster === c.id ? '#fff' : c.color,
+                  transform: activeCluster === c.id ? 'scale(1.2)' : 'scale(1)',
+                }}
               />
               {c.label}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Skills grid */}
+        {/* Skills grid — hexagonal-inspired cards */}
         <motion.div
-          className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
           layout
         >
           <AnimatePresence mode="popLayout">
-            {filteredSkills.map((skill, i) => (
-              <motion.button
-                key={skill.id}
-                layout
-                initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.85, y: -10 }}
-                transition={{ duration: 0.4, delay: i * 0.02, ease: EASE }}
-                whileHover={{ y: -4, scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => handleSelect(skill)}
-                className="group relative flex flex-col items-center gap-3 rounded-2xl border border-line bg-white p-5 text-center shadow-sm transition-shadow hover:shadow-lg hover:border-transparent"
-                style={{
-                  '--skill-color': skill.color,
-                } as React.CSSProperties}
-                aria-label={`${skill.name}, ${skill.proficiency}% proficiency`}
-              >
-                {/* Colored accent bar */}
-                <div
-                  className="absolute inset-x-0 top-0 h-1 rounded-t-2xl opacity-0 transition-opacity group-hover:opacity-100"
-                  style={{ background: skill.color }}
-                />
-
-                {/* Icon circle */}
-                <div
-                  className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-                  style={{ background: `${skill.color}12`, border: `1.5px solid ${skill.color}30` }}
+            {filteredSkills.map((skill, i) => {
+              const isHovered = hoveredSkill === skill.id;
+              return (
+                <motion.button
+                  key={skill.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                  transition={{ duration: 0.45, delay: i * 0.025, ease: EASE }}
+                  whileHover={{ y: -8, scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => handleSelect(skill)}
+                  onMouseEnter={() => setHoveredSkill(skill.id)}
+                  onMouseLeave={() => setHoveredSkill(null)}
+                  className="group relative flex flex-col items-center gap-3.5 rounded-3xl border p-6 text-center transition-all duration-300"
+                  style={{
+                    '--skill-color': skill.color,
+                    background: isHovered
+                      ? `linear-gradient(135deg, ${skill.color}08, ${skill.color}14)`
+                      : 'rgba(255,255,255,0.85)',
+                    backdropFilter: 'blur(12px)',
+                    borderColor: isHovered ? `${skill.color}50` : 'rgba(0,0,0,0.06)',
+                    boxShadow: isHovered
+                      ? `0 20px 40px ${skill.color}18, 0 8px 16px rgba(0,0,0,0.04)`
+                      : '0 4px 16px rgba(0,0,0,0.04)',
+                  } as React.CSSProperties}
+                  aria-label={`${skill.name}, ${skill.proficiency}% proficiency`}
                 >
-                  <Cpu size={20} style={{ color: skill.color }} />
-                </div>
+                  {/* Animated glow ring on hover */}
+                  <div
+                    className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{
+                      background: `radial-gradient(circle at 50% 0%, ${skill.color}15, transparent 70%)`,
+                    }}
+                  />
 
-                {/* Name */}
-                <span className="text-sm font-semibold text-ink leading-tight">
-                  {skill.name}
-                </span>
+                  {/* Top accent line with gradient */}
+                  <div
+                    className="absolute inset-x-3 top-0 h-[2px] rounded-full opacity-0 transition-all duration-300 group-hover:opacity-100"
+                    style={{ background: `linear-gradient(90deg, transparent, ${skill.color}, transparent)` }}
+                  />
 
-                {/* Proficiency bar */}
-                <div className="w-full">
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                    <motion.div
-                      className="h-full rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.proficiency}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.1 + i * 0.02, ease: EASE }}
-                      style={{ background: skill.color }}
-                    />
+                  {/* Icon with animated background */}
+                  <div className="relative">
+                    <div
+                      className="flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                      style={{
+                        background: `linear-gradient(135deg, ${skill.color}15, ${skill.color}08)`,
+                        border: `1.5px solid ${skill.color}30`,
+                        boxShadow: isHovered ? `0 4px 12px ${skill.color}20` : 'none',
+                      }}
+                    >
+                      <Cpu size={22} style={{ color: skill.color }} />
+                    </div>
+                    {/* Sparkle on high-proficiency skills */}
+                    {skill.proficiency >= 85 && (
+                      <Sparkles
+                        size={12}
+                        className="absolute -right-1 -top-1 opacity-0 transition-opacity group-hover:opacity-100"
+                        style={{ color: skill.color }}
+                      />
+                    )}
                   </div>
-                  <span className="mt-1 block text-[10px] font-medium text-ink-muted">
-                    {skill.proficiency}%
-                  </span>
-                </div>
 
-                {/* Years badge */}
-                {skill.years && (
-                  <span className="absolute right-2.5 top-2.5 rounded-md bg-slate-50 px-1.5 py-0.5 text-[9px] font-semibold text-ink-muted">
-                    {skill.years}y
+                  {/* Name */}
+                  <span className="relative z-10 text-sm font-bold text-ink leading-tight">
+                    {skill.name}
                   </span>
-                )}
-              </motion.button>
-            ))}
+
+                  {/* Proficiency — circular indicator + bar */}
+                  <div className="w-full relative z-10">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100/80">
+                      <motion.div
+                        className="h-full rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.proficiency}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.15 + i * 0.025, ease: EASE }}
+                        style={{
+                          background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})`,
+                          boxShadow: `0 0 8px ${skill.color}40`,
+                        }}
+                      />
+                    </div>
+                    <span className="mt-1.5 block text-[11px] font-bold tabular-nums" style={{ color: skill.color }}>
+                      {skill.proficiency}%
+                    </span>
+                  </div>
+
+                  {/* Years badge — refined */}
+                  {skill.years && (
+                    <span
+                      className="absolute right-3 top-3 rounded-lg px-2 py-0.5 text-[10px] font-bold"
+                      style={{
+                        background: `${skill.color}10`,
+                        color: `${skill.color}`,
+                        border: `1px solid ${skill.color}20`,
+                      }}
+                    >
+                      {skill.years}y
+                    </span>
+                  )}
+                </motion.button>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
       </div>
@@ -183,6 +264,12 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
               role="dialog"
               aria-label={`${selected.name} details`}
             >
+              {/* Color accent at top */}
+              <div
+                className="absolute inset-x-0 top-0 h-1"
+                style={{ background: `linear-gradient(90deg, ${selected.color}, #8B5CF6)` }}
+              />
+
               <button
                 onClick={() => setSelected(null)}
                 className="absolute right-6 top-6 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-ink-soft transition-colors hover:bg-slate-200"
@@ -194,7 +281,11 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
               <div className="flex flex-col p-10 pt-16">
                 <div
                   className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl"
-                  style={{ background: `${selected.color}18`, border: `1px solid ${selected.color}40` }}
+                  style={{
+                    background: `linear-gradient(135deg, ${selected.color}18, ${selected.color}08)`,
+                    border: `1px solid ${selected.color}40`,
+                    boxShadow: `0 4px 16px ${selected.color}15`,
+                  }}
                 >
                   <Cpu size={28} style={{ color: selected.color }} />
                 </div>
@@ -210,7 +301,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
                     <span className="font-medium text-ink-soft">Proficiency</span>
                     <span className="font-bold text-ink">{selected.proficiency}%</span>
                   </div>
-                  <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+                  <div className="h-3 w-full overflow-hidden rounded-full bg-slate-100">
                     <motion.div
                       className="h-full rounded-full"
                       initial={{ width: 0 }}

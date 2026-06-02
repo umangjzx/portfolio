@@ -183,13 +183,13 @@ export default function AILaboratory() {
       <div className="relative z-10 mx-auto max-w-[1400px]">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
-            eyebrow="Innovation Lab"
+            eyebrow="Build & Ship"
             title={
               <>
-                Inside the <span className="text-gradient">research lab</span>
+                What I'm <span className="text-gradient">working on</span>
               </>
             }
-            description="Live experiments, published research, and prototypes — with real status and progress, not placeholders."
+            description="Active projects, published papers, and prototypes I'm building — real work with real progress."
           />
           <div className="flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-2 backdrop-blur-md">
             <span className="relative flex h-2.5 w-2.5">
@@ -228,13 +228,13 @@ export default function AILaboratory() {
           >
             <div className="mb-4 flex items-center gap-2">
               <Activity size={18} className="text-indigo" />
-              <h3 className="font-display text-lg font-semibold text-ink">Model Telemetry</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">Activity Pulse</h3>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
-                ['Inference', '#6366F1', 1],
-                ['Training', '#8B5CF6', 2],
-                ['Throughput', '#06B6D4', 3],
+                ['Commits', '#6366F1', 1],
+                ['Research', '#8B5CF6', 2],
+                ['Deployments', '#06B6D4', 3],
               ].map(([label, color, seed]) => (
                 <div key={label as string} className="rounded-2xl border border-line bg-slate-50/60 p-4">
                   <p className="mb-2 text-xs font-medium text-ink-soft">{label as string}</p>
@@ -250,10 +250,10 @@ export default function AILaboratory() {
           >
             <div className="mb-4 flex items-center gap-2">
               <Cpu size={18} className="text-violet" />
-              <h3 className="font-display text-lg font-semibold text-ink">Capabilities</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">What I Build</h3>
             </div>
             <ul className="space-y-3">
-              {['Multi-agent LLM orchestration', 'Time-series & ensemble ML', 'Real-time inference APIs', 'On-device / edge models'].map((c, i) => (
+              {['Multi-agent AI pipelines', 'Predictive ML models', 'Full-stack web applications', 'Research & publications'].map((c, i) => (
                 <li key={c} className="flex items-center gap-3 text-sm text-ink-soft">
                   <span className="flex h-6 w-6 items-center justify-center rounded-lg" style={{ background: ['#6366F114', '#8B5CF614', '#06B6D414', '#EC489914'][i], color: ['#6366F1', '#8B5CF6', '#06B6D4', '#EC4899'][i] }}>
                     <FlaskConical size={13} />
