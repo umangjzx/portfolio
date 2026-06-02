@@ -1,2 +1,52 @@
 /* Portfolio-specific global styles */
 /* All responsive layout is handled via Tailwind utility classes in components */
+
+/* ── Mobile touch & interaction optimizations ── */
+@media (max-width: 767px) {
+  /* Ensure minimum touch target size (44px) for interactive elements */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent text selection on interactive card elements */
+  .snap-start {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Optimize scroll performance on horizontal scrollers */
+  .no-scrollbar {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  /* Prevent overscroll bounce from interfering with horizontal scroll */
+  .overflow-x-auto {
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* ── Smooth transitions for all interactive elements ── */
+@media (hover: hover) {
+  a,
+  button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+}
+
+/* ── Prevent layout shift from scrollbar on desktop ── */
+@media (min-width: 768px) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* ── Safe area padding for notched mobile devices ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  #contact {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}

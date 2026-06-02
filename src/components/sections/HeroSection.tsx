@@ -204,7 +204,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           {/* WHO — name */}
           <motion.h1
             variants={item}
-            className="font-display text-[15vw] font-semibold leading-[0.92] tracking-tight sm:text-6xl md:text-7xl lg:text-[6.5rem]"
+            className="font-display text-[12vw] font-semibold leading-[0.92] tracking-tight sm:text-6xl md:text-7xl lg:text-[6.5rem]"
           >
             <span className="text-gradient">{PROFILE.firstName}</span>{' '}
             <span className="text-ink">{PROFILE.lastName}</span>
@@ -213,7 +213,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           {/* WHAT — tagline (the hook) */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-xl font-display text-xl font-medium leading-tight text-ink sm:text-2xl md:text-3xl"
+            className="mt-4 max-w-xl font-display text-lg font-medium leading-tight text-ink sm:mt-6 sm:text-2xl md:text-3xl"
           >
             I turn <span className="text-gradient">messy data</span> into intelligent products.
           </motion.p>
@@ -229,21 +229,21 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           </motion.div>
 
           {/* WHY — proof line */}
-          <motion.p variants={item} className="mt-6 flex items-center gap-2 text-sm text-ink-muted">
-            <Sparkles size={15} className="text-violet" />
-            11 products shipped · 4 hackathon podiums · 2 published papers
+          <motion.p variants={item} className="mt-4 flex items-center gap-2 text-xs text-ink-muted sm:mt-6 sm:text-sm">
+            <Sparkles size={15} className="text-violet flex-shrink-0" />
+            <span>Currently at ProfitStory.ai · 11 products shipped · 4 hackathon podiums</span>
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+          <motion.div variants={item} className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:mt-10 sm:gap-3">
             <MagneticButton href={PROFILE.resumeUrl} external download variant="primary" ariaLabel="Download résumé">
-              <Download size={17} /> Download Résumé
+              <Download size={17} /> <span className="hidden xs:inline">Download</span> Résumé
             </MagneticButton>
             <MagneticButton onClick={() => scrollToId('projects')} variant="secondary" ariaLabel="View projects">
-              <FolderGit2 size={17} /> View Projects
+              <FolderGit2 size={17} /> Projects
             </MagneticButton>
             <MagneticButton href={PROFILE.calendly} external variant="secondary" ariaLabel="Schedule a meeting">
-              <Calendar size={17} /> Schedule a Meeting
+              <Calendar size={17} /> <span className="hidden sm:inline">Schedule a</span> Meeting
             </MagneticButton>
           </motion.div>
 

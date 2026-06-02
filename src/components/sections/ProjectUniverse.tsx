@@ -12,8 +12,8 @@ import { usePortfolioStore } from '../../store/portfolioStore';
 
 /** Bento span pattern — featured projects get larger tiles. */
 function spanFor(p: Project, i: number): string {
-  if (p.featured && i === 0) return 'md:col-span-2 md:row-span-2';
-  if (p.featured) return 'md:col-span-2';
+  if (p.featured && i === 0) return 'sm:col-span-2 md:col-span-2 md:row-span-2';
+  if (p.featured) return 'sm:col-span-2 md:col-span-2';
   return '';
 }
 
@@ -31,7 +31,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
     >
       <TiltCard spotlightColor={`${c1}26`} className="h-full" onClick={() => onOpen(project)}>
         <article
-          className="group relative flex h-full min-h-[230px] cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-line p-7"
+          className="group relative flex h-full min-h-[200px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-line p-5 sm:min-h-[230px] sm:rounded-3xl sm:p-7"
           style={{ background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(20px)', boxShadow: '0 8px 32px rgba(15,23,42,0.05)' }}
           aria-label={`Open case study: ${project.title}`}
         >
@@ -114,7 +114,7 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 md:p-10"
+      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-2 sm:p-4 md:p-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -133,7 +133,7 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
         aria-label={`${project.title} case study`}
       >
         {/* header banner */}
-        <div className="relative overflow-hidden px-8 pt-10 pb-8 md:px-12" style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}>
+        <div className="relative overflow-hidden px-5 pt-8 pb-6 sm:px-8 sm:pt-10 sm:pb-8 md:px-12" style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}>
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 30% 30%, white 1px, transparent 1px)', backgroundSize: '22px 22px' }} />
           <button
             onClick={onClose}
@@ -147,8 +147,8 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
               <span className="rounded-full bg-white/20 px-3 py-1 font-medium">{project.category}</span>
               <span className="font-mono">{project.year}</span>
             </div>
-            <h2 className="font-display text-4xl font-semibold text-white md:text-5xl">{project.title}</h2>
-            <p className="mt-2 max-w-2xl text-lg text-white/90">{project.tagline}</p>
+            <h2 className="font-display text-2xl font-semibold text-white sm:text-4xl md:text-5xl">{project.title}</h2>
+            <p className="mt-2 max-w-2xl text-sm text-white/90 sm:text-lg">{project.tagline}</p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               {project.liveUrl && (
@@ -173,7 +173,7 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
           </div>
         </div>
 
-        <div className="p-8 md:p-12">
+        <div className="p-5 sm:p-8 md:p-12">
           {/* metrics row */}
           {project.metrics && (
             <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -274,7 +274,7 @@ export default function ProjectUniverse() {
   );
 
   return (
-    <section id="projects" className="relative min-h-screen px-6 py-32 md:px-12 lg:px-24">
+    <section id="projects" className="relative min-h-screen px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         style={{ backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)', backgroundSize: '30px 30px', maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)' }}
@@ -291,7 +291,7 @@ export default function ProjectUniverse() {
           description="Each one reads like a product launch — the problem, the solution, the architecture, and the measurable impact. Click any tile to open the full case study."
         />
 
-        <div className="mt-16 grid auto-rows-[minmax(230px,auto)] grid-cols-1 gap-6 md:grid-cols-4">
+        <div className="mt-10 grid auto-rows-[minmax(200px,auto)] grid-cols-1 gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} onOpen={handleOpen} />
           ))}

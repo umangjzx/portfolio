@@ -99,4 +99,18 @@ export const MILESTONES: TimelineMilestone[] = [
     achievements: ['14-agent AI pipeline', 'Real-time SBAR dashboard'],
     order: 7,
   },
+  {
+    id: 'profitstory-intern',
+    title: 'Full Stack AI Engineer Intern',
+    date: 'Jun 2026',
+    company: 'ProfitStory.ai',
+    role: 'Full Stack AI Engineer Intern',
+    type: 'work',
+    description:
+      'Building end-to-end AI-powered features at ProfitStory.ai — from designing intelligent backend pipelines to shipping polished React interfaces that drive business decisions.',
+    impact: 'Shipping production AI features that directly impact revenue insights for users.',
+    skills: ['React', 'TypeScript', 'Python', 'AI/ML', 'Full Stack', 'LLM Integration'],
+    achievements: ['End-to-end AI feature development', 'Production-grade full-stack delivery'],
+    order: 8,
+  },
 ];

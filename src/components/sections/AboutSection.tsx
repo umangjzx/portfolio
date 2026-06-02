@@ -21,9 +21,9 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-32 md:px-12 lg:px-24"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24"
     >
-      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-10 sm:gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         {/* Left — narrative anchor */}
         <motion.div style={{ y: yText }} className="lg:sticky lg:top-32">
           {/* Profile photo */}
@@ -59,15 +59,15 @@ export default function AboutSection() {
             description="I'm Umang Jaiswal — an AI/ML engineer who works the full stack of intelligence, from raw data to the interface a human actually touches."
           />
 
-          <div className="mt-10 flex flex-col gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:gap-4">
             {[
               ['8.01', 'CGPA · M.Sc. (Integrated)'],
               ['11+', 'Products shipped end to end'],
               ['6', 'Awards & publications'],
             ].map(([value, label]) => (
-              <div key={label} className="flex items-baseline gap-4">
-                <span className="font-display text-3xl font-semibold text-gradient tabular-nums">{value}</span>
-                <span className="text-sm text-ink-soft">{label}</span>
+              <div key={label} className="flex items-baseline gap-3 sm:gap-4">
+                <span className="font-display text-2xl font-semibold text-gradient tabular-nums sm:text-3xl">{value}</span>
+                <span className="text-xs text-ink-soft sm:text-sm">{label}</span>
               </div>
             ))}
           </div>
@@ -78,7 +78,7 @@ export default function AboutSection() {
         </motion.div>
 
         {/* Right — story chapters as 3D glass cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
           {CHAPTERS.map(({ key, icon: Icon, accent, tint }, i) => {
             const chapter = STORY[key];
             return (
@@ -92,7 +92,7 @@ export default function AboutSection() {
               >
                 <TiltCard spotlightColor={tint} className="h-full">
                   <div
-                    className="flex h-full flex-col rounded-3xl border border-line bg-white/75 p-8 backdrop-blur-xl"
+                    className="flex h-full flex-col rounded-2xl border border-line bg-white/75 p-5 backdrop-blur-xl sm:rounded-3xl sm:p-8"
                     style={{ boxShadow: '0 8px 32px rgba(15,23,42,0.06)' }}
                   >
                     <div

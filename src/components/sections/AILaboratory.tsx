@@ -39,7 +39,7 @@ function Counter({ target, suffix, run }: { target: number; suffix?: string; run
   }, [run, target]);
 
   return (
-    <span className="font-display text-4xl font-semibold text-gradient tabular-nums md:text-5xl">
+    <span className="font-display text-3xl font-semibold text-gradient tabular-nums sm:text-4xl md:text-5xl">
       {value}
       {suffix && <span className="text-2xl md:text-3xl">{suffix}</span>}
     </span>
@@ -167,7 +167,7 @@ export default function AILaboratory() {
   );
 
   return (
-    <section ref={sectionRef} id="ai-lab" className="relative overflow-hidden px-6 py-32 md:px-12 lg:px-24">
+    <section ref={sectionRef} id="ai-lab" className="relative overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
       {/* faint grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"
@@ -201,7 +201,7 @@ export default function AILaboratory() {
         </div>
 
         {/* live telemetry strip */}
-        <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-4">
           {STATS.map((stat, i) => {
             const colors = ['#6366F1', '#8B5CF6', '#06B6D4', '#EC4899'];
             return (
@@ -266,7 +266,7 @@ export default function AILaboratory() {
         </div>
 
         {/* experiments grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {LAB_EXPERIMENTS.map((exp, i) => (
             <ExperimentCard key={exp.id} exp={exp} index={i} />
           ))}

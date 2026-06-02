@@ -47,7 +47,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
     : [];
 
   return (
-    <section id="skills" className="relative w-full overflow-hidden px-6 py-32 md:px-12 lg:px-24">
+    <section id="skills" className="relative w-full overflow-hidden px-4 py-20 sm:px-6 md:px-12 md:py-32 lg:px-24">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -129,7 +129,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
 
         {/* Skills grid — hexagonal-inspired cards */}
         <motion.div
-          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+          className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5"
           layout
         >
           <AnimatePresence mode="popLayout">
@@ -148,7 +148,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
                   onClick={() => handleSelect(skill)}
                   onMouseEnter={() => setHoveredSkill(skill.id)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  className="group relative flex flex-col items-center gap-3.5 rounded-3xl border p-6 text-center transition-all duration-300"
+                  className="group relative flex flex-col items-center gap-2.5 rounded-2xl border p-4 text-center transition-all duration-300 sm:gap-3.5 sm:rounded-3xl sm:p-6"
                   style={{
                     '--skill-color': skill.color,
                     background: isHovered
@@ -179,14 +179,15 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
                   {/* Icon with animated background */}
                   <div className="relative">
                     <div
-                      className="flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 sm:h-14 sm:w-14 sm:rounded-2xl"
                       style={{
                         background: `linear-gradient(135deg, ${skill.color}15, ${skill.color}08)`,
                         border: `1.5px solid ${skill.color}30`,
                         boxShadow: isHovered ? `0 4px 12px ${skill.color}20` : 'none',
                       }}
                     >
-                      <Cpu size={22} style={{ color: skill.color }} />
+                      <Cpu size={18} style={{ color: skill.color }} className="sm:hidden" />
+                      <Cpu size={22} style={{ color: skill.color }} className="hidden sm:block" />
                     </div>
                     {/* Sparkle on high-proficiency skills */}
                     {skill.proficiency >= 85 && (
@@ -199,7 +200,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
                   </div>
 
                   {/* Name */}
-                  <span className="relative z-10 text-sm font-bold text-ink leading-tight">
+                  <span className="relative z-10 text-xs font-bold text-ink leading-tight sm:text-sm">
                     {skill.name}
                   </span>
 

@@ -56,8 +56,8 @@ export default function ExperienceTimeline() {
   const progress = ((active + 1) / MILESTONES.length) * 100;
 
   return (
-    <section id="experience" className="relative overflow-hidden py-32">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-24">
+    <section id="experience" className="relative overflow-hidden py-20 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-12 lg:px-24">
         <SectionHeading
           eyebrow="Career Timeline"
           title={
@@ -69,8 +69,8 @@ export default function ExperienceTimeline() {
         />
 
         {/* year nav + progress */}
-        <div className="mt-12 flex items-center gap-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {MILESTONES.map((m, i) => (
               <button
                 key={m.id}
@@ -121,7 +121,7 @@ export default function ExperienceTimeline() {
       <div
         ref={scrollerRef}
         onScroll={onScroll}
-        className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-8 md:px-12 lg:px-24"
+        className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-6 sm:mt-10 sm:gap-6 sm:px-6 sm:pb-8 md:px-12 lg:px-24"
       >
         {MILESTONES.map((m, i) => {
           const { icon: Icon, color, label } = meta(m);
@@ -134,7 +134,7 @@ export default function ExperienceTimeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative flex w-[85vw] flex-shrink-0 cursor-pointer snap-start flex-col rounded-3xl border p-8 sm:w-[420px]"
+              className="relative flex w-[80vw] flex-shrink-0 cursor-pointer snap-start flex-col rounded-2xl border p-5 sm:w-[420px] sm:rounded-3xl sm:p-8"
               style={{
                 background: 'rgba(255,255,255,0.82)',
                 backdropFilter: 'blur(20px)',
@@ -159,7 +159,7 @@ export default function ExperienceTimeline() {
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl font-semibold leading-tight text-ink">{m.title}</h3>
+              <h3 className="font-display text-xl font-semibold leading-tight text-ink sm:text-2xl">{m.title}</h3>
               {m.company && (
                 <p className="mt-1.5 text-sm font-medium" style={{ color }}>
                   {m.role ? `${m.role} · ` : ''}{m.company}
