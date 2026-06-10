@@ -201,7 +201,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
 
         {/* Left column — text content */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          {/* availability */}
+          {/* availability + LIVE status */}
           <motion.div
             variants={item}
             className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 px-5 py-2.5 shadow-sm backdrop-blur-md"
@@ -245,6 +245,16 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
             <Sparkles size={15} className="text-violet flex-shrink-0" />
             <span>Currently at profitstory.ai · 11 products shipped · 4 hackathon podiums</span>
           </motion.p>
+
+          {/* Tech Philosophy — one-liner that differentiates */}
+          <motion.blockquote
+            variants={item}
+            className="mt-5 border-l-2 border-indigo-300/60 pl-4 sm:mt-7"
+          >
+            <p className="text-sm italic text-ink-soft sm:text-base">
+              "I build from the model to the interface — every project starts with understanding the data, not the UI."
+            </p>
+          </motion.blockquote>
 
           {/* CTAs */}
           <motion.div variants={item} className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:mt-10 sm:gap-3">

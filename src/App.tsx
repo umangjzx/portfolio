@@ -25,6 +25,7 @@ const ExperienceTimeline = lazy(() => import('./components/sections/ExperienceTi
 const SocialHub = lazy(() => import('./components/sections/SocialHub'));
 const AILaboratory = lazy(() => import('./components/sections/AILaboratory'));
 const ContactPortal = lazy(() => import('./components/sections/ContactPortal'));
+const ResultsBanner = lazy(() => import('./components/sections/ResultsBanner'));
 
 // Lazy-loaded overlay components (not critical for initial render)
 const AIAssistant = lazy(() => import('./components/overlays/AIAssistant').then(m => ({ default: m.AIAssistant })));
@@ -35,6 +36,7 @@ const KonamiEasterEgg = lazy(() => import('./components/overlays/KonamiEasterEgg
 const LevelIndicator = lazy(() => import('./components/overlays/LevelIndicator').then(m => ({ default: m.LevelIndicator })));
 const AchievementManager = lazy(() => import('./components/overlays/AchievementManager').then(m => ({ default: m.AchievementManager })));
 const DeveloperTerminal = lazy(() => import('./components/overlays/DeveloperTerminal').then(m => ({ default: m.DeveloperTerminal })));
+const ResumeButton = lazy(() => import('./components/overlays/ResumeButton'));
 
 // Error Boundary to prevent crashes from propagating
 class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
@@ -116,6 +118,12 @@ function App() {
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
                 <AboutSection />
+              </Suspense>
+            </ErrorBoundary>
+
+            <ErrorBoundary fallback={null}>
+              <Suspense fallback={null}>
+                <ResultsBanner />
               </Suspense>
             </ErrorBoundary>
 
@@ -201,6 +209,11 @@ function App() {
       <ErrorBoundary>
         <Suspense fallback={null}>
           <DeveloperTerminal />
+        </Suspense>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <ResumeButton />
         </Suspense>
       </ErrorBoundary>
     </div>
