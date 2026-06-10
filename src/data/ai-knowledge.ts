@@ -136,7 +136,7 @@ export const AI_KNOWLEDGE: AIKnowledgeEntry[] = [
     keywords: ['about', 'who', 'umang', 'tell me', 'introduce', 'yourself', 'bio'],
     responses: [
       'Umang Jaiswal is an AI/ML engineer and full-stack builder based in Coimbatore, India. He turns messy data into intelligent products — from clinical AI and fintech models to civic platforms. He has shipped 11+ products, won 4 hackathon podiums, and published 2 papers. Currently pursuing an Integrated M.Sc. in Decision and Computing Sciences at CIT with a CGPA of 8.01.',
-      'I\'m Umang\'s AI assistant! He\'s an AI Engineer, Data Scientist, and Full-Stack Builder who works the full stack of intelligence: data engineering, modelling, and the interface people actually touch. He\'s comfortable orchestrating LLM agents, blending ensembles for forecasting, and shipping the React dashboard on top.',
+      'I\'m Umang\'s AI assistant! He\'s an AI & ML Engineer, Data Scientist, and Full-Stack Builder who works the full stack of intelligence: data engineering, modelling, and the interface people actually touch. He\'s comfortable orchestrating LLM agents, blending ensembles for forecasting, and shipping the React dashboard on top.',
     ],
   },
 ];

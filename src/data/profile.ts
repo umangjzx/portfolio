@@ -4,7 +4,7 @@ export const PROFILE = {
   name: 'Umang Jaiswal',
   firstName: 'Umang',
   lastName: 'Jaiswal',
-  roles: ['Full Stack AI Engineer', 'Data Scientist', 'ML Researcher'],
+  roles: ['AI & ML Engineer', 'Data Scientist', 'ML Researcher'],
   tagline: 'I turn messy data into intelligent products.',
   oneLiner:
     'AI & ML Intern at profitstory.ai — shipping clinical AI, fintech models, and civic platforms from the model to the interface.',
