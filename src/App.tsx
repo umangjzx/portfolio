@@ -139,13 +139,19 @@ function App() {
 
             <ErrorBoundary fallback={null}>
               <Suspense fallback={null}>
-                <ResultsBanner />
+                {/* ResultsBanner — hidden on mobile to reduce scroll length */}
+                <div className="hidden sm:block">
+                  <ResultsBanner />
+                </div>
               </Suspense>
             </ErrorBoundary>
 
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
-                <HowIWork />
+                {/* HowIWork — hidden on mobile to reduce scroll length */}
+                <div className="hidden md:block">
+                  <HowIWork />
+                </div>
               </Suspense>
             </ErrorBoundary>
 
@@ -163,7 +169,10 @@ function App() {
 
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
-                <SocialHub />
+                {/* SocialHub — hidden on mobile (GitHub/LinkedIn already linked in hero & contact) */}
+                <div className="hidden md:block">
+                  <SocialHub />
+                </div>
               </Suspense>
             </ErrorBoundary>
 
@@ -175,7 +184,10 @@ function App() {
 
             <ErrorBoundary fallback={<SectionLoader />}>
               <Suspense fallback={<SectionLoader />}>
-                <AILaboratory />
+                {/* AILaboratory — hidden on mobile (content overlaps with Projects section) */}
+                <div className="hidden md:block">
+                  <AILaboratory />
+                </div>
               </Suspense>
             </ErrorBoundary>
 

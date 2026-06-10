@@ -30,6 +30,18 @@
   .overflow-x-auto {
     overscroll-behavior-x: contain;
   }
+
+  /* Reduce vertical padding on sections to shorten overall scroll length */
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Hero keeps its full height */
+  #hero {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
 }
 
 /* ── Smooth transitions for interactive elements ── */

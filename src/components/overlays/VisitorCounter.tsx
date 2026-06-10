@@ -51,10 +51,10 @@ export function VisitorCounter() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2, duration: 0.5 }}
-      className="fixed bottom-20 left-4 z-40 flex items-center gap-2 rounded-full border border-line bg-white/80 px-3 py-1.5 shadow-sm backdrop-blur-md sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:px-4 sm:py-2 print:hidden"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 hidden sm:flex items-center gap-2 rounded-full border border-line bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md print:hidden"
     >
       <Eye size={12} className="text-indigo-400" />
-      <span className="text-[11px] text-ink-muted sm:text-xs">
+      <span className="text-xs text-ink-muted">
         Visit #{count.toLocaleString()}
       </span>
     </motion.div>

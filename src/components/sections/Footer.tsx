@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Heart, ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
 import { PROFILE } from '../../data/profile';
@@ -27,8 +26,9 @@ export default function Footer() {
         style={{ background: 'linear-gradient(90deg, transparent, #6366F1, #8B5CF6, #06B6D4, transparent)' }}
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:px-12 lg:px-24">
-        <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-14 md:px-12 lg:px-24">
+        {/* Desktop: full 3-column layout */}
+        <div className="hidden sm:flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
           {/* Left — branding */}
           <div className="text-center sm:text-left">
             <h3 className="font-display text-lg font-semibold text-ink">
@@ -83,14 +83,43 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row"
-        >
+        {/* Mobile: ultra-compact footer */}
+        <div className="flex sm:hidden items-center justify-between">
+          <p className="flex items-center gap-1 text-[11px] text-ink-muted">
+            © {year} {PROFILE.firstName}. Built with
+            <Heart size={10} className="text-rose-400" fill="currentColor" />
+          </p>
+          <div className="flex items-center gap-2">
+            <a
+              href={PROFILE.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft"
+            >
+              <GithubIcon size={14} />
+            </a>
+            <a
+              href={PROFILE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft"
+            >
+              <LinkedinIcon size={14} />
+            </a>
+            <button
+              onClick={scrollToTop}
+              aria-label="Scroll to top"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft"
+            >
+              <ArrowUp size={14} />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop bottom bar */}
+        <div className="mt-8 hidden sm:flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row">
           <p className="flex items-center gap-1.5 text-xs text-ink-muted">
             © {year} {PROFILE.name}. Built with
             <Heart size={12} className="text-rose-400" fill="currentColor" />
@@ -99,7 +128,7 @@ export default function Footer() {
           <p className="text-xs text-ink-muted">
             Coimbatore, India
           </p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
