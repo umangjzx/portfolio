@@ -184,10 +184,10 @@ function Particles({ count = 1200, disableRepulsion = false }: { count?: number;
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
+        size={0.09}
         vertexColors
         transparent
-        opacity={0.8}
+        opacity={0.85}
         sizeAttenuation={true}
         depthWrite={false}
       />
@@ -343,19 +343,18 @@ export function ParticleSwirl() {
     return <MobileBackground />;
   }
 
-  // Determine particle count based on GPU tier
-  // high: 1500, mid: 800, low: 400
-  const count = gpuTier === 'high' ? 1500 : gpuTier === 'mid' ? 800 : 400;
+  // Desktop: always render 3D particles, adapt count by GPU tier
+  const count = gpuTier === 'high' ? 1500 : gpuTier === 'mid' ? 800 : 500;
 
-  // Desktop: full 3D particle experience with adaptive count
   return (
-    <div className="fixed inset-0 z-[-1] bg-white" style={{ pointerEvents: 'none', contain: 'strict' }}>
+    <div className="fixed inset-0 z-[-1]" style={{ pointerEvents: 'none', contain: 'strict', background: '#fafafa' }}>
       <Canvas
         camera={{ position: [0, 0, 18], fov: 60 }}
         dpr={[1, gpuTier === 'high' ? 1.5 : 1]}
-        gl={{ antialias: false, powerPreference: 'high-performance', stencil: false, depth: false }}
+        gl={{ antialias: false, powerPreference: 'high-performance', stencil: false, depth: false, alpha: true }}
         frameloop="demand"
         style={{ pointerEvents: 'none' }}
+        onCreated={({ gl }) => gl.setClearColor('#fafafa', 1)}
       >
         <FrameDriver />
         <Particles count={count} disableRepulsion={isTouch} />

@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Briefcase, GraduationCap, Award, FlaskConical, Rocket, ChevronLeft, ChevronRight, Sparkles, Users,
 } from 'lucide-react';
@@ -141,8 +141,7 @@ export default function ExperienceTimeline() {
                 backdropFilter: 'blur(20px)',
                 borderColor: isActive ? `${color}55` : 'rgba(15,23,42,0.07)',
                 boxShadow: isActive ? `0 24px 60px ${color}22` : '0 8px 28px rgba(15,23,42,0.05)',
-                transform: isActive ? 'translateY(-6px)' : 'none',
-                transition: 'transform 0.4s, box-shadow 0.4s, border-color 0.4s',
+                transition: 'box-shadow 0.4s, border-color 0.4s',
               }}
             >
               <div className="mb-5 flex items-center justify-between">
@@ -168,45 +167,38 @@ export default function ExperienceTimeline() {
               )}
               <p className="mt-4 text-sm leading-relaxed text-ink-soft">{m.description}</p>
 
-              <AnimatePresence initial={false}>
-                {isActive && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    {m.impact && (
-                      <div className="mt-5 flex items-start gap-2 rounded-2xl border border-line bg-slate-50/70 p-4">
-                        <Sparkles size={16} style={{ color }} className="mt-0.5 flex-shrink-0" />
-                        <p className="text-sm font-medium text-ink">{m.impact}</p>
-                      </div>
-                    )}
+              {/* Expandable content — no height animation to prevent scroll jank */}
+              {isActive && (
+                <div className="mt-5">
+                  {m.impact && (
+                    <div className="flex items-start gap-2 rounded-2xl border border-line bg-slate-50/70 p-4">
+                      <Sparkles size={16} style={{ color }} className="mt-0.5 flex-shrink-0" />
+                      <p className="text-sm font-medium text-ink">{m.impact}</p>
+                    </div>
+                  )}
 
-                    {m.achievements && m.achievements.length > 0 && (
-                      <ul className="mt-4 space-y-2">
-                        {m.achievements.map((a, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-sm text-ink-soft">
-                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: color }} />
-                            {a}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                  {m.achievements && m.achievements.length > 0 && (
+                    <ul className="mt-4 space-y-2">
+                      {m.achievements.map((a, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ background: color }} />
+                          {a}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
-                    {m.skills && m.skills.length > 0 && (
-                      <div className="mt-5 flex flex-wrap gap-1.5">
-                        {m.skills.map((s) => (
-                          <span key={s} className="rounded-md border border-line bg-white px-2.5 py-1 text-xs text-ink-soft">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  {m.skills && m.skills.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-1.5">
+                      {m.skills.map((s) => (
+                        <span key={s} className="rounded-md border border-line bg-white px-2.5 py-1 text-xs text-ink-soft">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {!isActive && (
                 <p className="mt-5 font-mono text-xs uppercase tracking-widest text-ink-muted">Click to expand →</p>
