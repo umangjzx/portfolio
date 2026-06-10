@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useScrollEngine } from './hooks/useScrollEngine';
 import { usePerformance } from './hooks/usePerformance';
 import { checkIsMobile } from './hooks/useIsMobile';
-import { useReducedMotion } from './hooks/useReducedMotion';
 
 // Lightweight loading fallback (small footprint, no Three.js)
 import SectionLoader from './components/SectionLoader';
@@ -56,7 +55,6 @@ function App() {
   const [introComplete, setIntroComplete] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const isMobile = useMemo(() => checkIsMobile(), []);
-  const reducedMotion = useReducedMotion();
 
   // Initialize Lenis scroll engine
   useScrollEngine();
@@ -77,12 +75,10 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-transparent text-gray-900 font-sans overflow-x-hidden">
-      {/* Skip background particles when user prefers reduced motion */}
-      {!reducedMotion && (
-        <Suspense fallback={null}>
-          <ParticleSwirl />
-        </Suspense>
-      )}
+      {/* Global background particles — always rendered, CSS handles reduced-motion */}
+      <Suspense fallback={null}>
+        <ParticleSwirl />
+      </Suspense>
 
       {/* Skip to main content link for keyboard/screen reader users */}
       <a
