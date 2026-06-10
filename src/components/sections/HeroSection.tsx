@@ -190,6 +190,8 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
                 className="w-full h-full object-cover"
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
+                sizes="(max-width: 640px) 128px, 160px"
                 width={160}
                 height={160}
               />
@@ -305,6 +307,8 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
                 className="w-full h-full object-cover"
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 288px, (max-width: 1280px) 320px, 352px"
                 width={352}
                 height={352}
               />

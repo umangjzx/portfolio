@@ -1,10 +1,11 @@
-import { useState, useCallback, lazy, Suspense, Component, type ReactNode, useMemo } from 'react';
+import { useState, useCallback, useEffect, lazy, Suspense, Component, type ReactNode, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Hooks
 import { useScrollEngine } from './hooks/useScrollEngine';
 import { usePerformance } from './hooks/usePerformance';
 import { checkIsMobile } from './hooks/useIsMobile';
+import { useReducedMotion } from './hooks/useReducedMotion';
 
 // Lightweight loading fallback (small footprint, no Three.js)
 import SectionLoader from './components/SectionLoader';
@@ -26,6 +27,7 @@ const SocialHub = lazy(() => import('./components/sections/SocialHub'));
 const AILaboratory = lazy(() => import('./components/sections/AILaboratory'));
 const ContactPortal = lazy(() => import('./components/sections/ContactPortal'));
 const ResultsBanner = lazy(() => import('./components/sections/ResultsBanner'));
+const Footer = lazy(() => import('./components/sections/Footer'));
 
 // Lazy-loaded overlay components (not critical for initial render)
 const AIAssistant = lazy(() => import('./components/overlays/AIAssistant').then(m => ({ default: m.AIAssistant })));
@@ -37,6 +39,8 @@ const LevelIndicator = lazy(() => import('./components/overlays/LevelIndicator')
 const AchievementManager = lazy(() => import('./components/overlays/AchievementManager').then(m => ({ default: m.AchievementManager })));
 const DeveloperTerminal = lazy(() => import('./components/overlays/DeveloperTerminal').then(m => ({ default: m.DeveloperTerminal })));
 const ResumeButton = lazy(() => import('./components/overlays/ResumeButton'));
+const ResumeView = lazy(() => import('./components/overlays/ResumeView').then(m => ({ default: m.ResumeView })));
+const VisitorCounter = lazy(() => import('./components/overlays/VisitorCounter').then(m => ({ default: m.VisitorCounter })));
 
 // Error Boundary to prevent crashes from propagating
 class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
@@ -50,7 +54,9 @@ class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNod
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const isMobile = useMemo(() => checkIsMobile(), []);
+  const reducedMotion = useReducedMotion();
 
   // Initialize Lenis scroll engine
   useScrollEngine();
@@ -62,11 +68,21 @@ function App() {
     setIntroComplete(true);
   }, []);
 
+  // Listen for custom event from command palette to open resume view
+  useEffect(() => {
+    const handler = () => setIsResumeOpen(true);
+    window.addEventListener('open-resume-view', handler);
+    return () => window.removeEventListener('open-resume-view', handler);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-transparent text-gray-900 font-sans overflow-x-hidden">
-      <Suspense fallback={null}>
-        <ParticleSwirl />
-      </Suspense>
+      {/* Skip background particles when user prefers reduced motion */}
+      {!reducedMotion && (
+        <Suspense fallback={null}>
+          <ParticleSwirl />
+        </Suspense>
+      )}
 
       {/* Skip to main content link for keyboard/screen reader users */}
       <a
@@ -168,6 +184,12 @@ function App() {
                 <ContactPortal />
               </Suspense>
             </ErrorBoundary>
+
+            <ErrorBoundary fallback={null}>
+              <Suspense fallback={null}>
+                <Footer />
+              </Suspense>
+            </ErrorBoundary>
           </motion.main>
         )}
       </AnimatePresence>
@@ -214,6 +236,16 @@ function App() {
       <ErrorBoundary>
         <Suspense fallback={null}>
           <ResumeButton />
+        </Suspense>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <ResumeView isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+        </Suspense>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <VisitorCounter />
         </Suspense>
       </ErrorBoundary>
     </div>

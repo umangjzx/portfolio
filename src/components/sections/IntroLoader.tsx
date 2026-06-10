@@ -126,6 +126,18 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
       className="fixed inset-0 z-[100] overflow-hidden"
       style={{ background: '#fafafa' }}
     >
+      {/* Skip button — always available */}
+      <motion.button
+        onClick={finish}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: cinematic ? 1.5 : 0.5 }}
+        className="absolute bottom-6 right-6 z-50 rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-xs font-medium text-ink-soft backdrop-blur-md transition-all hover:border-indigo-300 hover:text-indigo-600"
+        aria-label="Skip intro animation"
+      >
+        Skip →
+      </motion.button>
+
       {cinematic ? (
             <>
               {/* ── 3D cinematic scene ── */}

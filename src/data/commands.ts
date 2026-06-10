@@ -11,6 +11,16 @@ export const COMMANDS: Command[] = [
     icon: '🚀',
   },
   {
+    id: 'view-resume',
+    label: 'View Resume (Inline)',
+    action: () => {
+      // Dispatched via custom event — App.tsx listens for this
+      window.dispatchEvent(new CustomEvent('open-resume-view'));
+    },
+    keywords: ['resume', 'cv', 'view', 'inline', 'print'],
+    icon: '📋',
+  },
+  {
     id: 'download-resume',
     label: 'Download Resume',
     action: () => {

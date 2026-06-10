@@ -79,3 +79,55 @@
   50% { transform: translate3d(-3%, 5%, 0) scale(0.98); opacity: 0.35; }
   75% { transform: translate3d(4%, -2%, 0) scale(1.03); opacity: 0.45; }
 }
+
+/* ── Accessibility: prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-ping,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin {
+    animation: none !important;
+  }
+}
+
+/* ── Mobile performance: content-visibility on below-fold sections ── */
+@media (max-width: 767px) {
+  #skills,
+  #projects,
+  #github,
+  #experience,
+  #ai-lab,
+  #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+}
+
+/* ── Print styles ── */
+@media print {
+  body {
+    background: white !important;
+  }
+
+  .print\\:hidden,
+  nav,
+  footer,
+  aside,
+  [aria-label="Interactive tools"],
+  canvas {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+}
