@@ -37,15 +37,15 @@ export interface LinkedInProfile {
 
 export const LINKEDIN_PROFILE: LinkedInProfile = {
   name: 'Umang Jaiswal',
-  headline: 'Full Stack AI Engineer Intern @ ProfitStory.ai | AI/ML · Data Science · Full-Stack Builder',
+  headline: 'AI & ML Intern @ profitstory.ai | AI/ML · Data Science · Full-Stack Builder',
   profileUrl: 'https://www.linkedin.com/in/umang-jaiswal-n',
   photoUrl: '/profile.jpg',
   bannerGradient: ['#0077B5', '#00A0DC'],
   connections: '500+',
   followers: '500+',
   posts: 15,
-  currentRole: 'Full Stack AI Engineer Intern',
-  currentCompany: 'ProfitStory.ai',
+  currentRole: 'AI & ML Intern',
+  currentCompany: 'profitstory.ai',
   education: 'Coimbatore Institute of Technology',
   location: 'Coimbatore, India',
   skills: [
@@ -62,13 +62,13 @@ export const LINKEDIN_PROFILE: LinkedInProfile = {
     '🏆 Winner — Data Science Hackathon (IIT Madras)',
     '📝 2 Published Research Papers (Scopus + IJRMSET)',
     '🚀 Built MedRelay — 14-agent AI clinical platform',
-    '💼 Currently shipping AI features at ProfitStory.ai',
+    '💼 Currently shipping AI features at profitstory.ai',
   ],
   recentPosts: [
     {
       id: 'post-1',
-      title: 'Shipping AI at ProfitStory.ai',
-      snippet: 'Excited to share that I\'ve joined ProfitStory.ai as a Full Stack AI Engineer Intern! Building end-to-end AI-powered features...',
+      title: 'Shipping AI at profitstory.ai',
+      snippet: 'Excited to share that I\'ve joined profitstory.ai as an AI & ML Intern! Building end-to-end AI-powered features...',
       date: 'Jun 2026',
       likes: 42,
       comments: 8,

@@ -243,7 +243,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           {/* WHY — proof line */}
           <motion.p variants={item} className="mt-4 flex items-center gap-2 text-xs text-ink-muted sm:mt-6 sm:text-sm">
             <Sparkles size={15} className="text-violet flex-shrink-0" />
-            <span>Currently at ProfitStory.ai · 11 products shipped · 4 hackathon podiums</span>
+            <span>Currently at profitstory.ai · 11 products shipped · 4 hackathon podiums</span>
           </motion.p>
 
           {/* CTAs */}

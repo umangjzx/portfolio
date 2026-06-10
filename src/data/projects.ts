@@ -342,4 +342,60 @@ export const PROJECTS: Project[] = [
     githubUrl: 'https://github.com/umangjzx',
     screenshots: [],
   },
+  {
+    id: 'ich-website',
+    title: 'ICH — Industrial Chain & Hardware',
+    tagline: 'Business website for industrial chain & hardware supply',
+    category: 'Web Design',
+    year: '2024',
+    accent: ['#F59E0B', '#10B981'],
+    description:
+      'Designed and deployed a modern business website for the family-run industrial chain & hardware supply company.',
+    problem: 'The business lacked an online presence to showcase products and reach new customers.',
+    solution:
+      'A clean, responsive website with product showcases, contact information, and a professional design to establish credibility and attract new clients.',
+    architecture: [
+      'Modern responsive design',
+      'Product catalog showcase',
+      'Deployed on Vercel',
+    ],
+    impact: 'Established a professional online presence for the business, enabling digital customer acquisition.',
+    metrics: [
+      { label: 'Status', value: 'Live' },
+      { label: 'Platform', value: 'Vercel' },
+    ],
+    lessons: ['A professional web presence immediately builds trust with new customers.'],
+    techStack: ['HTML', 'CSS', 'JavaScript'],
+    thumbnailUrl: '/assets/projects/ich.webp',
+    liveUrl: 'https://ich-chi.vercel.app',
+    screenshots: [],
+  },
+  {
+    id: 'tcl-website',
+    title: 'TCL — Business Website',
+    tagline: 'Corporate website for TCL business operations',
+    category: 'Web Design',
+    year: '2024',
+    accent: ['#06B6D4', '#8B5CF6'],
+    description:
+      'Designed and launched a professional corporate website to showcase business services and build brand identity.',
+    problem: 'Needed a polished digital storefront to communicate services and establish brand trust.',
+    solution:
+      'A visually appealing, responsive website with clear service descriptions, company information, and a modern UI deployed on Vercel.',
+    architecture: [
+      'Responsive corporate design',
+      'Service-focused layout',
+      'Deployed on Vercel',
+    ],
+    impact: 'Provides a professional brand touchpoint for clients and partners.',
+    metrics: [
+      { label: 'Status', value: 'Live' },
+      { label: 'Platform', value: 'Vercel' },
+    ],
+    lessons: ['Clear messaging and clean design outperform flashy complexity for business sites.'],
+    techStack: ['HTML', 'CSS', 'JavaScript'],
+    thumbnailUrl: '/assets/projects/tcl.webp',
+    liveUrl: 'https://tcl-ecru.vercel.app',
+    screenshots: [],
+  },
 ];

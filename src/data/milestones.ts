@@ -3,16 +3,16 @@ import type { TimelineMilestone } from '../types';
 export const MILESTONES: TimelineMilestone[] = [
   {
     id: 'entrepreneur',
-    title: 'Entrepreneur — Industrial Chain & Hardware',
+    title: 'Marketing & Sales — Industrial Chain & Hardware',
     date: 'Jan 2022 – Present',
-    company: 'Self-employed',
-    role: 'Founder & Operator',
+    company: 'Family Business',
+    role: 'Marketing & Sales',
     type: 'work',
     description:
-      'Spearheading overall business operations with a focus on integrating technology into supply chain and inventory management. Actively managing marketing and sales strategies to expand customer base and increase revenue.',
-    impact: '4+ years of hands-on business operations blending tech with traditional industry.',
-    skills: ['Business Operations', 'Supply Chain', 'Inventory Management', 'Marketing', 'Sales'],
-    achievements: ['4.5+ years running', 'Tech-integrated supply chain', 'Revenue growth through digital marketing'],
+      'Handling marketing and sales for a family-founded industrial chain & hardware business. Driving customer acquisition, managing sales strategies, and expanding market reach through digital and traditional channels.',
+    impact: '4+ years driving sales growth and customer expansion for the family business.',
+    skills: ['Marketing', 'Sales', 'Customer Acquisition', 'Business Development', 'Digital Marketing'],
+    achievements: ['4.5+ years running', 'Customer base expansion', 'Revenue growth through digital marketing'],
     order: 1,
   },
   {
@@ -199,13 +199,13 @@ export const MILESTONES: TimelineMilestone[] = [
   },
   {
     id: 'profitstory-intern',
-    title: 'Full Stack AI Engineer Intern',
+    title: 'AI & ML Intern',
     date: 'Jun 2026 – Present',
-    company: 'ProfitStory.ai',
-    role: 'Full Stack AI Engineer Intern',
+    company: 'profitstory.ai',
+    role: 'AI & ML Intern',
     type: 'work',
     description:
-      'Building end-to-end AI-powered features at ProfitStory.ai — from designing intelligent backend pipelines to shipping polished React interfaces that drive business decisions.',
+      'Building end-to-end AI-powered features at profitstory.ai — from designing intelligent backend pipelines to shipping polished React interfaces that drive business decisions.',
     impact: 'Shipping production AI features that directly impact revenue insights for users.',
     skills: ['React', 'TypeScript', 'Python', 'AI/ML', 'Full Stack', 'LLM Integration'],
     achievements: ['End-to-end AI feature development', 'Production-grade full-stack delivery'],

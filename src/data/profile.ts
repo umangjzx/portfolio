@@ -7,9 +7,9 @@ export const PROFILE = {
   roles: ['Full Stack AI Engineer', 'Data Scientist', 'ML Researcher'],
   tagline: 'I turn messy data into intelligent products.',
   oneLiner:
-    'Full Stack AI Engineer at ProfitStory.ai — shipping clinical AI, fintech models, and civic platforms from the model to the interface.',
+    'AI & ML Intern at profitstory.ai — shipping clinical AI, fintech models, and civic platforms from the model to the interface.',
   location: 'Coimbatore, India',
-  availability: 'Full Stack AI Engineer Intern @ ProfitStory.ai',
+  availability: 'AI & ML Intern @ profitstory.ai',
   email: 'umang2468jaiswal@gmail.com',
   phone: '+918098468572',
   github: 'https://github.com/umangjzx',
