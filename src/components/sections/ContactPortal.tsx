@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MapPin, Copy, Check, Calendar, Download, Mail, Phone } from 'lucide-react';
 import { PROFILE } from '../../data/profile';
-import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/BrandIcons';
 import SectionHeading from '../ui/SectionHeading';
 
 export default function ContactPortal() {
@@ -117,6 +117,15 @@ export default function ContactPortal() {
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink-soft transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
               >
                 <LinkedinIcon size={18} />
+              </a>
+              <a
+                href={PROFILE.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink-soft transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+              >
+                <InstagramIcon size={18} />
               </a>
             </div>
           </div>

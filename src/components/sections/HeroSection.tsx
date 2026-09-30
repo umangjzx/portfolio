@@ -2,7 +2,7 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Download, ArrowDown, Calendar, FolderGit2, Sparkles } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
-import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/BrandIcons';
 import { PROFILE } from '../../data/profile';
 import { checkIsMobile } from '../../hooks/useIsMobile';
 import { useLineReveal } from '../../hooks/useLineReveal';
@@ -293,6 +293,15 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
               className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
             >
               <LinkedinIcon size={19} />
+            </a>
+            <a
+              href={PROFILE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram profile"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-ink-soft backdrop-blur-md transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+            >
+              <InstagramIcon size={19} />
             </a>
           </motion.div>
         </div>

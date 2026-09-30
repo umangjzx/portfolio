@@ -1,5 +1,5 @@
 import { Heart, ArrowUp } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/BrandIcons';
 import { PROFILE } from '../../data/profile';
 
 const QUICK_LINKS = [
@@ -73,6 +73,15 @@ export default function Footer() {
             >
               <LinkedinIcon size={16} />
             </a>
+            <a
+              href={PROFILE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-ink-soft transition-all hover:scale-110 hover:border-indigo hover:text-indigo"
+            >
+              <InstagramIcon size={16} />
+            </a>
             <button
               onClick={scrollToTop}
               aria-label="Scroll to top"
@@ -107,6 +116,15 @@ export default function Footer() {
               className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft"
             >
               <LinkedinIcon size={14} />
+            </a>
+            <a
+              href={PROFILE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft"
+            >
+              <InstagramIcon size={14} />
             </a>
             <button
               onClick={scrollToTop}

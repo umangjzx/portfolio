@@ -57,6 +57,15 @@ export const COMMANDS: Command[] = [
     icon: '🔗',
   },
   {
+    id: 'instagram',
+    label: 'Instagram – umangjaiswal16._',
+    action: () => {
+      window.open('https://www.instagram.com/umangjaiswal16._/', '_blank');
+    },
+    keywords: ['instagram', 'insta', 'social', 'photos'],
+    icon: '📸',
+  },
+  {
     id: 'about',
     label: 'About Me',
     action: () => {
