@@ -4,6 +4,8 @@ export interface AIKnowledgeEntry {
   topic: AITopic;
   keywords: string[];
   responses: string[];
+  /** Conversational catch-all ("tell me about…"); only used when no topical entry matches. */
+  generic?: boolean;
 }
 
 export const AI_KNOWLEDGE: AIKnowledgeEntry[] = [
@@ -133,6 +135,7 @@ export const AI_KNOWLEDGE: AIKnowledgeEntry[] = [
   },
   {
     topic: 'experience',
+    generic: true,
     keywords: ['about', 'who', 'umang', 'tell me', 'introduce', 'yourself', 'bio'],
     responses: [
       'Umang Jaiswal is an AI/ML engineer and full-stack builder based in Coimbatore, India. He turns messy data into intelligent products — from clinical AI and fintech models to civic platforms. He has shipped 11+ products, won 4 hackathon podiums, and published 2 papers. Currently pursuing an Integrated M.Sc. in Decision and Computing Sciences at CIT with a CGPA of 8.01.',

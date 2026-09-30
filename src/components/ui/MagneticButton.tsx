@@ -62,8 +62,8 @@ export default function MagneticButton({
   const style: CSSProperties =
     variant === 'primary'
       ? {
-          background: 'linear-gradient(135deg, #6366F1, #8B5CF6 55%, #06B6D4)',
-          boxShadow: '0 10px 30px rgba(99,102,241,0.32)',
+          background: 'linear-gradient(135deg, #625fbf, #8583d0 55%, #3f3d8c)',
+          boxShadow: '0 10px 30px rgba(98, 95, 191,0.32)',
         }
       : {};
 

@@ -1,5 +1,13 @@
+import { useRef, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
+import { useLineReveal } from '../../hooks/useLineReveal';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.4 },
+  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+};
 
 export interface SectionHeadingProps {
   eyebrow: string;
@@ -11,7 +19,7 @@ export interface SectionHeadingProps {
 
 /**
  * Consistent section header: pill eyebrow → display title → subdued description.
- * Animates in once on scroll.
+ * Eyebrow/description fade up; the title reveals line-by-line via GSAP SplitText.
  */
 export default function SectionHeading({
   eyebrow,
@@ -21,27 +29,33 @@ export default function SectionHeading({
   dot = true,
 }: SectionHeadingProps) {
   const alignment = align === 'center' ? 'items-center text-center mx-auto' : 'items-start text-left';
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  useLineReveal(titleRef);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`flex flex-col ${alignment} max-w-3xl`}
-    >
-      <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft backdrop-blur-md">
+    <div className={`flex flex-col ${alignment} max-w-3xl`}>
+      <motion.span
+        {...fadeUp}
+        className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft backdrop-blur-md"
+      >
         {dot && <span className="h-1.5 w-1.5 rounded-full bg-indigo animate-pulse" />}
         {eyebrow}
-      </span>
-      <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+      </motion.span>
+      <h2
+        ref={titleRef}
+        className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl"
+      >
         {title}
       </h2>
       {description && (
-        <p className="mt-5 max-w-2xl text-lg font-light leading-relaxed text-ink-soft">
+        <motion.p
+          {...fadeUp}
+          transition={{ ...fadeUp.transition, delay: 0.25 }}
+          className="mt-5 max-w-2xl text-lg font-light leading-relaxed text-ink-soft"
+        >
           {description}
-        </p>
+        </motion.p>
       )}
-    </motion.div>
+    </div>
   );
 }

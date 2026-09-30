@@ -11,8 +11,8 @@ import { computeCounterValue } from '../../utils/computations';
 const STATUS_META: Record<LabStatus, { label: string; color: string; pulse: boolean }> = {
   live: { label: 'Live', color: '#10B981', pulse: true },
   'in-progress': { label: 'In Progress', color: '#F59E0B', pulse: true },
-  research: { label: 'Research', color: '#8B5CF6', pulse: false },
-  shipped: { label: 'Shipped', color: '#6366F1', pulse: false },
+  research: { label: 'Research', color: '#8583d0', pulse: false },
+  shipped: { label: 'Shipped', color: '#625fbf', pulse: false },
   archived: { label: 'Archived', color: '#94A3B8', pulse: false },
 };
 
@@ -122,7 +122,7 @@ function ExperimentCard({ exp, index }: { exp: LabExperiment; index: number }) {
                 whileInView={{ width: `${exp.progress}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-                style={{ background: `linear-gradient(90deg, ${status.color}, #8B5CF6)` }}
+                style={{ background: `linear-gradient(90deg, ${status.color}, #8583d0)` }}
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function AILaboratory() {
         className="pointer-events-none absolute inset-0 opacity-[0.4]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px)',
+            'linear-gradient(rgba(98, 95, 191,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(98, 95, 191,0.05) 1px, transparent 1px)',
           backgroundSize: '56px 56px',
           maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)',
           WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)',
@@ -203,7 +203,7 @@ export default function AILaboratory() {
         {/* live telemetry strip */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-4">
           {STATS.map((stat, i) => {
-            const colors = ['#6366F1', '#8B5CF6', '#06B6D4', '#EC4899'];
+            const colors = ['#625fbf', '#8583d0', '#3f3d8c', '#aeade2'];
             return (
               <div
                 key={stat.id}
@@ -232,9 +232,9 @@ export default function AILaboratory() {
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
-                ['Commits', '#6366F1', 1],
-                ['Research', '#8B5CF6', 2],
-                ['Deployments', '#06B6D4', 3],
+                ['Commits', '#625fbf', 1],
+                ['Research', '#8583d0', 2],
+                ['Deployments', '#3f3d8c', 3],
               ].map(([label, color, seed]) => (
                 <div key={label as string} className="rounded-2xl border border-line bg-slate-50/60 p-4">
                   <p className="mb-2 text-xs font-medium text-ink-soft">{label as string}</p>
@@ -255,7 +255,7 @@ export default function AILaboratory() {
             <ul className="space-y-3">
               {['Multi-agent AI pipelines', 'Predictive ML models', 'Full-stack web applications', 'Research & publications'].map((c, i) => (
                 <li key={c} className="flex items-center gap-3 text-sm text-ink-soft">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-lg" style={{ background: ['#6366F114', '#8B5CF614', '#06B6D414', '#EC489914'][i], color: ['#6366F1', '#8B5CF6', '#06B6D4', '#EC4899'][i] }}>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-lg" style={{ background: ['#6366F114', '#8B5CF614', '#06B6D414', '#EC489914'][i], color: ['#625fbf', '#8583d0', '#3f3d8c', '#aeade2'][i] }}>
                     <FlaskConical size={13} />
                   </span>
                   {c}

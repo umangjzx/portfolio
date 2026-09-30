@@ -31,9 +31,9 @@ const PIPELINE: PipelineStep[] = [
     description:
       'Start with the human problem. Talk to stakeholders, define the metric that matters, map the data landscape.',
     icon: Search,
-    color: '#6366F1',
-    tint: 'rgba(99,102,241,0.12)',
-    gradient: 'linear-gradient(135deg, #6366F1, #818CF8)',
+    color: '#625fbf',
+    tint: 'rgba(98, 95, 191,0.12)',
+    gradient: 'linear-gradient(135deg, #625fbf, #818CF8)',
     tools: ['User Interviews', 'EDA', 'Jupyter', 'SQL'],
     deliverables: ['Problem statement', 'Success metric', 'Data audit'],
     duration: '1–3 days',
@@ -45,9 +45,9 @@ const PIPELINE: PipelineStep[] = [
     description:
       'Rapid iteration: baseline → ensemble → evaluate. Track experiments, pick the architecture that ships.',
     icon: Brain,
-    color: '#8B5CF6',
-    tint: 'rgba(139,92,246,0.12)',
-    gradient: 'linear-gradient(135deg, #8B5CF6, #A78BFA)',
+    color: '#8583d0',
+    tint: 'rgba(133, 131, 208,0.12)',
+    gradient: 'linear-gradient(135deg, #8583d0, #aeade2)',
     tools: ['PyTorch', 'Scikit-learn', 'LangChain', 'W&B'],
     deliverables: ['Trained model', 'Evaluation report', 'Architecture decision'],
     duration: '3–7 days',
@@ -59,9 +59,9 @@ const PIPELINE: PipelineStep[] = [
     description:
       'Models are useless in notebooks. Full stack: APIs, real-time pipelines, and polished interfaces.',
     icon: Rocket,
-    color: '#06B6D4',
-    tint: 'rgba(6,182,212,0.12)',
-    gradient: 'linear-gradient(135deg, #06B6D4, #22D3EE)',
+    color: '#3f3d8c',
+    tint: 'rgba(63, 61, 140,0.12)',
+    gradient: 'linear-gradient(135deg, #3f3d8c, #22D3EE)',
     tools: ['FastAPI', 'React', 'Docker', 'Vercel'],
     deliverables: ['Production API', 'Frontend UI', 'CI/CD pipeline'],
     duration: '5–14 days',
@@ -73,9 +73,9 @@ const PIPELINE: PipelineStep[] = [
     description:
       'Ship, observe, improve. Instrument everything, monitor drift, close the feedback loop.',
     icon: RefreshCw,
-    color: '#EC4899',
-    tint: 'rgba(236,72,153,0.12)',
-    gradient: 'linear-gradient(135deg, #EC4899, #F472B6)',
+    color: '#aeade2',
+    tint: 'rgba(174, 173, 226,0.12)',
+    gradient: 'linear-gradient(135deg, #aeade2, #F472B6)',
     tools: ['Monitoring', 'A/B Tests', 'User Feedback', 'Retrain'],
     deliverables: ['Impact report', 'V2 roadmap', 'Continuous improvement'],
     duration: 'Ongoing',
@@ -83,10 +83,10 @@ const PIPELINE: PipelineStep[] = [
 ];
 
 const PRINCIPLES = [
-  { icon: BarChart3, label: 'Metric-driven', desc: 'Every decision ties to a measurable outcome.', color: '#6366F1' },
-  { icon: Layers, label: 'Full-stack thinking', desc: 'Data → Model → API → UI — I own the whole loop.', color: '#8B5CF6' },
-  { icon: FlaskConical, label: 'Experiment fast', desc: 'Fail cheap, learn quick, ship the winner.', color: '#06B6D4' },
-  { icon: Sparkles, label: 'User-first', desc: 'A model is only as good as the decision it changes.', color: '#EC4899' },
+  { icon: BarChart3, label: 'Metric-driven', desc: 'Every decision ties to a measurable outcome.', color: '#625fbf' },
+  { icon: Layers, label: 'Full-stack thinking', desc: 'Data → Model → API → UI — I own the whole loop.', color: '#8583d0' },
+  { icon: FlaskConical, label: 'Experiment fast', desc: 'Fail cheap, learn quick, ship the winner.', color: '#3f3d8c' },
+  { icon: Sparkles, label: 'User-first', desc: 'A model is only as good as the decision it changes.', color: '#aeade2' },
 ];
 
 /** Auto-advancing interval (ms) */
@@ -219,19 +219,19 @@ export default function HowIWork() {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute -top-[20%] -left-[10%] h-[50vh] w-[50vh] rounded-full opacity-[0.08]"
-          style={{ background: 'radial-gradient(circle, #6366F1, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #625fbf, transparent 70%)' }}
           animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute -bottom-[15%] -right-[10%] h-[45vh] w-[45vh] rounded-full opacity-[0.08]"
-          style={{ background: 'radial-gradient(circle, #EC4899, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #aeade2, transparent 70%)' }}
           animate={{ x: [0, -25, 0], y: [0, -15, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute top-[30%] right-[20%] h-[30vh] w-[30vh] rounded-full opacity-[0.06]"
-          style={{ background: 'radial-gradient(circle, #06B6D4, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, #3f3d8c, transparent 70%)' }}
           animate={{ x: [0, 15, 0], y: [0, -20, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -241,7 +241,7 @@ export default function HowIWork() {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.3]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(98, 95, 191,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(98, 95, 191,0.05) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
           maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)',
           WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)',
@@ -267,7 +267,7 @@ export default function HowIWork() {
             <div className="hidden sm:block absolute inset-x-0 top-[26px] h-1.5 rounded-full bg-gray-100">
               <motion.div
                 className="h-full rounded-full"
-                style={{ background: 'linear-gradient(90deg, #6366F1, #8B5CF6, #06B6D4, #EC4899)' }}
+                style={{ background: 'linear-gradient(90deg, #625fbf, #8583d0, #3f3d8c, #aeade2)' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ type: 'spring', stiffness: 60, damping: 18 }}
               />
@@ -287,7 +287,7 @@ export default function HowIWork() {
             <div className="sm:hidden absolute left-[22px] top-0 bottom-0 w-1.5 rounded-full bg-gray-100">
               <motion.div
                 className="w-full rounded-full"
-                style={{ background: 'linear-gradient(180deg, #6366F1, #8B5CF6, #06B6D4, #EC4899)' }}
+                style={{ background: 'linear-gradient(180deg, #625fbf, #8583d0, #3f3d8c, #aeade2)' }}
                 animate={{ height: `${progress}%` }}
                 transition={{ type: 'spring', stiffness: 60, damping: 18 }}
               />

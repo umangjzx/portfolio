@@ -103,7 +103,7 @@ export function GitHubCenter() {
       {/* Soft background accent */}
       <div
         className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none opacity-30"
-        style={{ background: 'radial-gradient(circle, rgba(66,133,244,0.08) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.08) 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -245,7 +245,7 @@ export function GitHubCenter() {
                     username={GITHUB_USERNAME}
                     colorScheme="light"
                     theme={{
-                      light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1'],
+                      light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#625fbf'],
                     }}
                   />
                 </div>
@@ -271,7 +271,7 @@ export function GitHubCenter() {
                     border: '1px solid rgba(0,0,0,0.07)',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
                   }}
-                  whileHover={{ boxShadow: '0 12px 40px rgba(66,133,244,0.12)', y: -2, border: '1px solid rgba(66,133,244,0.2)' } as any}
+                  whileHover={{ boxShadow: '0 12px 40px rgba(98, 95, 191,0.12)', y: -2, borderColor: 'rgba(98, 95, 191,0.2)' }}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <BookOpen size={18} className="text-gray-400 group-hover:text-blue-500 transition-colors" />

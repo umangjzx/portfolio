@@ -15,11 +15,12 @@ gsap.registerPlugin(ScrollTrigger);
 const SECTION_IDS = [
   'hero',
   'about',
+  'process',
   'skills',
   'projects',
+  'github',
   'experience',
   'ai-lab',
-  'testimonials',
   'contact',
 ] as const;
 

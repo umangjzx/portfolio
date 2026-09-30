@@ -5,6 +5,7 @@ import MagneticButton from '../ui/MagneticButton';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
 import { PROFILE } from '../../data/profile';
 import { checkIsMobile } from '../../hooks/useIsMobile';
+import { useLineReveal } from '../../hooks/useLineReveal';
 
 export interface HeroSectionProps {
   isVisible?: boolean;
@@ -28,6 +29,8 @@ function scrollToId(id: string) {
 
 export default function HeroSection({ isVisible = true }: HeroSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
+  const nameRef = useRef<HTMLHeadingElement>(null);
+  useLineReveal(nameRef, { onScroll: false, delay: 0.2 });
   const isMobile = checkIsMobile();
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
 
@@ -69,15 +72,15 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
         >
           <div
             className="absolute -left-20 top-24 h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite', willChange: 'transform, opacity' }}
+            style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.45), transparent 70%)', animation: 'aurora 16s ease-in-out infinite', willChange: 'transform, opacity' }}
           />
           <div
             className="absolute -right-16 bottom-16 h-[460px] w-[460px] rounded-full opacity-40 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse', willChange: 'transform, opacity' }}
+            style={{ background: 'radial-gradient(circle, rgba(63, 61, 140,0.4), transparent 70%)', animation: 'aurora 20s ease-in-out infinite reverse', willChange: 'transform, opacity' }}
           />
           <div
             className="absolute left-1/2 top-1/3 h-[360px] w-[360px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite', willChange: 'transform, opacity' }}
+            style={{ background: 'radial-gradient(circle, rgba(133, 131, 208,0.4), transparent 70%)', animation: 'aurora 18s ease-in-out infinite', willChange: 'transform, opacity' }}
           />
           {/* Extra teal and rose accents for color depth */}
           <div
@@ -100,7 +103,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           transition={{ type: 'spring', stiffness: 50, damping: 20 }}
           style={{
             backgroundImage:
-              'linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px)',
+              'linear-gradient(rgba(98, 95, 191,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(98, 95, 191,0.06) 1px, transparent 1px)',
             backgroundSize: '64px 64px',
             maskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
             WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 45%, black 30%, transparent 75%)',
@@ -117,13 +120,13 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           transition={{ type: 'spring', stiffness: 40, damping: 20 }}
         >
           {[
-            { l: '18%', t: '28%', c: '#6366F1', s: 8 },
-            { l: '82%', t: '22%', c: '#06B6D4', s: 10 },
-            { l: '74%', t: '70%', c: '#8B5CF6', s: 7 },
-            { l: '24%', t: '74%', c: '#EC4899', s: 9 },
-            { l: '50%', t: '14%', c: '#6366F1', s: 6 },
-            { l: '90%', t: '50%', c: '#14B8A6', s: 7 },
-            { l: '10%', t: '55%', c: '#F43F5E', s: 6 },
+            { l: '18%', t: '28%', c: '#625fbf', s: 8 },
+            { l: '82%', t: '22%', c: '#3f3d8c', s: 10 },
+            { l: '74%', t: '70%', c: '#8583d0', s: 7 },
+            { l: '24%', t: '74%', c: '#aeade2', s: 9 },
+            { l: '50%', t: '14%', c: '#625fbf', s: 6 },
+            { l: '90%', t: '50%', c: '#2b2a5a', s: 7 },
+            { l: '10%', t: '55%', c: '#8583d0', s: 6 },
           ].map((d, i) => (
             <motion.span
               key={i}
@@ -142,18 +145,18 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           {/* Subtle gradient accent at top */}
           <div
             className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[90vw] h-[40vh] rounded-full opacity-[0.12]"
-            style={{ background: 'radial-gradient(ellipse, #6366f1, transparent 70%)' }}
+            style={{ background: 'radial-gradient(ellipse, #625fbf, transparent 70%)' }}
           />
           {/* Bottom accent */}
           <div
             className="absolute -bottom-[5%] -right-[10%] w-[50vw] h-[50vw] rounded-full opacity-[0.08]"
-            style={{ background: 'radial-gradient(circle, #06b6d4, transparent 65%)' }}
+            style={{ background: 'radial-gradient(circle, #3f3d8c, transparent 65%)' }}
           />
           {/* Fine grid texture */}
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: 'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(98, 95, 191,1) 1px, transparent 1px), linear-gradient(90deg, rgba(98, 95, 191,1) 1px, transparent 1px)',
               backgroundSize: '48px 48px',
               maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%)',
               WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%)',
@@ -183,7 +186,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           className="mb-8 flex justify-center lg:hidden"
         >
           <div className="relative">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-[3px] border-white shadow-[0_12px_40px_rgba(99,102,241,0.15)] ring-1 ring-indigo-100/50">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-[3px] border-white shadow-[0_12px_40px_rgba(98, 95, 191,0.15)] ring-1 ring-indigo-100/50">
               <img
                 src={PROFILE.photoUrl}
                 alt={PROFILE.name}
@@ -216,13 +219,13 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           </motion.div>
 
           {/* WHO — name */}
-          <motion.h1
-            variants={item}
+          <h1
+            ref={nameRef}
             className="font-display text-[12vw] font-semibold leading-[0.92] tracking-tight sm:text-6xl md:text-7xl lg:text-[6.5rem]"
           >
             <span className="text-gradient">{PROFILE.firstName}</span>{' '}
             <span className="text-ink">{PROFILE.lastName}</span>
-          </motion.h1>
+          </h1>
 
           {/* WHAT — tagline (the hook) */}
           <motion.p
@@ -300,7 +303,7 @@ export default function HeroSection({ isVisible = true }: HeroSectionProps) {
           className="hidden lg:flex justify-center"
         >
           <div className="relative">
-            <div className="w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(99,102,241,0.18)] ring-1 ring-indigo-100/50">
+            <div className="w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-[2rem] overflow-hidden border-[3px] border-white shadow-[0_20px_60px_rgba(98, 95, 191,0.18)] ring-1 ring-indigo-100/50">
               <img
                 src={PROFILE.photoUrl}
                 alt={PROFILE.name}

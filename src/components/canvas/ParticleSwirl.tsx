@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { checkIsMobile } from '../../hooks/useIsMobile';
 import { detectTouchDevice } from '../../services/mouseTracker';
 import { usePortfolioStore } from '../../store/portfolioStore';
+import DotGrid from '../ui/DotGrid';
 
 /**
  * Throttled mouse position tracker — updates at most every 32ms (~30fps)
@@ -45,6 +46,54 @@ function useThrottledMouse(camera: THREE.Camera, disabled: boolean) {
   return { mouseRef, activeRef };
 }
 
+/** Seeds the particle sphere once per mount (kept out of render for purity). */
+function buildSwirlParticles(count: number) {
+  const positions = new Float32Array(count * 3);
+  const originalPositions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+
+  const color1 = new THREE.Color('#625fbf');
+  const color2 = new THREE.Color('#3f3d8c');
+  const color3 = new THREE.Color('#8583d0');
+  const color4 = new THREE.Color('#2b2a5a');
+  const color5 = new THREE.Color('#aeade2');
+
+  for (let i = 0; i < count; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(Math.random() * 2 - 1);
+    const radius = 6 + Math.random() * 8;
+
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi);
+
+    positions[i * 3] = x;
+    positions[i * 3 + 1] = y;
+    positions[i * 3 + 2] = z;
+    originalPositions[i * 3] = x;
+    originalPositions[i * 3 + 1] = y;
+    originalPositions[i * 3 + 2] = z;
+
+    const mixRatio = Math.random();
+    const finalColor = new THREE.Color();
+    if (y > 3) {
+      finalColor.lerpColors(color2, color4, mixRatio);
+    } else if (y > 0) {
+      finalColor.lerpColors(color3, color2, mixRatio);
+    } else if (y > -3) {
+      finalColor.lerpColors(color1, color3, mixRatio);
+    } else {
+      finalColor.lerpColors(color1, color5, mixRatio);
+    }
+
+    colors[i * 3] = finalColor.r;
+    colors[i * 3 + 1] = finalColor.g;
+    colors[i * 3 + 2] = finalColor.b;
+  }
+
+  return { positions, originalPositions, colors };
+}
+
 function Particles({ count = 1200, disableRepulsion = false }: { count?: number; disableRepulsion?: boolean }) {
   const points = useRef<THREE.Points>(null);
   const { camera } = useThree();
@@ -54,52 +103,7 @@ function Particles({ count = 1200, disableRepulsion = false }: { count?: number;
   const invMatrix = useMemo(() => new THREE.Matrix4(), []);
   const localMouse = useMemo(() => new THREE.Vector3(), []);
 
-  const particlesData = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const originalPositions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-
-    const color1 = new THREE.Color('#6366F1');
-    const color2 = new THREE.Color('#06B6D4');
-    const color3 = new THREE.Color('#8B5CF6');
-    const color4 = new THREE.Color('#14B8A6');
-    const color5 = new THREE.Color('#EC4899');
-
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(Math.random() * 2 - 1);
-      const radius = 6 + Math.random() * 8;
-
-      const x = radius * Math.sin(phi) * Math.cos(theta);
-      const y = radius * Math.sin(phi) * Math.sin(theta);
-      const z = radius * Math.cos(phi);
-
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-      originalPositions[i * 3] = x;
-      originalPositions[i * 3 + 1] = y;
-      originalPositions[i * 3 + 2] = z;
-
-      const mixRatio = Math.random();
-      const finalColor = new THREE.Color();
-      if (y > 3) {
-        finalColor.lerpColors(color2, color4, mixRatio);
-      } else if (y > 0) {
-        finalColor.lerpColors(color3, color2, mixRatio);
-      } else if (y > -3) {
-        finalColor.lerpColors(color1, color3, mixRatio);
-      } else {
-        finalColor.lerpColors(color1, color5, mixRatio);
-      }
-
-      colors[i * 3] = finalColor.r;
-      colors[i * 3 + 1] = finalColor.g;
-      colors[i * 3 + 2] = finalColor.b;
-    }
-
-    return { positions, originalPositions, colors };
-  }, [count]);
+  const particlesData = useMemo(() => buildSwirlParticles(count), [count]);
 
   // Frame counter for skipping repulsion on alternate frames (low-end optimization)
   const frameCount = useRef(0);
@@ -208,28 +212,28 @@ function MobileBackground() {
       <div
         className="absolute -top-[20%] -left-[15%] w-[70vw] h-[70vw] rounded-full opacity-[0.22]"
         style={{
-          background: 'radial-gradient(circle, #6366f1, transparent 65%)',
+          background: 'radial-gradient(circle, #625fbf, transparent 65%)',
           animation: 'meshFloat1 14s ease-in-out infinite',
         }}
       />
       <div
         className="absolute -bottom-[15%] -right-[10%] w-[65vw] h-[65vw] rounded-full opacity-[0.18]"
         style={{
-          background: 'radial-gradient(circle, #06b6d4, transparent 65%)',
+          background: 'radial-gradient(circle, #3f3d8c, transparent 65%)',
           animation: 'meshFloat2 18s ease-in-out infinite',
         }}
       />
       <div
         className="absolute top-[40%] left-[20%] w-[50vw] h-[50vw] rounded-full opacity-[0.14]"
         style={{
-          background: 'radial-gradient(circle, #8b5cf6, transparent 60%)',
+          background: 'radial-gradient(circle, #8583d0, transparent 60%)',
           animation: 'meshFloat3 16s ease-in-out infinite',
         }}
       />
       <div
         className="absolute top-[10%] right-[5%] w-[40vw] h-[40vw] rounded-full opacity-[0.1]"
         style={{
-          background: 'radial-gradient(circle, #ec4899, transparent 65%)',
+          background: 'radial-gradient(circle, #aeade2, transparent 65%)',
           animation: 'meshFloat4 20s ease-in-out infinite',
         }}
       />
@@ -237,14 +241,14 @@ function MobileBackground() {
       <div
         className="absolute top-[60%] left-[50%] w-[35vw] h-[35vw] rounded-full opacity-[0.08]"
         style={{
-          background: 'radial-gradient(circle, #f43f5e, transparent 60%)',
+          background: 'radial-gradient(circle, #8583d0, transparent 60%)',
           animation: 'meshFloat1 22s ease-in-out infinite 3s',
         }}
       />
       <div
         className="absolute top-[5%] left-[40%] w-[30vw] h-[30vw] rounded-full opacity-[0.07]"
         style={{
-          background: 'radial-gradient(circle, #14b8a6, transparent 60%)',
+          background: 'radial-gradient(circle, #2b2a5a, transparent 60%)',
           animation: 'meshFloat2 24s ease-in-out infinite 2s',
         }}
       />
@@ -278,21 +282,14 @@ function MobileBackground() {
       {/* Thin decorative lines */}
       <div
         className="absolute top-[20%] left-0 right-0 h-px opacity-[0.06]"
-        style={{ background: 'linear-gradient(90deg, transparent, #6366f1, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, #625fbf, transparent)' }}
       />
       <div
         className="absolute top-[60%] left-0 right-0 h-px opacity-[0.04]"
-        style={{ background: 'linear-gradient(90deg, transparent, #06b6d4, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, #3f3d8c, transparent)' }}
       />
 
-      {/* Subtle grid overlay for texture */}
-      <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
+      <DotGrid />
 
       <style>{`
         @keyframes meshFloat1 {
@@ -359,6 +356,7 @@ export function ParticleSwirl() {
         <FrameDriver />
         <Particles count={count} disableRepulsion={isTouch} />
       </Canvas>
+      <DotGrid />
     </div>
   );
 }

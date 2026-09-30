@@ -18,6 +18,8 @@ export function useFocusTrap(
   }
 ) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const onEscape = options?.onEscape;
+  const initialFocusRef = options?.initialFocusRef;
 
   useEffect(() => {
     if (!isActive || !containerRef.current) return;
@@ -26,8 +28,8 @@ export function useFocusTrap(
 
     // Focus the initial element or first focusable element
     const focusInitial = () => {
-      if (options?.initialFocusRef?.current) {
-        options.initialFocusRef.current.focus();
+      if (initialFocusRef?.current) {
+        initialFocusRef.current.focus();
       } else {
         const firstFocusable = getFocusableElements(container)[0];
         firstFocusable?.focus();
@@ -38,9 +40,9 @@ export function useFocusTrap(
     const timer = setTimeout(focusInitial, 50);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && options?.onEscape) {
+      if (e.key === 'Escape' && onEscape) {
         e.preventDefault();
-        options.onEscape();
+        onEscape();
         return;
       }
 
@@ -78,7 +80,7 @@ export function useFocusTrap(
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = prevOverflow;
     };
-  }, [isActive, options?.onEscape, options?.initialFocusRef]);
+  }, [isActive, onEscape, initialFocusRef]);
 
   return containerRef;
 }

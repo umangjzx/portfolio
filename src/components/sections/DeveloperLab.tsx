@@ -6,7 +6,7 @@ export function DeveloperLab() {
     <section id="lab" className="py-32 px-6 md:px-12 lg:px-24 bg-transparent relative overflow-hidden">
       <div
         className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(133, 131, 208,0.12) 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -61,8 +61,8 @@ export function DeveloperLab() {
                 {
                   title: 'WebGPU Physics Engine',
                   status: 'Research',
-                  statusColor: '#4285F4',
-                  statusBg: 'rgba(66,133,244,0.08)',
+                  statusColor: '#625fbf',
+                  statusBg: 'rgba(98, 95, 191,0.08)',
                   desc: 'Testing WebGPU capabilities for massive particle simulations in the browser.',
                   stack: ['Rust', 'WASM', 'WebGPU'],
                 },
@@ -118,7 +118,7 @@ export function DeveloperLab() {
                 {
                   title: 'Advanced Distributed Systems',
                   desc: 'Deep dive into consensus algorithms, vector clocks, and CRDTs.',
-                  color: '#4285F4',
+                  color: '#625fbf',
                   active: true,
                 },
                 {

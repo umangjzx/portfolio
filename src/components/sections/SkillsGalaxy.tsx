@@ -5,15 +5,20 @@ import { SKILLS, SKILL_CLUSTERS } from '../../data/skills';
 import { PROJECTS } from '../../data/projects';
 import type { SkillPlanet, SkillClusterId } from '../../types';
 import SectionHeading from '../ui/SectionHeading';
+import Marquee from '../ui/Marquee';
 import { usePortfolioStore } from '../../store/portfolioStore';
-
-export interface SkillsGalaxyProps {
-  isVisible?: boolean;
-}
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
+// Every skill and tool once, for the scrolling stack strip.
+const STACK_ITEMS = [...new Set(SKILLS.flatMap((s) => [s.name, ...(s.tools ?? [])]))].map((name) => (
+  <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-line bg-white/70 px-4 py-2 text-sm font-medium text-ink-soft backdrop-blur-md">
+    <span className="h-1.5 w-1.5 rounded-full bg-accent-400" aria-hidden />
+    {name}
+  </span>
+));
+
+export default function SkillsGalaxy() {
   const [selected, setSelected] = useState<SkillPlanet | null>(null);
   const [activeCluster, setActiveCluster] = useState<SkillClusterId | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -52,17 +57,17 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
       <div className="pointer-events-none absolute inset-0">
         <div
           className="absolute top-20 -left-40 h-[600px] w-[600px] rounded-full opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.08) 0%, transparent 70%)' }}
         />
         <div
           className="absolute bottom-20 -right-40 h-[500px] w-[500px] rounded-full opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(133, 131, 208,0.08) 0%, transparent 70%)' }}
         />
         <div
           className="absolute inset-0 opacity-[0.3]"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 1px 1px, rgba(99,102,241,0.06) 1px, transparent 0)',
+              'radial-gradient(circle at 1px 1px, rgba(98, 95, 191,0.06) 1px, transparent 0)',
             backgroundSize: '40px 40px',
             maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%)',
             WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%)',
@@ -82,6 +87,10 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
           description="The tools and technologies I use to build intelligent products — from model to interface."
         />
 
+        <div className="mx-auto mt-10 max-w-5xl">
+          <Marquee items={STACK_ITEMS} label="Tech stack" />
+        </div>
+
         {/* Cluster filter — pill style with glow */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -94,7 +103,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
             onClick={() => setActiveCluster(null)}
             className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
               activeCluster === null
-                ? 'border-indigo/50 bg-gradient-to-r from-indigo to-violet text-white shadow-[0_4px_20px_rgba(99,102,241,0.35)]'
+                ? 'border-indigo/50 bg-gradient-to-r from-indigo to-violet text-white shadow-[0_4px_20px_rgba(98, 95, 191,0.35)]'
                 : 'border-line bg-white/80 text-ink-soft hover:border-indigo/40 hover:text-ink hover:shadow-md backdrop-blur-md'
             }`}
           >
@@ -268,7 +277,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
               {/* Color accent at top */}
               <div
                 className="absolute inset-x-0 top-0 h-1"
-                style={{ background: `linear-gradient(90deg, ${selected.color}, #8B5CF6)` }}
+                style={{ background: `linear-gradient(90deg, ${selected.color}, #8583d0)` }}
               />
 
               <button
@@ -308,7 +317,7 @@ export default function SkillsGalaxy(_props: SkillsGalaxyProps) {
                       initial={{ width: 0 }}
                       animate={{ width: `${selected.proficiency}%` }}
                       transition={{ duration: 0.9, ease: 'easeOut' }}
-                      style={{ background: `linear-gradient(90deg, ${selected.color}, #8B5CF6)` }}
+                      style={{ background: `linear-gradient(90deg, ${selected.color}, #8583d0)` }}
                     />
                   </div>
                 </div>

@@ -13,11 +13,15 @@ function createAIResponder(): AIResponderService {
   function respond(question: string): AIResponse {
     const lowerQuestion = question.toLowerCase();
 
-    // Count keyword matches for each topic
+    // Count keyword matches for each topic. Topical entries always outrank
+    // generic ones, so "tell me about your projects" routes to projects.
     let bestTopic: (typeof AI_KNOWLEDGE)[number] | null = null;
     let bestMatchCount = 0;
 
-    for (const entry of AI_KNOWLEDGE) {
+    const ordered = [...AI_KNOWLEDGE.filter((e) => !e.generic), ...AI_KNOWLEDGE.filter((e) => e.generic)];
+    for (const entry of ordered) {
+      if (entry.generic && bestTopic) break;
+
       const matchCount = entry.keywords.filter((keyword) =>
         lowerQuestion.includes(keyword.toLowerCase())
       ).length;

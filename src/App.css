@@ -2,7 +2,7 @@
 
 /* ── Override gradient text with richer color stops ── */
 .text-gradient {
-  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 20%, #06B6D4 50%, #14B8A6 75%, #EC4899 100%);
+  background: linear-gradient(135deg, #625fbf 0%, #8583d0 20%, #3f3d8c 50%, #2b2a5a 75%, #aeade2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -76,11 +76,11 @@
     background: #fafafa;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #6366F1, #8B5CF6, #14B8A6, #06B6D4, #EC4899);
+    background: linear-gradient(180deg, #625fbf, #8583d0, #2b2a5a, #3f3d8c, #aeade2);
     border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #4F46E5, #7C3AED, #0D9488, #0891B2, #DB2777);
+    background: linear-gradient(180deg, #4d4aa9, #3f3d8c, #0D9488, #34336f, #8583d0);
   }
 }
 

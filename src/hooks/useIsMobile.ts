@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 
 /**
  * Centralized mobile detection hook.
  *
- * Uses a consistent breakpoint (768px) and listens for resize events
+ * Uses a consistent breakpoint (768px) and subscribes to a media query
  * so components react to orientation changes and window resizing.
  *
  * Also exposes a static helper for non-hook contexts (e.g., Canvas setup).
  */
 
 const MOBILE_BREAKPOINT = 768;
+const QUERY = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`;
 
 /** Static check — use in non-React contexts or initial render */
 export function checkIsMobile(): boolean {
@@ -17,23 +18,16 @@ export function checkIsMobile(): boolean {
   return window.innerWidth < MOBILE_BREAKPOINT;
 }
 
+function subscribe(onChange: () => void) {
+  const mql = window.matchMedia(QUERY);
+  mql.addEventListener('change', onChange);
+  return () => mql.removeEventListener('change', onChange);
+}
+
+const getSnapshot = () => window.matchMedia(QUERY).matches;
+const getServerSnapshot = () => false;
+
 /** Reactive hook — re-renders on resize/orientation change */
 export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(checkIsMobile);
-
-  useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-    };
-
-    // Set initial value from media query (handles SSR hydration edge case)
-    setIsMobile(mql.matches);
-
-    mql.addEventListener('change', handleChange);
-    return () => mql.removeEventListener('change', handleChange);
-  }, []);
-
-  return isMobile;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

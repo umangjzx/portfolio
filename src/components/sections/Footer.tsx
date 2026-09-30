@@ -23,7 +23,7 @@ export default function Footer() {
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, #6366F1, #8B5CF6, #06B6D4, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, #625fbf, #8583d0, #3f3d8c, transparent)' }}
       />
 
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-14 md:px-12 lg:px-24">

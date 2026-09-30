@@ -18,7 +18,7 @@ function spanFor(p: Project, i: number): string {
 }
 
 function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: (p: Project) => void }) {
-  const [c1, c2] = project.accent ?? ['#6366F1', '#8B5CF6'];
+  const [c1, c2] = project.accent ?? ['#625fbf', '#8583d0'];
   const big = project.featured && index === 0;
 
   return (
@@ -29,11 +29,10 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: (index % 4) * 0.06 }}
     >
-      <TiltCard spotlightColor={`${c1}26`} className="h-full" onClick={() => onOpen(project)}>
+      <TiltCard spotlightColor={`${c1}26`} className="h-full" onClick={() => onOpen(project)} ariaLabel={`Open case study: ${project.title}`}>
         <article
           className="group relative flex h-full min-h-[200px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-line p-5 sm:min-h-[230px] sm:rounded-3xl sm:p-7"
           style={{ background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(20px)', boxShadow: '0 8px 32px rgba(15,23,42,0.05)' }}
-          aria-label={`Open case study: ${project.title}`}
         >
           {/* accent corner glow */}
           <div
@@ -94,7 +93,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
 }
 
 function CaseStudyModal({ project, onClose }: { project: Project; onClose: () => void }) {
-  const [c1, c2] = project.accent ?? ['#6366F1', '#8B5CF6'];
+  const [c1, c2] = project.accent ?? ['#625fbf', '#8583d0'];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -107,8 +106,8 @@ function CaseStudyModal({ project, onClose }: { project: Project; onClose: () =>
   }, [onClose]);
 
   const blocks = [
-    { icon: Target, label: 'Problem', body: project.problem, color: '#EC4899' },
-    { icon: Lightbulb, label: 'Solution', body: project.solution, color: '#6366F1' },
+    { icon: Target, label: 'Problem', body: project.problem, color: '#aeade2' },
+    { icon: Lightbulb, label: 'Solution', body: project.solution, color: '#625fbf' },
     { icon: TrendingUp, label: 'Impact', body: project.impact, color: '#10B981' },
   ].filter((b) => b.body);
 

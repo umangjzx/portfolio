@@ -86,8 +86,8 @@ function App() {
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
         style={{
           background: 'rgba(10, 10, 15, 0.95)',
-          border: '1px solid rgba(139, 92, 246, 0.5)',
-          color: '#a78bfa',
+          border: '1px solid rgba(133, 131, 208, 0.5)',
+          color: '#aeade2',
         }}
       >
         Skip to main content

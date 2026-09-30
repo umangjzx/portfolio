@@ -2,9 +2,9 @@
  * Design tokens for the portfolio — premium light theme.
  *
  * Palette (2026 founder/AI-builder aesthetic):
- *   Primary   #6366F1  Indigo
- *   Secondary #8B5CF6  Violet
- *   Accent    #06B6D4  Cyan
+ *   Primary   #625fbf  Indigo
+ *   Secondary #8583d0  Violet
+ *   Accent    #3f3d8c  Cyan
  *   Surface   #FAFAFA  Background
  *   Ink       #0F172A  Text
  *
@@ -15,13 +15,13 @@
 
 export const THEME = {
   colors: {
-    primary: '#6366F1', // Indigo
-    secondary: '#8B5CF6', // Violet
+    primary: '#625fbf', // Indigo
+    secondary: '#8583d0', // Violet
     accent: {
-      cyan: '#06B6D4',
-      pink: '#EC4899',
-      purple: '#8B5CF6',
-      blue: '#6366F1',
+      cyan: '#3f3d8c',
+      pink: '#aeade2',
+      purple: '#8583d0',
+      blue: '#625fbf',
       glassWhite: 'rgba(255, 255, 255, 0.72)',
     },
     background: '#FAFAFA',
@@ -35,10 +35,10 @@ export const THEME = {
     error: '#EF4444',
     success: '#10B981',
     gradient: {
-      primary: 'linear-gradient(135deg, #6366F1, #8B5CF6)',
-      accent: 'linear-gradient(135deg, #8B5CF6, #06B6D4)',
-      warm: 'linear-gradient(135deg, #6366F1, #06B6D4)',
-      glow: 'linear-gradient(135deg, #8B5CF6, #6366F1)',
+      primary: 'linear-gradient(135deg, #625fbf, #8583d0)',
+      accent: 'linear-gradient(135deg, #8583d0, #3f3d8c)',
+      warm: 'linear-gradient(135deg, #625fbf, #3f3d8c)',
+      glow: 'linear-gradient(135deg, #8583d0, #625fbf)',
     },
   },
   glassmorphism: {
@@ -65,10 +65,10 @@ export const THEME = {
 
 /** Brand palette as plain hex strings for convenient reuse. */
 export const PALETTE = {
-  indigo: '#6366F1',
-  violet: '#8B5CF6',
-  cyan: '#06B6D4',
-  pink: '#EC4899',
+  indigo: '#625fbf',
+  violet: '#8583d0',
+  cyan: '#3f3d8c',
+  pink: '#aeade2',
   emerald: '#10B981',
   amber: '#F59E0B',
   bg: '#FAFAFA',

@@ -22,15 +22,15 @@ function logConsoleEasterEgg(): void {
   );
   console.log(
     '%c🚀 Umang Jaiswal | Entrepreneur • Developer • AI Builder',
-    'color: #8B5CF6; font-size: 16px; font-weight: bold; padding: 8px 0;'
+    'color: #8583d0; font-size: 16px; font-weight: bold; padding: 8px 0;'
   );
   console.log(
     '%c💡 Hint: Try the Konami Code (↑↑↓↓←→←→BA) for a surprise!',
-    'color: #EC4899; font-size: 12px; font-style: italic;'
+    'color: #aeade2; font-size: 12px; font-style: italic;'
   );
   console.log(
     '%c⚡ Built with React + TypeScript + Vite + Three.js + Framer Motion',
-    'color: #06B6D4; font-size: 11px;'
+    'color: #3f3d8c; font-size: 11px;'
   );
 }
 
@@ -127,7 +127,7 @@ export default function KonamiEasterEgg() {
           position: 'absolute',
           inset: 0,
           boxShadow:
-            'inset 0 0 120px rgba(0, 245, 255, 0.08), inset 0 0 60px rgba(139, 92, 246, 0.06)',
+            'inset 0 0 120px rgba(0, 245, 255, 0.08), inset 0 0 60px rgba(133, 131, 208, 0.06)',
         }}
       />
     </div>

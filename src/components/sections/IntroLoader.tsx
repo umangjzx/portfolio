@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, lazy, Suspense, useMemo, Component, type ReactNode } from 'react';
+import { useState, useEffect, useRef, useCallback, lazy, Suspense, useMemo, Component, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolioStore } from '../../store/portfolioStore';
 import { PROFILE } from '../../data/profile';
@@ -79,14 +79,14 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
   const cinematic = webglOk && !sceneFailed && !isMobile && gpuTier !== 'low';
   const quality: 'high' | 'low' = gpuTier === 'high' && !reducedMotion ? 'high' : 'low';
 
-  const finish = useRef(() => {
+  const finish = useCallback(() => {
     if (finishedRef.current) return;
     finishedRef.current = true;
     // Immediately hand off — the App wrapper handles the fade transition.
     // No flash needed since the background is already white (#fafafa).
     setLoadingComplete();
     onComplete();
-  }).current;
+  }, [setLoadingComplete, onComplete]);
 
   // Master clock — advances the DOM overlay and triggers the flash.
   useEffect(() => {
@@ -153,7 +153,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                 className="pointer-events-none absolute inset-0 z-10 opacity-[0.03]"
                 style={{
                   backgroundImage:
-                    'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(99,102,241,0.15) 3px)',
+                    'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(98, 95, 191,0.15) 3px)',
                 }}
               />
 
@@ -233,14 +233,14 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
               <div className="absolute inset-0 pointer-events-none">
                 <motion.div
                   className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] rounded-full"
-                  style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.2), transparent 60%)' }}
+                  style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.2), transparent 60%)' }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1.2, opacity: 1 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <motion.div
                   className="absolute bottom-1/4 right-0 w-[50vw] h-[50vw] rounded-full"
-                  style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.15), transparent 60%)' }}
+                  style={{ background: 'radial-gradient(circle, rgba(63, 61, 140,0.15), transparent 60%)' }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -250,14 +250,14 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
               {/* Decorative lines that sweep in */}
               <motion.div
                 className="absolute top-[38%] left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.3), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(98, 95, 191,0.3), transparent)' }}
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
               />
               <motion.div
                 className="absolute top-[62%] left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.2), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(133, 131, 208,0.2), transparent)' }}
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: EASE }}

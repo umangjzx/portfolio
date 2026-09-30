@@ -21,7 +21,7 @@ export default function ContactPortal() {
     <section ref={sectionRef} id="contact" className="relative overflow-hidden px-4 py-16 sm:px-6 md:px-12 md:py-24 lg:px-24">
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.18), transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.18), transparent 70%)' }}
       />
 
       <div className="relative z-10 mx-auto max-w-[700px]">
@@ -84,7 +84,7 @@ export default function ContactPortal() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
-                style={{ background: 'linear-gradient(135deg, #6366F1, #8B5CF6)' }}
+                style={{ background: 'linear-gradient(135deg, #625fbf, #8583d0)' }}
               >
                 <Download size={16} /> Résumé
               </a>

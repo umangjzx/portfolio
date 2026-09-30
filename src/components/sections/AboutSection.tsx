@@ -6,10 +6,10 @@ import SectionHeading from '../ui/SectionHeading';
 import { STORY, PROFILE } from '../../data/profile';
 
 const CHAPTERS = [
-  { key: 'journey', icon: Compass, accent: '#6366F1', tint: 'rgba(99,102,241,0.10)' },
-  { key: 'strengths', icon: Layers, accent: '#8B5CF6', tint: 'rgba(139,92,246,0.10)' },
-  { key: 'philosophy', icon: Lightbulb, accent: '#06B6D4', tint: 'rgba(6,182,212,0.10)' },
-  { key: 'impact', icon: TrendingUp, accent: '#EC4899', tint: 'rgba(236,72,153,0.10)' },
+  { key: 'journey', icon: Compass, accent: '#625fbf', tint: 'rgba(98, 95, 191,0.10)' },
+  { key: 'strengths', icon: Layers, accent: '#8583d0', tint: 'rgba(133, 131, 208,0.10)' },
+  { key: 'philosophy', icon: Lightbulb, accent: '#3f3d8c', tint: 'rgba(63, 61, 140,0.10)' },
+  { key: 'impact', icon: TrendingUp, accent: '#aeade2', tint: 'rgba(174, 173, 226,0.10)' },
 ] as const;
 
 export default function AboutSection() {
@@ -35,7 +35,7 @@ export default function AboutSection() {
             className="mb-8 hidden lg:flex justify-start"
           >
             <div className="relative">
-              <div className="w-28 h-28 md:w-32 md:h-32 rounded-3xl overflow-hidden border-2 border-white shadow-[0_8px_32px_rgba(99,102,241,0.15)] ring-1 ring-gray-100">
+              <div className="w-28 h-28 md:w-32 md:h-32 rounded-3xl overflow-hidden border-2 border-white shadow-[0_8px_32px_rgba(98, 95, 191,0.15)] ring-1 ring-gray-100">
                 <img
                   src={PROFILE.photoUrl}
                   alt={PROFILE.name}

@@ -4,20 +4,25 @@ import { usePortfolioStore } from '../../store/portfolioStore';
 import { Trophy } from 'lucide-react';
 
 export function AchievementManager() {
-  const achievements = usePortfolioStore((s) => s.achievements);
   const [toasts, setToasts] = useState<string[]>([]);
-  const [prevAchievements, setPrevAchievements] = useState<string[]>([]);
 
+  // Subscribe to the store directly so toasts fire only for achievements
+  // unlocked after mount, and pending dismiss timers are cleaned up.
   useEffect(() => {
-    const newOnes = achievements.filter(a => !prevAchievements.includes(a));
-    if (newOnes.length > 0) {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const unsubscribe = usePortfolioStore.subscribe((state, prevState) => {
+      const newOnes = state.achievements.filter(a => !prevState.achievements.includes(a));
+      if (newOnes.length === 0) return;
       setToasts(prev => [...prev, ...newOnes]);
-      setPrevAchievements(achievements);
       newOnes.forEach(id => {
-        setTimeout(() => setToasts(prev => prev.filter(t => t !== id)), 4500);
+        timers.push(setTimeout(() => setToasts(prev => prev.filter(t => t !== id)), 4500));
       });
-    }
-  }, [achievements, prevAchievements]);
+    });
+    return () => {
+      unsubscribe();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
 
   return (
     <div className="fixed bottom-24 right-5 z-[60] flex flex-col gap-3 pointer-events-none">

@@ -99,7 +99,7 @@ export function DeveloperTerminal() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 2 }}
-        className="fixed bottom-24 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-2xl shadow-lg transition-all hover:scale-110"
+        className="fixed bottom-24 left-6 z-50 hidden md:flex h-12 w-12 items-center justify-center rounded-2xl shadow-lg transition-all hover:scale-110"
         style={{
           background: 'rgba(255,255,255,0.9)',
           backdropFilter: 'blur(16px)',

@@ -28,8 +28,9 @@ export function computeMagneticPull(
 // ContactPortal - Magnetic Pull (button)
 // ============================================================
 
-const MAGNETIC_RADIUS = 80;
-const MAGNETIC_MAX_TRANSLATION = 16;
+// Spec (req 10.4 / 13.2): 50px radius, max 8px translation
+const MAGNETIC_RADIUS = 50;
+const MAGNETIC_MAX_TRANSLATION = 8;
 
 export function computeContactMagneticPull(
   cursorX: number,
@@ -41,7 +42,7 @@ export function computeContactMagneticPull(
   const dy = cursorY - elementCenterY;
   const distance = Math.sqrt(dx * dx + dy * dy);
 
-  if (distance > MAGNETIC_RADIUS || distance === 0) return { x: 0, y: 0 };
+  if (distance >= MAGNETIC_RADIUS || distance === 0) return { x: 0, y: 0 };
   const strength = (1 - distance / MAGNETIC_RADIUS) * MAGNETIC_MAX_TRANSLATION;
   const angle = Math.atan2(dy, dx);
   return { x: Math.cos(angle) * strength, y: Math.sin(angle) * strength };
@@ -58,7 +59,7 @@ export function computeTimelineIllumination(
 ): { illuminated: boolean[]; progressFill: number } {
   const totalNodes = nodePositions.length;
   if (totalNodes === 0) return { illuminated: [], progressFill: 0 };
-  const threshold = scrollPosition + viewportHeight * 0.6;
+  const threshold = scrollPosition + viewportHeight * 0.75;
   const illuminated = nodePositions.map((pos) => pos < threshold);
   const illuminatedCount = illuminated.filter(Boolean).length;
   return { illuminated, progressFill: illuminatedCount / totalNodes };
@@ -140,5 +141,25 @@ export function computeCardTilt(
   const tiltY = Math.max(-maxTilt, Math.min(maxTilt, normalizedX * maxTilt));
   const tiltX = Math.max(-maxTilt, Math.min(maxTilt, -normalizedY * maxTilt));
 
-  return { tiltX, tiltY };
+  // `+ 0` normalises -0 to 0 at the exact card centre
+  return { tiltX: tiltX + 0, tiltY: tiltY + 0 };
+}
+
+// ============================================================
+// NumberTicker - Metric parsing
+// ============================================================
+
+/**
+ * Splits a display metric into prefix / number / suffix so the numeric part
+ * can be animated: "$139K+" → { prefix: '$', value: 139, suffix: 'K+' }.
+ * Returns null when the string has no number to animate.
+ */
+export function parseMetric(
+  raw: string
+): { prefix: string; value: number; suffix: string; decimals: number } | null {
+  const match = raw.match(/^([^\d]*?)(\d+(?:\.\d+)?)(.*)$/);
+  if (!match) return null;
+  const [, prefix, num, suffix] = match;
+  const decimals = num.includes('.') ? num.split('.')[1].length : 0;
+  return { prefix, value: parseFloat(num), suffix, decimals };
 }

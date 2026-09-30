@@ -5,20 +5,20 @@ import type { SkillPlanet, SkillCluster } from '../types';
  * Each cluster has a brand color and a one-line definition.
  */
 export const SKILL_CLUSTERS: SkillCluster[] = [
-  { id: 'ai-ml', label: 'AI & Machine Learning', color: '#6366F1', description: 'Models that learn, predict, and reason.' },
-  { id: 'data-science', label: 'Data Science', color: '#8B5CF6', description: 'Turning raw data into signal.' },
-  { id: 'backend', label: 'Backend & APIs', color: '#06B6D4', description: 'Reliable services that move data.' },
-  { id: 'frontend', label: 'Frontend', color: '#EC4899', description: 'Interfaces people actually enjoy.' },
+  { id: 'ai-ml', label: 'AI & Machine Learning', color: '#625fbf', description: 'Models that learn, predict, and reason.' },
+  { id: 'data-science', label: 'Data Science', color: '#8583d0', description: 'Turning raw data into signal.' },
+  { id: 'backend', label: 'Backend & APIs', color: '#3f3d8c', description: 'Reliable services that move data.' },
+  { id: 'frontend', label: 'Frontend', color: '#aeade2', description: 'Interfaces people actually enjoy.' },
   { id: 'cloud-devops', label: 'Cloud & DevOps', color: '#10B981', description: 'Ship it, scale it, keep it up.' },
   { id: 'analytics', label: 'Analytics & BI', color: '#F59E0B', description: 'Decisions backed by evidence.' },
 ];
 
 export const SKILLS: SkillPlanet[] = [
   // ── AI & ML ──
-  { id: 'ml', name: 'Machine Learning', proficiency: 90, orbitRadius: 17, orbitSpeed: 8, color: '#6366F1', cluster: 'ai-ml', years: 3, tools: ['Scikit-learn', 'XGBoost', 'PyTorch'], projects: ['stock-prediction', 'loan-risk', 'civicpulse', 'solar-irradiance'] },
+  { id: 'ml', name: 'Machine Learning', proficiency: 90, orbitRadius: 17, orbitSpeed: 8, color: '#625fbf', cluster: 'ai-ml', years: 3, tools: ['Scikit-learn', 'XGBoost', 'PyTorch'], projects: ['stock-prediction', 'loan-risk', 'civicpulse', 'solar-irradiance'] },
   { id: 'tensorflow', name: 'TensorFlow / Keras', proficiency: 85, orbitRadius: 8, orbitSpeed: 10, color: '#FF6F00', cluster: 'ai-ml', years: 2, tools: ['Keras', 'TF Serving'], projects: ['pews'] },
   { id: 'xgboost', name: 'XGBoost', proficiency: 86, orbitRadius: 10, orbitSpeed: 11, color: '#1E88E5', cluster: 'ai-ml', years: 2, tools: ['LightGBM', 'CatBoost'], projects: ['stock-prediction', 'loan-risk', 'solar-irradiance'] },
-  { id: 'nlp', name: 'NLP & LLMs', proficiency: 82, orbitRadius: 16, orbitSpeed: 12, color: '#8B5CF6', cluster: 'ai-ml', years: 2, tools: ['LangGraph', 'HuggingFace', 'spaCy', 'NLTK'], projects: ['medrelay'] },
+  { id: 'nlp', name: 'NLP & LLMs', proficiency: 82, orbitRadius: 16, orbitSpeed: 12, color: '#8583d0', cluster: 'ai-ml', years: 2, tools: ['LangGraph', 'HuggingFace', 'spaCy', 'NLTK'], projects: ['medrelay'] },
   { id: 'scikit-learn', name: 'Scikit-learn', proficiency: 88, orbitRadius: 9, orbitSpeed: 13, color: '#F89939', cluster: 'ai-ml', years: 3, tools: ['Pandas', 'NumPy'], projects: ['disease-prediction', 'loan-risk'] },
 
   // ── Data Science ──
@@ -27,7 +27,7 @@ export const SKILLS: SkillPlanet[] = [
   { id: 'sql', name: 'SQL', proficiency: 85, orbitRadius: 5, orbitSpeed: 14, color: '#336791', cluster: 'data-science', years: 3, tools: ['PostgreSQL', 'SQLite'], projects: ['civicpulse', 'telecom-churn'] },
 
   // ── Backend ──
-  { id: 'flask', name: 'Flask / FastAPI', proficiency: 84, orbitRadius: 11, orbitSpeed: 17, color: '#0EA5E9', cluster: 'backend', years: 3, tools: ['FastAPI', 'WebSocket', 'JWT'], projects: ['medrelay', 'cognisync', 'pews', 'disease-prediction'] },
+  { id: 'flask', name: 'Flask / FastAPI', proficiency: 84, orbitRadius: 11, orbitSpeed: 17, color: '#4d4aa9', cluster: 'backend', years: 3, tools: ['FastAPI', 'WebSocket', 'JWT'], projects: ['medrelay', 'cognisync', 'pews', 'disease-prediction'] },
   { id: 'postgresql', name: 'PostgreSQL', proficiency: 78, orbitRadius: 13, orbitSpeed: 20, color: '#336791', cluster: 'backend', years: 2, tools: ['SQLite', 'SQLAlchemy'], projects: ['civicpulse'] },
 
   // ── Frontend ──
@@ -36,7 +36,7 @@ export const SKILLS: SkillPlanet[] = [
 
   // ── Cloud & DevOps ──
   { id: 'docker', name: 'Docker', proficiency: 72, orbitRadius: 14, orbitSpeed: 15, color: '#2496ED', cluster: 'cloud-devops', years: 2, tools: ['Compose'], projects: [] },
-  { id: 'gcp', name: 'Google Cloud', proficiency: 72, orbitRadius: 15, orbitSpeed: 14, color: '#4285F4', cluster: 'cloud-devops', years: 1, tools: ['Cloud Run', 'BigQuery'], projects: [] },
+  { id: 'gcp', name: 'Google Cloud', proficiency: 72, orbitRadius: 15, orbitSpeed: 14, color: '#625fbf', cluster: 'cloud-devops', years: 1, tools: ['Cloud Run', 'BigQuery'], projects: [] },
 
   // ── Analytics & BI ──
   { id: 'powerbi', name: 'Power BI', proficiency: 80, orbitRadius: 12, orbitSpeed: 19, color: '#F2C811', cluster: 'analytics', years: 2, tools: ['DAX', 'Power Query'], projects: ['telecom-churn', 'hr-analytics'] },

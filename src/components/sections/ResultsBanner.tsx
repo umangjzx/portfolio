@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Cpu, TrendingUp, FileText, Trophy, Rocket } from 'lucide-react';
+import NumberTicker from '../ui/NumberTicker';
 
 const METRICS = [
-  { icon: Cpu, value: '14', label: 'AI Agents in Pipeline', accent: '#6366F1' },
-  { icon: TrendingUp, value: '$139K+', label: 'Revenue at Risk Identified', accent: '#06B6D4' },
-  { icon: FileText, value: '2', label: 'Research Papers Published', accent: '#8B5CF6' },
-  { icon: Trophy, value: '4', label: 'Hackathon Podiums', accent: '#EC4899' },
-  { icon: Rocket, value: '11+', label: 'Products Shipped', accent: '#14B8A6' },
+  { icon: Cpu, value: '14', label: 'AI Agents in Pipeline', accent: '#625fbf' },
+  { icon: TrendingUp, value: '$139K+', label: 'Revenue at Risk Identified', accent: '#3f3d8c' },
+  { icon: FileText, value: '2', label: 'Research Papers Published', accent: '#8583d0' },
+  { icon: Trophy, value: '4', label: 'Hackathon Podiums', accent: '#aeade2' },
+  { icon: Rocket, value: '11+', label: 'Products Shipped', accent: '#2b2a5a' },
 ] as const;
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -20,7 +21,7 @@ export default function ResultsBanner() {
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(99,102,241,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)',
+            'linear-gradient(rgba(98, 95, 191,1) 1px, transparent 1px), linear-gradient(90deg, rgba(98, 95, 191,1) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       />
@@ -64,7 +65,7 @@ export default function ResultsBanner() {
                 className="font-display text-3xl font-bold tabular-nums sm:text-4xl"
                 style={{ color: accent }}
               >
-                {value}
+                <NumberTicker value={value} />
               </span>
               <span className="mt-2 text-xs leading-tight text-ink-soft sm:text-sm">
                 {label}

@@ -7,44 +7,26 @@ import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import type { Command } from '../../types';
 
-function getCommandsWithActions(): Command[] {
-  return COMMANDS.map((cmd) => {
-    switch (cmd.id) {
-      case 'view-projects':
-        return { ...cmd, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) };
-      case 'download-resume':
-        return { ...cmd, action: () => { window.open('https://drive.google.com/uc?export=download&id=1UWWzbf0Jszy7K_RiiadRthrOlgEvh7vR', '_blank'); } };
-      case 'contact':
-        return { ...cmd, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) };
-      case 'github':
-        return { ...cmd, action: () => window.open('https://github.com/umangjaiswal', '_blank') };
-      case 'linkedin':
-        return { ...cmd, action: () => window.open('https://linkedin.com/in/umangjaiswal', '_blank') };
-      default: return cmd;
-    }
-  });
-}
-
 export function CommandPalette() {
   const isOpen = usePortfolioStore((s) => s.isCommandPaletteOpen);
   const toggleCommandPalette = usePortfolioStore((s) => s.toggleCommandPalette);
   const isMobile = useIsMobile();
   const [query, setQuery] = useState('');
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const [commands] = useState<Command[]>(getCommandsWithActions);
+  const [rawHighlightedIndex, setHighlightedIndex] = useState(0);
+  const [wasOpen, setWasOpen] = useState(isOpen);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const focusTrapRef = useFocusTrap(isOpen, { onEscape: toggleCommandPalette, initialFocusRef: inputRef });
-  const filteredCommands = fuzzySearchService.search(query, commands);
-
-  useEffect(() => {
+  // Reset the search each time the palette opens (state adjusted during render,
+  // per https://react.dev/learn/you-might-not-need-an-effect).
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
     if (isOpen) { setQuery(''); setHighlightedIndex(0); }
-  }, [isOpen]);
+  }
 
-  useEffect(() => {
-    if (highlightedIndex >= filteredCommands.length) setHighlightedIndex(Math.max(0, filteredCommands.length - 1));
-  }, [filteredCommands.length, highlightedIndex]);
+  const focusTrapRef = useFocusTrap(isOpen, { onEscape: toggleCommandPalette, initialFocusRef: inputRef });
+  const filteredCommands = fuzzySearchService.search(query, COMMANDS);
+  const highlightedIndex = Math.min(rawHighlightedIndex, Math.max(0, filteredCommands.length - 1));
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -81,7 +63,7 @@ export function CommandPalette() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1, duration: 0.3 }}
           onClick={toggleCommandPalette}
-          className="fixed bottom-6 left-6 z-[9990] w-12 h-12 rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-gray-200 flex items-center justify-center active:scale-95 transition-transform"
+          className="fixed bottom-24 left-5 z-50 w-12 h-12 rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-gray-200 flex items-center justify-center active:scale-95 transition-transform"
           aria-label="Open command palette"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-700">

@@ -9,9 +9,9 @@ import { COMMANDS } from '../../data/commands';
  */
 
 describe('CommandPalette - Fuzzy Search Integration', () => {
-  it('returns all 5 commands when query is empty', () => {
+  it('returns all commands when query is empty', () => {
     const results = fuzzySearchService.search('', COMMANDS);
-    expect(results).toHaveLength(5);
+    expect(results).toHaveLength(COMMANDS.length);
   });
 
   it('filters to "View Projects" when searching "proj"', () => {
@@ -20,10 +20,10 @@ describe('CommandPalette - Fuzzy Search Integration', () => {
     expect(results[0].id).toBe('view-projects');
   });
 
-  it('filters to "Download Resume" when searching "resume"', () => {
+  it('surfaces both resume commands when searching "resume"', () => {
     const results = fuzzySearchService.search('resume', COMMANDS);
-    expect(results.length).toBeGreaterThanOrEqual(1);
-    expect(results[0].id).toBe('download-resume');
+    const top2 = results.slice(0, 2).map((cmd) => cmd.id).sort();
+    expect(top2).toEqual(['download-resume', 'view-resume']);
   });
 
   it('filters to "Contact" when searching "contact"', () => {

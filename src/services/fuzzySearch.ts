@@ -32,7 +32,6 @@ function fuzzyScore(query: string, target: string): number {
   let consecutiveCount = 0;
   let maxConsecutive = 0;
   let lastMatchIndex = -2; // Initialize to impossible value
-  let score = 0;
 
   for (let i = 0; i < lowerTarget.length && queryIndex < lowerQuery.length; i++) {
     if (lowerTarget[i] === lowerQuery[queryIndex]) {
@@ -64,9 +63,8 @@ function fuzzyScore(query: string, target: string): number {
   // Consecutive bonus: reward sequential character matches
   const consecutiveScore = maxConsecutive * 20;
 
-  score = positionScore + consecutiveScore + exactSubstringBonus;
+  return positionScore + consecutiveScore + exactSubstringBonus;
 
-  return score;
 }
 
 /**

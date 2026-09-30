@@ -8,7 +8,7 @@ export const PROJECTS: Project[] = [
     category: 'Healthcare AI',
     year: '2026',
     featured: true,
-    accent: ['#6366F1', '#06B6D4'],
+    accent: ['#625fbf', '#3f3d8c'],
     description:
       'AI-powered clinical handoff system that converts spoken nurse-to-nurse handoffs into structured SBAR reports using a 14-agent pipeline.',
     problem:
@@ -43,7 +43,7 @@ export const PROJECTS: Project[] = [
     category: 'Civic Tech',
     year: '2025',
     featured: true,
-    accent: ['#8B5CF6', '#6366F1'],
+    accent: ['#8583d0', '#625fbf'],
     description:
       'Complaint management platform with role-based access, real-time tracking, ML classification, and an admin analytics suite.',
     problem:
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     category: 'FinTech / ML',
     year: '2025',
     featured: true,
-    accent: ['#06B6D4', '#10B981'],
+    accent: ['#3f3d8c', '#10B981'],
     description:
       'Stock forecasting system blending XGBoost, Random Forest, SVR and LSTM models over 500+ trading days of market data.',
     problem:
@@ -112,7 +112,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Hybrid ML for renewable energy forecasting',
     category: 'ML / Energy',
     year: '2025',
-    accent: ['#F59E0B', '#EC4899'],
+    accent: ['#F59E0B', '#aeade2'],
     description:
       'End-to-end Streamlit app predicting solar irradiance (W/m²) with LightGBM, XGBoost, CatBoost and Random Forest.',
     problem:
@@ -143,7 +143,7 @@ export const PROJECTS: Project[] = [
     tagline: 'GenAI music therapy for neurorehabilitation',
     category: 'GenAI / HealthTech',
     year: '2025',
-    accent: ['#8B5CF6', '#EC4899'],
+    accent: ['#8583d0', '#aeade2'],
     description:
       'AI-driven neurorehab platform for stroke & Parkinson\'s patients using a custom adaptive beat-generation engine.',
     problem:
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Procrastination early-warning system',
     category: 'Applied ML',
     year: '2025',
-    accent: ['#6366F1', '#8B5CF6'],
+    accent: ['#625fbf', '#8583d0'],
     description:
       'Real-time system that predicts user distraction from browsing behavior using a lightweight PyTorch LSTM.',
     problem:
@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Interactive data structures & algorithms playground',
     category: 'EdTech',
     year: '2024',
-    accent: ['#06B6D4', '#6366F1'],
+    accent: ['#3f3d8c', '#625fbf'],
     description:
       'Streamlit app that visualizes arrays, trees, sorting, and graph algorithms (BFS, DFS, Dijkstra) in real time.',
     problem: 'Algorithms are hard to internalize from static textbook diagrams.',
@@ -233,7 +233,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Symptom-driven diagnosis & recommendation',
     category: 'HealthTech / ML',
     year: '2024',
-    accent: ['#10B981', '#06B6D4'],
+    accent: ['#10B981', '#3f3d8c'],
     description:
       'AI system that predicts probable diseases from reported symptoms with a Flask backend and Tailwind UI.',
     problem: 'People struggle to make sense of symptoms before they can see a doctor.',
@@ -261,7 +261,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Power BI churn dashboard for 7,043 customers',
     category: 'Analytics / BI',
     year: '2024',
-    accent: ['#F59E0B', '#6366F1'],
+    accent: ['#F59E0B', '#625fbf'],
     description:
       'Interactive Power BI dashboard identifying a 27% churn rate and $139K+ revenue at risk across 7,043 customers.',
     problem: 'The business knew it was losing customers but not who, why, or how much it cost.',
@@ -290,7 +290,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Lending Club default prediction pipeline',
     category: 'FinTech / ML',
     year: '2024',
-    accent: ['#EC4899', '#8B5CF6'],
+    accent: ['#aeade2', '#8583d0'],
     description:
       'End-to-end ML pipeline predicting loan default risk with Logistic Regression, Random Forest and XGBoost.',
     problem: 'Lenders need to score default risk while handling heavily imbalanced approval data.',
@@ -320,7 +320,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Predicting candidate job-change behavior',
     category: 'Analytics / BI',
     year: '2024',
-    accent: ['#6366F1', '#06B6D4'],
+    accent: ['#625fbf', '#3f3d8c'],
     description:
       'Interactive Power BI dashboard analyzing and predicting candidate job-change behavior with DAX-driven KPIs.',
     problem: 'Recruiters lacked a data view of which candidates were likely to switch jobs.',
@@ -377,7 +377,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Corporate website for TCL business operations',
     category: 'Web Design',
     year: '2024',
-    accent: ['#06B6D4', '#8B5CF6'],
+    accent: ['#3f3d8c', '#8583d0'],
     description:
       'Designed and launched a professional corporate website to showcase business services and build brand identity.',
     problem: 'Needed a polished digital storefront to communicate services and establish brand trust.',

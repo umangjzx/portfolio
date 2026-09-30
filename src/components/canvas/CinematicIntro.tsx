@@ -1,5 +1,5 @@
 import { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { checkIsMobile } from '../../hooks/useIsMobile';
 
@@ -8,7 +8,7 @@ import { checkIsMobile } from '../../hooks/useIsMobile';
    Particles are rendered as solid colored dots against white.
 ============================================================ */
 
-export const TIMELINE = {
+const TIMELINE = {
   GATHER_END: 1.6,
   FORM_START: 1.5,
   FORM_PARTICLE_DUR: 1.15,
@@ -21,12 +21,12 @@ export const TIMELINE = {
 } as const;
 
 const COL = {
-  indigo: new THREE.Color('#4f46e5'),
-  violet: new THREE.Color('#7c3aed'),
-  cyan: new THREE.Color('#0891b2'),
-  pink: new THREE.Color('#db2777'),
-  teal: new THREE.Color('#14b8a6'),
-  rose: new THREE.Color('#f43f5e'),
+  indigo: new THREE.Color('#4d4aa9'),
+  violet: new THREE.Color('#3f3d8c'),
+  cyan: new THREE.Color('#34336f'),
+  pink: new THREE.Color('#8583d0'),
+  teal: new THREE.Color('#2b2a5a'),
+  rose: new THREE.Color('#8583d0'),
 };
 
 /* ---------- easing ---------- */
@@ -155,21 +155,10 @@ function TextParticles({ count, sprite }: { count: number; sprite: THREE.Texture
     []
   );
 
-  const { targets, colors, scatter, seeds, live } = useMemo(() => {
-    const { targets, colors } = buildTextTargets('UMANG', count, worldW);
-    const scatter = new Float32Array(count * 3);
-    const seeds = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const radius = 8 + Math.random() * 14;
-      scatter[i * 3] = Math.cos(theta) * radius;
-      scatter[i * 3 + 1] = Math.sin(theta) * radius * 0.6;
-      scatter[i * 3 + 2] = -4 - Math.random() * 8;
-      seeds[i] = Math.random();
-    }
-    const live = new Float32Array(scatter);
-    return { targets, colors, scatter, seeds, live };
-  }, [count, worldW]);
+  const { targets, colors, scatter, seeds, live } = useMemo(
+    () => buildTitleParticles(count, worldW),
+    [count, worldW]
+  );
 
   useFrame(({ clock }) => {
     if (!points.current || !group.current || !mat.current) return;
@@ -257,23 +246,55 @@ function TextParticles({ count, sprite }: { count: number; sprite: THREE.Texture
 }
 
 /* ============================================================
+   Particle builders — module-level so random seeding stays out
+   of render (called once per mount via useMemo).
+============================================================ */
+function buildTitleParticles(count: number, worldW: number) {
+  const { targets, colors } = buildTextTargets('UMANG', count, worldW);
+  const scatter = new Float32Array(count * 3);
+  const seeds = new Float32Array(count);
+  for (let i = 0; i < count; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const radius = 8 + Math.random() * 14;
+    scatter[i * 3] = Math.cos(theta) * radius;
+    scatter[i * 3 + 1] = Math.sin(theta) * radius * 0.6;
+    scatter[i * 3 + 2] = -4 - Math.random() * 8;
+    seeds[i] = Math.random();
+  }
+  const live = new Float32Array(scatter);
+  return { targets, colors, scatter, seeds, live };
+}
+
+function buildStreakParticles(count: number) {
+  const start = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const r = 10 + Math.random() * 16;
+    start[i * 3] = Math.cos(theta) * r;
+    start[i * 3 + 1] = Math.sin(theta) * r;
+    start[i * 3 + 2] = -4 + Math.random() * 8;
+  }
+  return { start, live: new Float32Array(start) };
+}
+
+function buildAmbientPositions(count: number, spread: number, depth: number) {
+  const arr = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    arr[i * 3] = (Math.random() - 0.5) * spread;
+    arr[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.7;
+    arr[i * 3 + 2] = depth + (Math.random() - 0.5) * spread * 0.4;
+  }
+  return arr;
+}
+
+/* ============================================================
    Light streaks
 ============================================================ */
 function LightStreaks({ count = 180 }: { count?: number }) {
   const points = useRef<THREE.Points>(null);
   const mat = useRef<THREE.PointsMaterial>(null);
 
-  const { start, live } = useMemo(() => {
-    const start = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const r = 10 + Math.random() * 16;
-      start[i * 3] = Math.cos(theta) * r;
-      start[i * 3 + 1] = Math.sin(theta) * r;
-      start[i * 3 + 2] = -4 + Math.random() * 8;
-    }
-    return { start, live: new Float32Array(start) };
-  }, [count]);
+  const { start, live } = useMemo(() => buildStreakParticles(count), [count]);
 
   useFrame(({ clock }) => {
     if (!points.current || !mat.current) return;
@@ -292,7 +313,7 @@ function LightStreaks({ count = 180 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         ref={mat}
-        color="#6366f1"
+        color="#625fbf"
         size={0.25}
         transparent
         opacity={0}
@@ -312,15 +333,7 @@ function AmbientField({
   count: number; depth: number; spread: number; color: string; size: number; sprite: THREE.Texture;
 }) {
   const group = useRef<THREE.Group>(null);
-  const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * spread;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.7;
-      arr[i * 3 + 2] = depth + (Math.random() - 0.5) * spread * 0.4;
-    }
-    return arr;
-  }, [count, spread, depth]);
+  const positions = useMemo(() => buildAmbientPositions(count, spread, depth), [count, spread, depth]);
 
   useFrame(({ clock }) => {
     if (!group.current) return;
@@ -390,7 +403,7 @@ function EnergyCore({ glow }: { glow: THREE.Texture }) {
         <icosahedronGeometry args={[0.5, 1]} />
         <meshStandardMaterial
           color="#e0e7ff"
-          emissive="#6366f1"
+          emissive="#625fbf"
           emissiveIntensity={2}
           metalness={0.3}
           roughness={0.3}
@@ -408,10 +421,10 @@ function HoloRings() {
   const group = useRef<THREE.Group>(null);
   const rings = useMemo(
     () => [
-      { r: 2.2, tube: 0.03, color: '#06b6d4', tilt: 0.0, phase: 0.0 },
-      { r: 3.2, tube: 0.025, color: '#8b5cf6', tilt: 0.5, phase: 0.6 },
-      { r: 4.5, tube: 0.02, color: '#6366f1', tilt: -0.4, phase: 1.2 },
-      { r: 6.0, tube: 0.016, color: '#ec4899', tilt: 0.25, phase: 1.8 },
+      { r: 2.2, tube: 0.03, color: '#3f3d8c', tilt: 0.0, phase: 0.0 },
+      { r: 3.2, tube: 0.025, color: '#8583d0', tilt: 0.5, phase: 0.6 },
+      { r: 4.5, tube: 0.02, color: '#625fbf', tilt: -0.4, phase: 1.2 },
+      { r: 6.0, tube: 0.016, color: '#aeade2', tilt: 0.25, phase: 1.8 },
     ],
     []
   );
@@ -448,10 +461,9 @@ function HoloRings() {
    Camera rig
 ============================================================ */
 function CameraRig({ onDone }: { onDone: () => void }) {
-  const { camera } = useThree();
   const fired = useRef(false);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock, camera }) => {
     const t = clock.getElapsedTime();
     const T = TIMELINE;
     const cam = camera as THREE.PerspectiveCamera;
@@ -491,7 +503,7 @@ function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => voi
   const textCount = isMobile ? 1800 : quality === 'high' ? 5000 : 2500;
 
   const sprite = useMemo(() => makeCircleTexture(), []);
-  const coreGlow = useMemo(() => makeGlowTexture('#6366f1'), []);
+  const coreGlow = useMemo(() => makeGlowTexture('#625fbf'), []);
 
   useEffect(() => {
     return () => {
@@ -504,15 +516,15 @@ function Scene({ quality, onDone }: { quality: 'high' | 'low'; onDone: () => voi
     <>
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 8, 10]} color="#ffffff" intensity={0.6} />
-      <pointLight position={[8, 5, 6]} color="#6366f1" intensity={3} distance={50} />
-      <pointLight position={[-8, -3, 5]} color="#06b6d4" intensity={2} distance={50} />
+      <pointLight position={[8, 5, 6]} color="#625fbf" intensity={3} distance={50} />
+      <pointLight position={[-8, -3, 5]} color="#3f3d8c" intensity={2} distance={50} />
 
       <CameraRig onDone={onDone} />
 
       {/* Parallax depth layers — reduced counts */}
       <AmbientField count={isMobile ? 100 : quality === 'high' ? 350 : 150} depth={-20} spread={50} color="#a5b4fc" size={0.35} sprite={sprite} />
       <AmbientField count={isMobile ? 70 : quality === 'high' ? 250 : 120} depth={-10} spread={40} color="#818cf8" size={0.28} sprite={sprite} />
-      <AmbientField count={isMobile ? 50 : quality === 'high' ? 180 : 80} depth={-3} spread={30} color="#06b6d4" size={0.22} sprite={sprite} />
+      <AmbientField count={isMobile ? 50 : quality === 'high' ? 180 : 80} depth={-3} spread={30} color="#3f3d8c" size={0.22} sprite={sprite} />
 
       <LightStreaks count={isMobile ? 40 : quality === 'high' ? 120 : 60} />
       <HoloRings />

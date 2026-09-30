@@ -8,11 +8,11 @@ import type { TimelineMilestone } from '../../types';
 import SectionHeading from '../ui/SectionHeading';
 
 const TYPE_META: Record<NonNullable<TimelineMilestone['type']>, { icon: typeof Briefcase; color: string; label: string }> = {
-  work: { icon: Briefcase, color: '#6366F1', label: 'Work' },
-  education: { icon: GraduationCap, color: '#06B6D4', label: 'Education' },
+  work: { icon: Briefcase, color: '#625fbf', label: 'Work' },
+  education: { icon: GraduationCap, color: '#3f3d8c', label: 'Education' },
   award: { icon: Award, color: '#F59E0B', label: 'Award' },
-  research: { icon: FlaskConical, color: '#8B5CF6', label: 'Research' },
-  project: { icon: Rocket, color: '#EC4899', label: 'Project' },
+  research: { icon: FlaskConical, color: '#8583d0', label: 'Research' },
+  project: { icon: Rocket, color: '#aeade2', label: 'Project' },
   leadership: { icon: Users, color: '#10B981', label: 'Leadership' },
 };
 
@@ -111,7 +111,7 @@ export default function ExperienceTimeline() {
         <div className="mt-6 h-1 w-full overflow-hidden rounded-full bg-slate-100">
           <motion.div
             className="h-full rounded-full"
-            style={{ background: 'linear-gradient(90deg, #6366F1, #8B5CF6, #06B6D4)' }}
+            style={{ background: 'linear-gradient(90deg, #625fbf, #8583d0, #3f3d8c)' }}
             animate={{ width: `${progress}%` }}
             transition={{ type: 'spring', stiffness: 80, damping: 20 }}
           />

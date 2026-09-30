@@ -1,21 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  /* ===== Brand palette — premium light ===== */
-  --color-indigo: #6366f1;
-  --color-violet: #8b5cf6;
-  --color-cyan: #06b6d4;
-  --color-pink: #ec4899;
+  /* ===== Single accent: desaturated deep indigo =====
+     Every former accent hue (indigo/violet/purple/cyan/sky/blue/teal/pink/
+     fuchsia) is aliased onto this one scale so the site reads as one brand
+     colour in different tones rather than a multi-hue "AI gradient". */
+  --color-accent-50: #f4f4fb;
+  --color-accent-100: #e8e8f7;
+  --color-accent-200: #d0d0ef;
+  --color-accent-300: #aeade2;
+  --color-accent-400: #8583d0;
+  --color-accent-500: #625fbf;
+  --color-accent-600: #4d4aa9;
+  --color-accent-700: #3f3d8c;
+  --color-accent-800: #34336f;
+  --color-accent-900: #2b2a5a;
+  --color-accent-950: #1a1938;
+  --color-accent: #4d4aa9;
+
+  --color-indigo-50: #f4f4fb; --color-indigo-100: #e8e8f7; --color-indigo-200: #d0d0ef; --color-indigo-300: #aeade2; --color-indigo-400: #8583d0; --color-indigo-500: #625fbf; --color-indigo-600: #4d4aa9; --color-indigo-700: #3f3d8c; --color-indigo-800: #34336f; --color-indigo-900: #2b2a5a; --color-indigo-950: #1a1938;
+  --color-violet-50: #f4f4fb; --color-violet-100: #e8e8f7; --color-violet-200: #d0d0ef; --color-violet-300: #aeade2; --color-violet-400: #8583d0; --color-violet-500: #625fbf; --color-violet-600: #4d4aa9; --color-violet-700: #3f3d8c; --color-violet-800: #34336f; --color-violet-900: #2b2a5a; --color-violet-950: #1a1938;
+  --color-purple-50: #f4f4fb; --color-purple-100: #e8e8f7; --color-purple-200: #d0d0ef; --color-purple-300: #aeade2; --color-purple-400: #8583d0; --color-purple-500: #625fbf; --color-purple-600: #4d4aa9; --color-purple-700: #3f3d8c; --color-purple-800: #34336f; --color-purple-900: #2b2a5a; --color-purple-950: #1a1938;
+  --color-blue-50: #f4f4fb; --color-blue-100: #e8e8f7; --color-blue-200: #d0d0ef; --color-blue-300: #aeade2; --color-blue-400: #8583d0; --color-blue-500: #625fbf; --color-blue-600: #4d4aa9; --color-blue-700: #3f3d8c; --color-blue-800: #34336f; --color-blue-900: #2b2a5a; --color-blue-950: #1a1938;
+  /* Former secondary hues map to deeper / lighter tones for tonal variety */
+  --color-cyan-50: #f4f4fb; --color-cyan-100: #e8e8f7; --color-cyan-200: #d0d0ef; --color-cyan-300: #8583d0; --color-cyan-400: #4d4aa9; --color-cyan-500: #3f3d8c; --color-cyan-600: #34336f; --color-cyan-700: #2b2a5a; --color-cyan-800: #2b2a5a; --color-cyan-900: #1a1938; --color-cyan-950: #1a1938;
+  --color-sky-50: #f4f4fb; --color-sky-100: #e8e8f7; --color-sky-200: #d0d0ef; --color-sky-300: #8583d0; --color-sky-400: #4d4aa9; --color-sky-500: #3f3d8c; --color-sky-600: #34336f; --color-sky-700: #2b2a5a; --color-sky-800: #2b2a5a; --color-sky-900: #1a1938; --color-sky-950: #1a1938;
+  --color-teal-50: #f4f4fb; --color-teal-100: #e8e8f7; --color-teal-200: #d0d0ef; --color-teal-300: #8583d0; --color-teal-400: #4d4aa9; --color-teal-500: #3f3d8c; --color-teal-600: #34336f; --color-teal-700: #2b2a5a; --color-teal-800: #2b2a5a; --color-teal-900: #1a1938; --color-teal-950: #1a1938;
+  --color-pink-50: #f4f4fb; --color-pink-100: #f4f4fb; --color-pink-200: #e8e8f7; --color-pink-300: #d0d0ef; --color-pink-400: #aeade2; --color-pink-500: #8583d0; --color-pink-600: #625fbf; --color-pink-700: #4d4aa9; --color-pink-800: #3f3d8c; --color-pink-900: #34336f; --color-pink-950: #2b2a5a;
+  --color-fuchsia-50: #f4f4fb; --color-fuchsia-100: #f4f4fb; --color-fuchsia-200: #e8e8f7; --color-fuchsia-300: #d0d0ef; --color-fuchsia-400: #aeade2; --color-fuchsia-500: #8583d0; --color-fuchsia-600: #625fbf; --color-fuchsia-700: #4d4aa9; --color-fuchsia-800: #3f3d8c; --color-fuchsia-900: #34336f; --color-fuchsia-950: #2b2a5a;
+  --color-rose-50: #f4f4fb; --color-rose-100: #f4f4fb; --color-rose-200: #e8e8f7; --color-rose-300: #d0d0ef; --color-rose-400: #aeade2; --color-rose-500: #8583d0; --color-rose-600: #625fbf; --color-rose-700: #4d4aa9; --color-rose-800: #3f3d8c; --color-rose-900: #34336f; --color-rose-950: #2b2a5a;
+
+  /* ===== Legacy flat tokens (now tones of the accent) ===== */
+  --color-indigo: #625fbf;
+  --color-violet: #8583d0;
+  --color-cyan: #3f3d8c;
+  --color-pink: #aeade2;
   --color-emerald: #10b981;
   --color-amber: #f59e0b;
 
   /* ── New accent colors for richer depth ── */
-  --color-rose: #f43f5e;
-  --color-sky: #0ea5e9;
+  --color-rose: #8583d0;
+  --color-sky: #4d4aa9;
   --color-gold: #eab308;
-  --color-teal: #14b8a6;
-  --color-lavender: #a78bfa;
-  --color-coral: #fb7185;
+  --color-teal: #2b2a5a;
+  --color-lavender: #aeade2;
+  --color-coral: #aeade2;
 
   --color-surface: #fafafa;
   --color-card: #ffffff;
@@ -35,10 +64,10 @@
   /* ===== Effects ===== */
   --blur-glass: 20px;
   --shadow-soft: 0 4px 24px rgba(15, 23, 42, 0.06);
-  --shadow-lift: 0 24px 60px rgba(99, 102, 241, 0.14), 0 8px 20px rgba(15, 23, 42, 0.06);
-  --shadow-glow-indigo: 0 0 30px rgba(99, 102, 241, 0.15);
-  --shadow-glow-cyan: 0 0 30px rgba(6, 182, 212, 0.15);
-  --shadow-glow-pink: 0 0 30px rgba(236, 72, 153, 0.12);
+  --shadow-lift: 0 24px 60px rgba(98, 95, 191, 0.14), 0 8px 20px rgba(15, 23, 42, 0.06);
+  --shadow-glow-indigo: 0 0 30px rgba(98, 95, 191, 0.15);
+  --shadow-glow-cyan: 0 0 30px rgba(63, 61, 140, 0.15);
+  --shadow-glow-pink: 0 0 30px rgba(174, 173, 226, 0.12);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -60,8 +89,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'ss01', 'cv01', 'cv11';
-  /* Enable GPU compositing for root to reduce paint operations */
-  transform: translateZ(0);
+  /* No transform/contain here: either would make <body> the containing
+     block for position:fixed overlays and pin them to the page bottom. */
 }
 
 * {
@@ -77,13 +106,10 @@ body {
 }
 
 /* Contain layout recalculations within sections */
+/* `contain: style` only — `layout` containment would trap fixed-position
+   modals (project detail, skill drawer) inside their section. */
 section {
-  contain: layout style;
-}
-
-/* Force compositor layer for fixed/absolute positioned animated elements */
-.fixed, [class*="fixed"] {
-  will-change: transform;
+  contain: style;
 }
 
 /* Optimize paint for cards that animate on hover */
@@ -96,6 +122,33 @@ section {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Clash Display', 'Satoshi', sans-serif;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Tabular figures so animated counters don't jitter */
+.tabular-nums,
+[data-counter] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Grain overlay — breaks digital flatness on the light surface ===== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media print {
+  body::after { display: none; }
 }
 
 .font-display { font-family: 'Clash Display', 'Satoshi', sans-serif; }
@@ -103,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Selection ===== */
 ::selection {
-  background: rgba(99, 102, 241, 0.18);
+  background: rgba(98, 95, 191, 0.18);
   color: #0f172a;
 }
 
@@ -117,26 +170,19 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover { background: #a5b4fc; }
 
 /* ===== Gradient text helper ===== */
+/* Gradient text is the #1 "AI template" tell — keep the class names but render
+   solid accent tones so existing markup keeps working. */
 .text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 30%, #06b6d4 65%, #ec4899 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-600);
 }
 
 /* ===== Extended gradient with warm tones ===== */
 .text-gradient-warm {
-  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 35%, #8b5cf6 70%, #6366f1 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-500);
 }
 
 .text-gradient-cool {
-  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 40%, #6366f1 75%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent-700);
 }
 
 /* ===== Glass card helper ===== */
@@ -154,8 +200,8 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(99, 102, 241, 0.12);
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(98, 95, 191, 0.12);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(98, 95, 191, 0.06);
   transform: translateZ(0);
 }
 
@@ -163,8 +209,8 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.12);
-  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(6, 182, 212, 0.06);
+  border: 1px solid rgba(63, 61, 140, 0.12);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(63, 61, 140, 0.06);
   transform: translateZ(0);
 }
 
@@ -194,7 +240,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 2px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(98, 95, 191,0.3); border-radius: 2px; }
 
 /* Hide scrollbar but keep functionality (horizontal timeline) */
 .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -262,8 +308,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Smooth color transitions for interactive elements (120Hz-friendly) */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); }
-  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.2), 0 0 60px rgba(139, 92, 246, 0.08); }
+  0%, 100% { box-shadow: 0 0 20px rgba(98, 95, 191, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(98, 95, 191, 0.2), 0 0 60px rgba(133, 131, 208, 0.08); }
 }
 .animate-glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
@@ -279,7 +325,7 @@ html.cyberpunk-mode body {
 
 /* ===== Accessibility ===== */
 :focus-visible {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #625fbf;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -340,4 +386,57 @@ section, main, [role="main"] {
   section { padding-left: 14px; padding-right: 14px; }
   h1 { font-size: 2rem; }
   h2 { font-size: 1.6rem; }
+}
+
+/* ===== Marquee (see components/ui/Marquee.tsx) ===== */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+.marquee {
+  --gap: 0.75rem;
+  display: flex;
+  gap: var(--gap);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gap);
+  min-width: 100%;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: marquee-scroll var(--duration, 45s) linear infinite;
+}
+
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track,
+.marquee[data-paused] .marquee__track {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: a static row the visitor can swipe / arrow-key through */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .marquee::-webkit-scrollbar {
+    display: none;
+  }
+  .marquee__track {
+    animation: none;
+  }
+  .marquee__track[aria-hidden],
+  .marquee__toggle {
+    display: none;
+  }
 }

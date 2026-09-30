@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye } from 'lucide-react';
 
@@ -37,14 +37,9 @@ function incrementVisitCount(): number {
 }
 
 export function VisitorCounter() {
-  const [count, setCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    const visits = incrementVisitCount();
-    setCount(visits);
-  }, []);
-
-  if (count === null) return null;
+  // Lazy initializer runs once per mount; the sessionStorage guard keeps it
+  // idempotent under StrictMode's double invocation.
+  const [count] = useState(incrementVisitCount);
 
   return (
     <motion.div

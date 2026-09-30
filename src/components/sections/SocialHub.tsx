@@ -139,7 +139,7 @@ function GitHubColumn() {
             <GitHubCalendar
               username={GITHUB_USERNAME}
               colorScheme="light"
-              theme={{ light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1'] }}
+              theme={{ light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#625fbf'] }}
             />
           </div>
         </div>
@@ -357,7 +357,7 @@ export default function SocialHub() {
       onMouseEnter={handleInteraction}
     >
       {/* Background accents */}
-      <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.1), transparent 70%)' }} />
+      <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(98, 95, 191,0.1), transparent 70%)' }} />
       <div className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(0,119,181,0.1), transparent 70%)' }} />
 
       <div className="relative z-10 mx-auto max-w-7xl">

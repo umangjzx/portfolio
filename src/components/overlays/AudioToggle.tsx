@@ -56,7 +56,7 @@ export function AudioToggle() {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         onClick={handleToggle}
-        className="fixed bottom-6 left-4 sm:left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-110 focus:outline-none"
+        className="fixed bottom-6 left-4 sm:left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
         aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
         title={isMuted ? 'Unmute audio' : 'Mute audio'}
       >
